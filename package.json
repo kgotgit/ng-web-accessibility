@@ -23,8 +23,10 @@
     "@fortawesome/angular-fontawesome": "^0.1.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
     "@fortawesome/free-solid-svg-icons": "^5.1.0",
+    "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
+    "font-awesome": "^4.7.0",
     "fontawesome": "^4.7.2",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
