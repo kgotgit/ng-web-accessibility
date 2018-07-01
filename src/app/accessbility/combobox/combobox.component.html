@@ -1,0 +1,38 @@
+<div id="{{id}}_combobox" 
+     class="accessCombobox {{type}}" 
+     role="combobox" 
+     [attr.aria-owns]="_dropdownId" 
+     aria-expanded="false" 
+     aria-haspopup="listbox"
+    [attr.aria-labelledby]="arialabel">
+    <div class="input-group">
+      <input class="form-control accessCombobox-input" 
+      [attr.aria-labelledby]="arialabel"
+             [attr.aria-controls]="_dropdownId"
+             [attr.aria-activedescendant]="_activedescendantId"
+             aria-autocomplete="list"
+             type="text"
+             id="accessCombobox_input_{{id}}" />
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" 
+                  tabindex="-1"
+                  type="button" 
+                
+                  aria-label="Toggle combobox" 
+                  title="Click here to toggle {{arialabel}} combobox" 
+                  id="accessCombobox_caretBtn_{{id}}">
+                  <fa-icon [icon]="faCoffee"></fa-icon>
+          </button>
+          <button class="btn btn-outline-secondary" 
+                  type="button" 
+                  aria-hidden="true" 
+                  style="display:none" 
+                  aria-label="Clear combobox" 
+                  title="Click here to clear  combobox selection" 
+                  id="accessCombobox_closeBtn_{{id}}">
+                  <i class="fa fa fa-times-circle" aria-hidden="true"></i>
+          </button>
+        </div>    
+    </div>    
+    
+</div>
