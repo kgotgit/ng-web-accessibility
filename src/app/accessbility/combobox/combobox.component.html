@@ -33,6 +33,10 @@
                   <i class="fa fa-times-circle" aria-hidden="true"></i>
           </button>
         </div>    
-    </div>    
+    </div> 
+    
+    <ul [id]="_dropdownId" role="listbox" [attr.aria-label]="arialabel" tabindex="-1" style="display:none">
+            <li *ngFor="let option of options" role="option" id="accessCombobox_option_{{id}}_option{{getCode(option)}}">{{getLabel(option)}}</li>
+    </ul>
     
 </div>
