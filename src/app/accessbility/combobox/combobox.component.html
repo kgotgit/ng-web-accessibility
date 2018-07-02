@@ -12,7 +12,11 @@
              [attr.aria-activedescendant]="_activedescendantId"
              aria-autocomplete="list"
              type="text"
-             id="accessCombobox_input_{{id}}" />
+             [value]="_selectedText"
+             id="accessCombobox_input_{{id}}" 
+             (click)="onComboboxClick($event)" 
+             (keydown)="onKeydown($event)"
+             (keyup)="onKeyup($event)"/>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" 
                   tabindex="-1"
@@ -35,8 +39,9 @@
         </div>    
     </div> 
     
-    <ul [id]="_dropdownId" role="listbox" [attr.aria-label]="arialabel" tabindex="-1" style="display:none">
-            <li *ngFor="let option of options" role="option" id="accessCombobox_option_{{id}}_option{{getCode(option)}}">{{getLabel(option)}}</li>
+    <ul [id]="_dropdownId" class="accessCombobox-listbox" role="listbox" [attr.aria-label]="arialabel" tabindex="-1"  [attr.aria-hidden]="!_ddOpen" [hidden]="!_ddOpen">
+            <li *ngFor="let option of options" #optionTpl role="option" id="accessCombobox_option_{{id}}_{{getCode(option)}}" aria-selected=
+            "false" (click)="optionClicked(option)">{{getLabel(option)}}</li>
     </ul>
     
 </div>
