@@ -12,6 +12,7 @@ export class ComboboxComponent implements OnInit {
 
   ngOnInit() {
     this.parseDomIds();
+    this.generateLocalData();
   }
 
   
@@ -20,7 +21,7 @@ export class ComboboxComponent implements OnInit {
   @Input() arialabel:string;
   @Input() code:string;
   @Input() label:string;
-  @Input() options:any[];
+  private _options:any[];
   @ViewChildren("optionTpl") optionsDom: QueryList<ElementRef>;
 
 
@@ -29,13 +30,38 @@ export class ComboboxComponent implements OnInit {
   _activedescendantId:string;
   _filteredOptions:any[];
   _ddOpen:boolean=false;
+  _ddprefix:string="accessCombobox_option_";
   _selectedText:string=null;
+  _hideCloseBtn:boolean=true;
+  _hideToggleBtn:boolean=false;
+  _isReadOnly:boolean=false;
+
+  @Input() set options(options:any[]){
+    this._options=options;
+    this.generateLocalData();
+  }
   
   parseDomIds(){
     this._dropdownId="accessCombobox_dropdown_ul_"+this.id;
   }
+  generateLocalData(){
+    if(this._options!=null && this._options.length>0){
+      this._options.forEach((option,idx)=>{
+        option.code=option[this.code];
+        option.label=option[this.label];
+        option.selected=false;
+        option.activedescendant=false;
+        option.elementId=this._ddprefix+"_"+this.id+"_"+option.code;
+      });
+      this._filteredOptions=[...this._options];
+    }
+    
+  }
   toggleList(){
-    console.log("inside toggle list");
+    if(this._isReadOnly===true){
+      return false;
+    }
+
       if(this._ddOpen===true){
         this._ddOpen=false;
       }else{
@@ -60,8 +86,6 @@ export class ComboboxComponent implements OnInit {
   }
 
   filterOptions(selVal){
-  
-
     this._filteredOptions=this.options.filter(r => {
       let optionText=this.getLabel(r);
       if (optionText.toLowerCase().indexOf(selVal.toLowerCase())===0) {
@@ -72,6 +96,15 @@ export class ComboboxComponent implements OnInit {
   });
   }
 
+  /**
+   * Updates aria-selected to false
+   */
+  clearSelection(){
+    this._filteredOptions.forEach((option,idx)=>{
+      option.selected=false;
+      option.activedescendant=false;
+    });
+  }
   /***********Event LIsteners**************/
 
   onComboboxClick(event:any){
@@ -87,23 +120,29 @@ export class ComboboxComponent implements OnInit {
   }
 
   optionClicked(option:any){
-    let code=this.getCode(option);
-    if(code!=null && code.trim()!=""){
-      this._activedescendantId="accessCombobox_option_"+this.id+code;
-    }else{
-      this._activedescendantId=null;
-    }
-    this.optionsDom.forEach((item,idx)=>{
-      let elementId=item.nativeElement.id;
-      let itemElemId="accessCombobox_option_"+this.id+"_"+code;
-      if(elementId===itemElemId){
-        item.nativeElement.setAttribute("aria-selected",true);
-        this._selectedText=this.getLabel(option);
-      }else{
-        item.nativeElement.setAttribute("aria-selected",false);
-      }
-     this.toggleList();
-    }); 
+    option.selected=true;
+    this._activedescendantId=option.elementId;
+    this._selectedText=option.label;
+    this.toggleList();
+    this._hideCloseBtn=false;
+    this._hideToggleBtn=true;
+    this._isReadOnly=true;
   }
+  /**
+   * On click of the clear icon will 
+   * 1. removes' readonly attribute for the input
+   * 2. Clears the input value 
+   * 3. sets the active descendent to the first option
+   * 4. clear all selected options 
+   */
+  onClearClick(event:any){
+    this.clearSelection();
+    this.toggleList();
+    this._hideCloseBtn=true;
+    this._hideToggleBtn=false;
+    this._isReadOnly=false;
+    this._selectedText=null;
+  }
+
 
 }

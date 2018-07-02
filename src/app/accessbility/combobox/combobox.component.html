@@ -13,6 +13,7 @@
              aria-autocomplete="list"
              type="text"
              [value]="_selectedText"
+             [readonly]="_isReadOnly"
              id="accessCombobox_input_{{id}}" 
              (click)="onComboboxClick($event)" 
              (keydown)="onKeydown($event)"
@@ -21,27 +22,29 @@
           <button class="btn btn-outline-secondary" 
                   tabindex="-1"
                   type="button" 
-                
                   aria-label="Toggle combobox" 
                   title="Click here to toggle {{arialabel}} combobox" 
-                  id="accessCombobox_caretBtn_{{id}}">
+                  id="accessCombobox_caretBtn_{{id}}"
+                  [attr.aria-hidden]="_hideToggleBtn"
+                  [hidden]="_hideToggleBtn">
                   <i class="fa fa-caret-down" aria-hidden="true"></i>
           </button>
           <button class="btn btn-outline-secondary" 
                   type="button" 
-                  aria-hidden="true" 
-                  style="display:none" 
                   aria-label="Clear combobox" 
                   title="Click here to clear  combobox selection" 
-                  id="accessCombobox_closeBtn_{{id}}">
+                  id="accessCombobox_closeBtn_{{id}}"
+                  [attr.aria-hidden]="_hideCloseBtn"
+                  [hidden]="_hideCloseBtn"
+                  (click)="onClearClick($event)">
                   <i class="fa fa-times-circle" aria-hidden="true"></i>
           </button>
         </div>    
     </div> 
     
     <ul [id]="_dropdownId" class="accessCombobox-listbox" role="listbox" [attr.aria-label]="arialabel" tabindex="-1"  [attr.aria-hidden]="!_ddOpen" [hidden]="!_ddOpen">
-            <li *ngFor="let option of options" #optionTpl role="option" id="accessCombobox_option_{{id}}_{{getCode(option)}}" aria-selected=
-            "false" (click)="optionClicked(option)">{{getLabel(option)}}</li>
+            <li *ngFor="let option of _filteredOptions" role="option" id="{{option.elementId}}" [attr.data-code]="option.code" [attr.aria-selected]=
+            "option.selected" (click)="optionClicked(option)">{{option.label}}</li>
     </ul>
     
 </div>
