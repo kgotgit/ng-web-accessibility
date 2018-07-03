@@ -44,7 +44,7 @@
     
     <ul [id]="_dropdownId" class="accessCombobox-listbox" role="listbox" [attr.aria-label]="arialabel" tabindex="-1"  [attr.aria-hidden]="!_ddOpen" [hidden]="!_ddOpen">
             <li *ngFor="let option of _filteredOptions" role="option" id="{{option.elementId}}" [attr.data-code]="option.code" [attr.aria-selected]=
-            "option.selected" (click)="optionClicked(option)">{{option.label}}</li>
+            "option.selected" (click)="optionClicked(option)" [attr.data-activedescendant]="option.activedescendant">{{option.label}}</li>
     </ul>
     
 </div>

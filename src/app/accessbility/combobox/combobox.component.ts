@@ -86,7 +86,7 @@ export class ComboboxComponent implements OnInit {
   }
 
   filterOptions(selVal){
-    this._filteredOptions=this.options.filter(r => {
+    this._filteredOptions=this._options.filter(r => {
       let optionText=this.getLabel(r);
       if (optionText.toLowerCase().indexOf(selVal.toLowerCase())===0) {
           return true;
@@ -94,6 +94,39 @@ export class ComboboxComponent implements OnInit {
           return false;
       }
   });
+  }
+  getActiveDescendant(){
+      let defaultIdx=0;
+      this._filteredOptions.forEach((option,idx)=>{
+            if(option.activedescendant===true){
+              defaultIdx=idx;
+              return false;
+            }
+      });
+      return defaultIdx;
+  }
+ 
+  setNextActiveDescendant(){
+      let activedescIdx=this.getActiveDescendant();
+      let optionsSize=this._filteredOptions.length-1;
+      if(activedescIdx<=optionsSize){
+        this._filteredOptions[activedescIdx].activedescendant=false;
+        let nextOptionIdx=(activedescIdx==optionsSize)?0:activedescIdx+1;
+        this._filteredOptions[nextOptionIdx].activedescendant=true;
+        this._activedescendantId= this._filteredOptions[nextOptionIdx].elementId;
+      }
+
+
+  }
+  setPreviousActiveDescendant(){
+    let activedescIdx=this.getActiveDescendant();
+    let optionsSize=this._filteredOptions.length-1;
+    if(activedescIdx<=optionsSize){
+      this._filteredOptions[activedescIdx].activedescendant=false;
+      let prevOptionIdx=(activedescIdx==0)?optionsSize:activedescIdx-1;
+      this._filteredOptions[prevOptionIdx].activedescendant=true;
+      this._activedescendantId= this._filteredOptions[prevOptionIdx].elementId;
+    }
   }
 
   /**
@@ -112,7 +145,26 @@ export class ComboboxComponent implements OnInit {
   }
 
   onKeydown(event:any){
-   // console.log("keydown");
+    let keyCode=event.which;
+      switch(keyCode){
+
+          case 40:
+          this.setNextActiveDescendant();
+          break;
+          case 38:
+          this.setPreviousActiveDescendant();
+          break;
+          case 13:
+          break;
+          case 9:
+          this.toggleList();
+          break;
+
+
+
+
+
+      }
   }
   onKeyup(event:any){
     var selVal=event.target.value;
@@ -142,6 +194,7 @@ export class ComboboxComponent implements OnInit {
     this._hideToggleBtn=false;
     this._isReadOnly=false;
     this._selectedText=null;
+    this._filteredOptions=[...this._options];
   }
 
 

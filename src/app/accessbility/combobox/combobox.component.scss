@@ -36,3 +36,7 @@ ul.accessCombobox-listbox[role='listbox'] li[role='option'][aria-selected='true'
     background-color: rgba(59, 133, 230, 0.623);
     color: #FFF;
 }
+ul.accessCombobox-listbox[role='listbox'] li[role='option'][data-activedescendant='true']{
+    background-color: grey;
+    color: #FFF;
+}
