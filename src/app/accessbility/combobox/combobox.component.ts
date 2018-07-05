@@ -66,6 +66,8 @@ export class ComboboxComponent implements OnInit {
         this._ddOpen=false;
       }else{
         this._ddOpen=true;
+        let idx=this.getActiveDescendant();
+        this.setActiveDescendant(idx);
       }
   }
 
@@ -105,6 +107,11 @@ export class ComboboxComponent implements OnInit {
       });
       return defaultIdx;
   }
+  setActiveDescendant(idx){
+      if(idx<=this._filteredOptions.length-1){
+        this._filteredOptions[idx].activedescendant=true;
+      }
+  }
  
   setNextActiveDescendant(){
       let activedescIdx=this.getActiveDescendant();
@@ -138,6 +145,10 @@ export class ComboboxComponent implements OnInit {
       option.activedescendant=false;
     });
   }
+  selectOption(){
+      let activeIndex=this.getActiveDescendant();
+      this.optionClicked(this._filteredOptions[activeIndex]);
+  }
   /***********Event LIsteners**************/
 
   onComboboxClick(event:any){
@@ -155,10 +166,13 @@ export class ComboboxComponent implements OnInit {
           this.setPreviousActiveDescendant();
           break;
           case 13:
+          this.selectOption();
           break;
           case 9:
           this.toggleList();
           break;
+          case 27:
+          this._ddOpen=false;
 
 
 
