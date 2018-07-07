@@ -22,28 +22,34 @@ export class ComboboxComponent implements OnInit {
   @Input() code:string;
   @Input() label:string;
   private _options:any[];
-  @ViewChildren("optionTpl") optionsDom: QueryList<ElementRef>;
+  private _dropdownId:string;
+  private _activedescendantId:string;
+  private _filteredOptions:any[];
+  private _ddOpen:boolean=false;
+  private _ddprefix:string="accessCombobox_option_";
+  private _selectedText:string=null;
+  private _hideCloseBtn:boolean=true;
+  private _hideToggleBtn:boolean=false;
+  private _isReadOnly:boolean=false;
 
-
-
-  _dropdownId:string;
-  _activedescendantId:string;
-  _filteredOptions:any[];
-  _ddOpen:boolean=false;
-  _ddprefix:string="accessCombobox_option_";
-  _selectedText:string=null;
-  _hideCloseBtn:boolean=true;
-  _hideToggleBtn:boolean=false;
-  _isReadOnly:boolean=false;
-
+  /**
+   * This method gets invoked anytime input options 
+   * are updated from the parent component.
+   * Sets values to _options
+   */
   @Input() set options(options:any[]){
     this._options=options;
     this.generateLocalData();
   }
-  
+  /**
+   * creates a unique dom id by using id attribute defined for the component
+   */
   parseDomIds(){
     this._dropdownId="accessCombobox_dropdown_ul_"+this.id;
   }
+  /**
+   * parses the input object to add component required params to the input data options
+   */
   generateLocalData(){
     if(this._options!=null && this._options.length>0){
       this._options.forEach((option,idx)=>{
@@ -57,6 +63,9 @@ export class ComboboxComponent implements OnInit {
     }
     
   }
+  /**
+   * Toggles the dropdown ul list (open/close)
+   */
   toggleList(){
     if(this._isReadOnly===true){
       return false;
@@ -68,12 +77,18 @@ export class ComboboxComponent implements OnInit {
         this.openComobobox();
       }
   }
+  /**
+   * Opens the dropdown ul ans sets the active descendant option
+   */
   openComobobox(){
     this._ddOpen=true;
     let idx=this.getActiveDescendant();
     this.setActiveDescendant(idx);
   }
-
+/**
+ * To get the code from option object
+ * @param option 
+ */
   getCode(option:any){
     let optionCode=null;
     if(option!=null){
@@ -81,7 +96,11 @@ export class ComboboxComponent implements OnInit {
     }
     return optionCode;
   }
-
+/**
+ * 
+ * @param option 
+ * To get label value from option object
+ */
   getLabel(option:any){
     let textLabel=null;
     if(option!=null){
@@ -89,7 +108,10 @@ export class ComboboxComponent implements OnInit {
     }
     return textLabel;
   }
-
+/**
+ * FIlter dropdown based on the input value trigger on keyup
+ * @param selVal 
+ */
   filterOptions(selVal){
     this._filteredOptions=this._options.filter(r => {
       let optionText=this.getLabel(r);
@@ -100,6 +122,9 @@ export class ComboboxComponent implements OnInit {
       }
   });
   }
+  /**
+   * to get the current active descendant with default being zeroth element.
+   */
   getActiveDescendant(){
       let defaultIdx=0;
       this._filteredOptions.forEach((option,idx)=>{
@@ -110,12 +135,18 @@ export class ComboboxComponent implements OnInit {
       });
       return defaultIdx;
   }
+  /**
+   * To set active descendant element
+   * @param idx 
+   */
   setActiveDescendant(idx){
       if(idx<=this._filteredOptions.length-1){
         this._filteredOptions[idx].activedescendant=true;
       }
   }
- 
+ /**
+  * to set next  element as  active descendant
+  */
   setNextActiveDescendant(){
       let activedescIdx=this.getActiveDescendant();
       let optionsSize=this._filteredOptions.length-1;
@@ -128,6 +159,9 @@ export class ComboboxComponent implements OnInit {
 
 
   }
+  /**
+   * To set previous element as the  active descendent element
+   */
   setPreviousActiveDescendant(){
     let activedescIdx=this.getActiveDescendant();
     let optionsSize=this._filteredOptions.length-1;
@@ -148,16 +182,24 @@ export class ComboboxComponent implements OnInit {
       option.activedescendant=false;
     });
   }
+  /**
+   * To select current active descendant element as the selected value
+   */
   selectOption(){
       let activeIndex=this.getActiveDescendant();
       this.optionClicked(this._filteredOptions[activeIndex]);
   }
   /***********Event LIsteners**************/
-
+  /**
+   * To toggle between open/close dropdown ul list
+   */
   onComboboxClick(event:any){
       this.toggleList();
   }
-
+ /**
+  * To enable keyboard navigation
+  * @param event 
+  */
   onKeydown(event:any){
     let keyCode=event.which;
     let shiftKey=event.shiftKey;
@@ -188,11 +230,18 @@ export class ComboboxComponent implements OnInit {
 
       }
   }
+  /**
+   * Triggers filter options method on keyup when focus in the input element.
+   * @param event 
+   */
   onKeyup(event:any){
     var selVal=event.target.value;
     this.filterOptions(selVal);
   }
-
+/**
+ * Triggers on click and selects the option and sets the text in the input.
+ * @param option 
+ */
   optionClicked(option:any){
     option.selected=true;
     this._activedescendantId=option.elementId;
@@ -218,11 +267,19 @@ export class ComboboxComponent implements OnInit {
     this._selectedText=null;
     this._filteredOptions=[...this._options];
   }
+  /**
+   * To open dropdown ul tag on click of toggle down button
+   * @param event 
+   */
   onToggleClick(event:any){
     if(this._isReadOnly==false){
      this.openComobobox();
     }
   }
+  /**
+   * To close dropdown on focus out from the combobox.
+   * @param event 
+   */
   onComoboxFocusOut(event:any){
     this._ddOpen=false;
     event.preventDefault();
