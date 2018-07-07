@@ -65,10 +65,13 @@ export class ComboboxComponent implements OnInit {
       if(this._ddOpen===true){
         this._ddOpen=false;
       }else{
-        this._ddOpen=true;
-        let idx=this.getActiveDescendant();
-        this.setActiveDescendant(idx);
+        this.openComobobox();
       }
+  }
+  openComobobox(){
+    this._ddOpen=true;
+    let idx=this.getActiveDescendant();
+    this.setActiveDescendant(idx);
   }
 
   getCode(option:any){
@@ -157,6 +160,7 @@ export class ComboboxComponent implements OnInit {
 
   onKeydown(event:any){
     let keyCode=event.which;
+    let shiftKey=event.shiftKey;
       switch(keyCode){
 
           case 40:
@@ -168,8 +172,12 @@ export class ComboboxComponent implements OnInit {
           case 13:
           this.selectOption();
           break;
-          case 9:
-          this.toggleList();
+          case 32:
+          if(shiftKey==true){
+            this._ddOpen=true;
+            event.preventDefault();
+          }
+          
           break;
           case 27:
           this._ddOpen=false;
@@ -209,6 +217,16 @@ export class ComboboxComponent implements OnInit {
     this._isReadOnly=false;
     this._selectedText=null;
     this._filteredOptions=[...this._options];
+  }
+  onToggleClick(event:any){
+    if(this._isReadOnly==false){
+     this.openComobobox();
+    }
+  }
+  onComoboxFocusOut(event:any){
+    this._ddOpen=false;
+    event.preventDefault();
+    event.stopPropogation();
   }
 
 

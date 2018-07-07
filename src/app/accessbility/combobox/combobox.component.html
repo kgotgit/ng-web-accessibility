@@ -15,7 +15,8 @@
              [value]="_selectedText"
              [readonly]="_isReadOnly"
              id="accessCombobox_input_{{id}}" 
-             (click)="onComboboxClick($event)" 
+             (focusin)="onComboboxClick($event)"
+             (focusout)="onComoboxFocusOut($event)" 
              (keydown)="onKeydown($event)"
              (keyup)="onKeyup($event)"/>
         <div class="input-group-append">
@@ -26,7 +27,9 @@
                   title="Click here to toggle {{arialabel}} combobox" 
                   id="accessCombobox_caretBtn_{{id}}"
                   [attr.aria-hidden]="_hideToggleBtn"
-                  [hidden]="_hideToggleBtn">
+                  [hidden]="_hideToggleBtn"
+                  (click)="onToggleClick($event)"
+                  (focusout)="onComoboxFocusOut($event)">
                   <i class="fa fa-caret-down" aria-hidden="true"></i>
           </button>
           <button class="btn btn-outline-secondary" 
