@@ -283,7 +283,7 @@ export class ComboboxComponent implements OnInit {
   onComoboxFocusOut(event:any){
     this._ddOpen=false;
     event.preventDefault();
-    event.stopPropogation();
+    event.stopPropagation();
   }
 
 
