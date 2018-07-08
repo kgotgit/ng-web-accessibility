@@ -27,7 +27,7 @@ export class ComboboxComponent implements OnInit {
   private _activedescendantId:string;
   private _filteredOptions:any[];
   private _ddOpen:boolean=false;
-  private _ddprefix:string="accessCombobox_option_";
+  private _ddprefix:string="listbox_opt_";
   private _selectedText:string=null;
   private _hideCloseBtn:boolean=true;
   private _hideToggleBtn:boolean=false;
@@ -46,7 +46,7 @@ export class ComboboxComponent implements OnInit {
    * creates a unique dom id by using id attribute defined for the component
    */
   parseDomIds(){
-    this._dropdownId="accessCombobox_dropdown_ul_"+this.id;
+    this._dropdownId="acxbox_listbox_"+this.id;
   }
   /**
    * parses the input object to add component required params to the input data options

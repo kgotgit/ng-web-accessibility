@@ -1,10 +1,4 @@
-ul.accessCombobox-listbox[role='listbox']{
-   // position: absolute;
-    //list-style: none;
-    //border:1px solid #ddd;
-    //width:93%;
-    //z-index: 100; 
-    //padding:5px;
+ul.acxbox-listbox[role='listbox']{
     position: absolute;
     list-style: none;
     background-color: #fff;
@@ -23,20 +17,20 @@ ul.accessCombobox-listbox[role='listbox']{
 
 }
 
-ul.accessCombobox-listbox[role='listbox'] li[role='option']{
+ul.acxbox-listbox[role='listbox'] li[role='option']{
     cursor: pointer;
 }
 
-ul.accessCombobox-listbox[role='listbox'] li[role='option']:hover{
+ul.acxbox-listbox[role='listbox'] li[role='option']:hover{
     background-color: grey;
     color: #FFF;
 }
 
-ul.accessCombobox-listbox[role='listbox'] li[role='option'][aria-selected='true']{
+ul.acxbox-listbox[role='listbox'] li[role='option'][aria-selected='true']{
     background-color: rgba(59, 133, 230, 0.623);
     color: #FFF;
 }
-ul.accessCombobox-listbox[role='listbox'] li[role='option'][data-activedescendant='true']{
+ul.acxbox-listbox[role='listbox'] li[role='option'][data-activedescendant='true']{
     background-color: grey;
     color: #FFF;
 }

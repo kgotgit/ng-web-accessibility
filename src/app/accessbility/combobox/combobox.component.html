@@ -1,12 +1,12 @@
-<div id="{{id}}_combobox" 
-     class="accessCombobox {{type}}" 
+<div id="{{id}}_acxbox" 
+     class="acxbox {{type}}" 
      role="combobox" 
      [attr.aria-owns]="_dropdownId" 
     [attr.aria-expanded]="_ddOpen" 
      aria-haspopup="listbox"
     [attr.aria-labelledby]="arialabelledby">
     <div class="input-group">
-      <input class="form-control accessCombobox-input" 
+      <input class="form-control acxbox-input" 
       [attr.aria-labelledby]="arialabelledby"
              [attr.aria-controls]="_dropdownId"
              [attr.aria-activedescendant]="_activedescendantId"
@@ -14,7 +14,7 @@
              type="text"
              [value]="_selectedText"
              [readonly]="_isReadOnly"
-             id="accessCombobox_input_{{id}}" 
+             id="acxbox_input_{{id}}" 
              (focusin)="onComboboxClick($event)"
              (focusout)="onComoboxFocusOut($event)" 
              (keydown)="onKeydown($event)"
@@ -25,7 +25,7 @@
                   type="button" 
                   aria-label="Toggle combobox" 
                   title="Click here to toggle {{arialabel}} combobox" 
-                  id="accessCombobox_caretBtn_{{id}}"
+                  id="acxbox_caretBtn_{{id}}"
                   [attr.aria-hidden]="_hideToggleBtn"
                   [hidden]="_hideToggleBtn"
                   (click)="onToggleClick($event)"
@@ -36,7 +36,7 @@
                   type="button" 
                   aria-label="Clear combobox" 
                   title="Click here to clear  combobox selection" 
-                  id="accessCombobox_closeBtn_{{id}}"
+                  id="acxbox_closeBtn_{{id}}"
                   [attr.aria-hidden]="_hideCloseBtn"
                   [hidden]="_hideCloseBtn"
                   (click)="onClearClick($event)">
@@ -45,7 +45,7 @@
         </div>    
     </div> 
     
-    <ul [id]="_dropdownId" class="accessCombobox-listbox" role="listbox" [attr.aria-labelledby]="arialabelledby" tabindex="-1"  [attr.aria-hidden]="!_ddOpen" [hidden]="!_ddOpen">
+    <ul [id]="_dropdownId" class="acxbox-listbox" role="listbox" [attr.aria-labelledby]="arialabelledby" tabindex="-1"  [attr.aria-hidden]="!_ddOpen" [hidden]="!_ddOpen">
             <li *ngFor="let option of _filteredOptions" role="option" id="{{option.elementId}}" [attr.data-code]="option.code" [attr.aria-selected]=
             "option.selected" (click)="optionClicked(option)" [attr.data-activedescendant]="option.activedescendant">{{option.label}}</li>
     </ul>
