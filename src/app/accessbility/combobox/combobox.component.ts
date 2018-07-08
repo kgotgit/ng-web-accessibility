@@ -19,6 +19,7 @@ export class ComboboxComponent implements OnInit {
   @Input() id:string;
   @Input() type:string;
   @Input() arialabel:string;
+  @Input() arialabelledby:string;
   @Input() code:string;
   @Input() label:string;
   private _options:any[];

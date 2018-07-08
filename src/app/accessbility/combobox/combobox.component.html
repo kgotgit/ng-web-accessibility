@@ -2,12 +2,12 @@
      class="accessCombobox {{type}}" 
      role="combobox" 
      [attr.aria-owns]="_dropdownId" 
-     aria-expanded="false" 
+    [attr.aria-expanded]="_ddOpen" 
      aria-haspopup="listbox"
-    [attr.aria-labelledby]="arialabel">
+    [attr.aria-labelledby]="arialabelledby">
     <div class="input-group">
       <input class="form-control accessCombobox-input" 
-      [attr.aria-labelledby]="arialabel"
+      [attr.aria-labelledby]="arialabelledby"
              [attr.aria-controls]="_dropdownId"
              [attr.aria-activedescendant]="_activedescendantId"
              aria-autocomplete="list"
@@ -45,7 +45,7 @@
         </div>    
     </div> 
     
-    <ul [id]="_dropdownId" class="accessCombobox-listbox" role="listbox" [attr.aria-label]="arialabel" tabindex="-1"  [attr.aria-hidden]="!_ddOpen" [hidden]="!_ddOpen">
+    <ul [id]="_dropdownId" class="accessCombobox-listbox" role="listbox" [attr.aria-labelledby]="arialabelledby" tabindex="-1"  [attr.aria-hidden]="!_ddOpen" [hidden]="!_ddOpen">
             <li *ngFor="let option of _filteredOptions" role="option" id="{{option.elementId}}" [attr.data-code]="option.code" [attr.aria-selected]=
             "option.selected" (click)="optionClicked(option)" [attr.data-activedescendant]="option.activedescendant">{{option.label}}</li>
     </ul>
