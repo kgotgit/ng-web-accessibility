@@ -22,16 +22,16 @@ export class ComboboxComponent implements OnInit {
   @Input() arialabelledby:string;
   @Input() code:string;
   @Input() label:string;
-  private _options:any[];
-  private _dropdownId:string;
-  private _activedescendantId:string;
-  private _filteredOptions:any[];
-  private _ddOpen:boolean=false;
-  private _ddprefix:string="listbox_opt_";
-  private _selectedText:string=null;
-  private _hideCloseBtn:boolean=true;
-  private _hideToggleBtn:boolean=false;
-  private _isReadOnly:boolean=false;
+  _options:any[];
+  _dropdownId:string;
+  _activedescendantId:string;
+  _filteredOptions:any[];
+  _ddOpen:boolean=false;
+  _ddprefix:string="listbox_opt_";
+  _selectedText:string=null;
+  _hideCloseBtn:boolean=true;
+  _hideToggleBtn:boolean=false;
+  _isReadOnly:boolean=false;
 
   /**
    * This method gets invoked anytime input options 
