@@ -189,7 +189,7 @@ export class ComboboxComponent implements OnInit {
    */
   selectOption(){
       let activeIndex=this.getActiveDescendant();
-      this.optionClicked(this._filteredOptions[activeIndex]);
+      this.optionClicked(this._filteredOptions[activeIndex],null);
   }
   /***********Event LIsteners**************/
   /**
@@ -244,7 +244,7 @@ export class ComboboxComponent implements OnInit {
  * Triggers on click and selects the option and sets the text in the input.
  * @param option 
  */
-  optionClicked(option:any){
+  optionClicked(option:any,event:any){
     option.selected=true;
     this._activedescendantId=option.elementId;
     this._selectedText=option.label;
@@ -252,6 +252,10 @@ export class ComboboxComponent implements OnInit {
     this._hideCloseBtn=false;
     this._hideToggleBtn=true;
     this._isReadOnly=true;
+    if(event!=null){
+      event.preventDefault();
+      event.stopPropagation();
+    }
   }
   /**
    * On click of the clear icon will 
@@ -283,9 +287,11 @@ export class ComboboxComponent implements OnInit {
    * @param event 
    */
   onComoboxFocusOut(event:any){
-    this._ddOpen=false;
-    event.preventDefault();
-    event.stopPropagation();
+    if(event.relatedTarget.className!="acxbox-listbox"){
+        this._ddOpen=false;
+        event.preventDefault();
+        event.stopPropagation();
+    }
   }
 
 
