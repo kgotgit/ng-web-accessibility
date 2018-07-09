@@ -287,7 +287,7 @@ export class ComboboxComponent implements OnInit {
    * @param event 
    */
   onComoboxFocusOut(event:any){
-    if(event.relatedTarget.className!="acxbox-listbox"){
+    if(event.relatedTarget==null || event.relatedTarget.className!="acxbox-listbox"){
         this._ddOpen=false;
         event.preventDefault();
         event.stopPropagation();
