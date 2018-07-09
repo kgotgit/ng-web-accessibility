@@ -58,7 +58,7 @@ export class ComboboxComponent implements OnInit {
         option.label=option[this.label];
         option.selected=false;
         option.activedescendant=false;
-        option.elementId=this._ddprefix+"_"+this.id+"_"+option.code;
+        option.elementId=this._ddprefix+this.id+"_"+option.code;
       });
       this._filteredOptions=[...this._options];
     }
@@ -143,6 +143,7 @@ export class ComboboxComponent implements OnInit {
   setActiveDescendant(idx){
       if(idx<=this._filteredOptions.length-1){
         this._filteredOptions[idx].activedescendant=true;
+        this._activedescendantId=this._filteredOptions[idx].elementId;
       }
   }
  /**
