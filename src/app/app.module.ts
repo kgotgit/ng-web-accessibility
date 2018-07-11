@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {AccessbilityModule} from "../app/accessbility/accessbility.module";
+import {AccessibilityModule} from "./accessibility/accessibility.module";
 
 
 
@@ -12,7 +12,7 @@ import {AccessbilityModule} from "../app/accessbility/accessbility.module";
   ],
   imports: [
     BrowserModule,
-    AccessbilityModule,
+    AccessibilityModule,
    
   ],
   providers: [],
