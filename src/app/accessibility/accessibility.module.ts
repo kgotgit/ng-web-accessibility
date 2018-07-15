@@ -10,6 +10,6 @@ import { MultiSelectListboxComponent } from './listbox/multi-select-listbox/mult
     CommonModule
   ],
   declarations: [ComboboxComponent, ListboxComponent, SingleSelectListboxComponent, MultiSelectListboxComponent],
-  exports:[ComboboxComponent]
+  exports:[ComboboxComponent,ListboxComponent, SingleSelectListboxComponent, MultiSelectListboxComponent]
 })
 export class AccessibilityModule { }

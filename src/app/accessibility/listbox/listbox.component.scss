@@ -1,0 +1,19 @@
+ul.acxbox-listbox[role='listbox']{
+    list-style: none;
+    background-color: #fff;
+    font-size: 1em;
+    margin: 0;
+    border-radius: 0px 0px 5px 5px;
+    width: 92%;
+    height:auto;
+    min-height:100px;
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 3px 6px;
+    border:1px solid #716b6b;
+
+}
+li[role='option']{
+    padding:2px 0 2px 25px;
+}
