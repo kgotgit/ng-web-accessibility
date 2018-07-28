@@ -10,6 +10,6 @@
            [attr.aria-selected]="option.selected" 
            (click)="optionClicked(option,$event)" 
            [attr.data-activedescendant]="option.activedescendant">
-           {{option.label}}
+           <i class="fa fa-arrows-alt"></i>{{option.label}}
       </li>
 </ul>
