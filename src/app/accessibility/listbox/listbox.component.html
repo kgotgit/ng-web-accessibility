@@ -2,7 +2,7 @@
     class="acxbox-listbox" 
     role="listbox" 
     [attr.aria-labelledby]="arialabelledby" 
-    tabindex="0">
+    tabindex="0" appListbox>
       <li *ngFor="let option of _filteredOptions" 
            role="option" 
            id="{{option.elementId}}" 
