@@ -1,0 +1,20 @@
+.twolistselection .card-block {
+    min-height: 500px;
+    overflow-y: scroll;
+    max-height: 500px
+}
+.keyword-search {
+    position: relative;
+    top: 0px;
+    margin-top: 3px;
+}
+.twolistselection ul li:hover {
+    background-color: #ddd;
+}
+.twolistselection ul li label:hover {
+    font-weight: 700;
+    cursor: pointer;
+}
+.twolistselection ul li input[type='checkbox'] {
+    cursor: pointer;
+}

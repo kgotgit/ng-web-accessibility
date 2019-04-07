@@ -1,0 +1,29 @@
+<div class="card twolistselection" id="{{listContent.componentId}}">
+  <div class="card-header">
+      <div class="form-check">
+          <label class="form-check-label">
+              <input type="checkbox" class="form-check-input" id="{{componentId}}_checkAll"> {{listContent.label}}
+          </label>
+
+          <div *ngIf="showDelete" class="pull-right">
+              <button class="btn btn-danger" type="button" (click)=onDelete($event)><i class="fa fa-trash" aria-hidden="false"></i></button>
+          </div>
+      </div>
+  </div>
+  <div class="form-group form-group-sm">
+      <label class="sr-only col-form-label">Search</label>
+      <input type="text" class="form-control keyword-search"  (keyup)=onKeyUp() placeholder="Keyword Search.." id="{{listContent.componentId}}_keyword" />
+  </div>
+  <div class="card-block">
+
+      <ul class="list-inline" id="{{listContent.componentId}}_ul">
+          <li class="list-group-item" *ngFor="let listItem of listContent.listItems |keywordsearch:'label':search">
+              <label for="{{listContent.componentId}}_{{listItem.code}}_checkbox">
+                  <input type="checkbox" id="{{listContent.componentId}}_{{listItem.code}}_checkbox" name="{{listContent.componentId}}_{{listItem.code}}_checkbox" (change)=onCheckboxChange(listItem,$event) /> {{listItem.label}}
+              </label>
+
+          </li>
+      </ul>
+
+  </div>
+</div>
