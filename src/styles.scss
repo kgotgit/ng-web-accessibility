@@ -1,2 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "node_modules/bootstrap/scss/bootstrap";
+
+.card-header{
+    padding:0.50rem 1rem;
+}
+.list-group-item{
+    padding:0.25rem 0.5rem;
+}
+.list-group-item:first-child{
+    border-radius: 0px;
+}

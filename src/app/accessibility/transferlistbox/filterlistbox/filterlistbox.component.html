@@ -1,29 +1,32 @@
 <div class="card twolistselection" id="{{listContent.componentId}}">
-  <div class="card-header">
-      <div class="form-check">
-          <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" id="{{componentId}}_checkAll"> {{listContent.label}}
-          </label>
+    <div class="card-header">
+        <div class="form-check">
+            <label class="form-check-label">
+                <input type="checkbox" class="form-check-input" id="{{listContent.componentId}}_checkAll"> {{listContent.label}}
+            </label>
 
-          <div *ngIf="showDelete" class="pull-right">
-              <button class="btn btn-danger" type="button" (click)=onDelete($event)><i class="fa fa-trash" aria-hidden="false"></i></button>
-          </div>
-      </div>
-  </div>
-  <div class="form-group form-group-sm">
-      <label class="sr-only col-form-label">Search</label>
-      <input type="text" class="form-control keyword-search" [(ngModel)]="search"  (keyup)=onKeyUp() placeholder="Keyword Search.." id="{{listContent.componentId}}_keyword" />
-  </div>
-  <div class="card-block">
+            <div *ngIf="showDelete" class="pull-right">
+                <button class="btn btn-danger" type="button" (click)=onDelete($event)><i class="fa fa-trash"
+                        aria-hidden="false"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label class="sr-only col-form-label">Search</label>
+        <input type="text" class="form-control keyword-search" [(ngModel)]="search" (keyup)=onKeyUp()
+            placeholder="Keyword Search.." id="{{listContent.componentId}}_keyword" />
+    </div>
+    <div class="card-block">
 
-      <ul class="list-inline" id="{{listContent.componentId}}_ul">
-          <li class="list-group-item" *ngFor="let listItem of listContent.listItems |keywordsearch:'label':search">
-              <label for="{{listContent.componentId}}_{{listItem.code}}_checkbox">
-                  <input type="checkbox" id="{{listContent.componentId}}_{{listItem.code}}_checkbox" name="{{listContent.componentId}}_{{listItem.code}}_checkbox" (change)=onCheckboxChange(listItem,$event) /> {{listItem.label}}
-              </label>
+        <ul class="list-group" id="{{listContent.componentId}}_ul" tabindex="0" attr.aria-labelledby="{{listContent.componentId}}_listlabel" role="listbox">
+            <li class="list-item" [ngClass]="{'odd':''}" role="option" (click)="onSelect($event, listItem)" attr.aria-selected={{listItem.selected}} attr.data-index={{i}} *ngFor="let listItem of listContent.listItems |keywordsearch:'label':search;let i=index">
+                
+                    <i *ngIf="listItem.selected==true" class="fa fa-check" attr.aria-hidden="true"></i>
+                
+                {{listItem.label}}
 
-          </li>
-      </ul>
+            </li>
+        </ul>
 
-  </div>
+    </div>
 </div>

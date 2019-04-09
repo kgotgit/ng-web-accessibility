@@ -1,5 +1,5 @@
 import { Component, OnInit,HostBinding,Input,Output,QueryList,ViewChildren, ElementRef } from '@angular/core';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-combobox',

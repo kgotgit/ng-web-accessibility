@@ -5,12 +5,17 @@ import { TransferlistboxComponent } from './transferlistbox/transferlistbox.comp
 import { FilterlistboxComponent } from './transferlistbox/filterlistbox/filterlistbox.component';
 import {KeywordsearchPipe} from "./transferlistbox/pipes/keywordsearch.pipe";
 import { FormsModule } from '@angular/forms';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+
+
 
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    AngularFontAwesomeModule
+
   ],
   declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe],
   exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent]

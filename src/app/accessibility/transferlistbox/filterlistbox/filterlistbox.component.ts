@@ -20,8 +20,19 @@ export class FilterlistboxComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  /**
+   * Event to capture when an item is selected
+   * @param $event 
+   * @param item 
+   */
+  onSelect($event, item){
+    item.selected=item.selected==true?false:true;
+  }
+
+
     
- onKeyUp($event){
+ /* onKeyUp($event){
      this.onKeyWordChange.emit(this.search);
  }
  onCheckboxChange(item,$event){
@@ -37,6 +48,8 @@ export class FilterlistboxComponent implements OnInit {
       
         this.onDeleteClicked.emit(this.listContent.componentId);
     }
+ */
+
 
 
 }
