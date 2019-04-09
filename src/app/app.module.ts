@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { DemoModule } from './demo/demo.module';
 import { HeaderComponent } from './core/header/header.component';
 import { LeftNavComponent } from './core/left-nav/left-nav.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -21,6 +22,7 @@ import { LeftNavComponent } from './core/left-nav/left-nav.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AccessibilityModule,
     AppRoutingModule,
     DemoModule

@@ -12,7 +12,7 @@
   </div>
   <div class="form-group form-group-sm">
       <label class="sr-only col-form-label">Search</label>
-      <input type="text" class="form-control keyword-search"  (keyup)=onKeyUp() placeholder="Keyword Search.." id="{{listContent.componentId}}_keyword" />
+      <input type="text" class="form-control keyword-search" [(ngModel)]="search"  (keyup)=onKeyUp() placeholder="Keyword Search.." id="{{listContent.componentId}}_keyword" />
   </div>
   <div class="card-block">
 
