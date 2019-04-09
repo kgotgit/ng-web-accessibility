@@ -14,6 +14,7 @@ export class FilterlistboxComponent implements OnInit {
  @Input("showDelete") showDelete:boolean;
  @Output() onDeleteClicked=new EventEmitter<string>();
  search:string;
+ activedescendentItem:string;
  
   
  constructor() { }
@@ -28,6 +29,7 @@ export class FilterlistboxComponent implements OnInit {
    */
   onSelect($event, item){
     item.selected=item.selected==true?false:true;
+    this.activedescendentItem=$event.currentTarget.id;
   }
 
 
