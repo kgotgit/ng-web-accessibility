@@ -14,7 +14,7 @@
     </div>
     <div class="form-group form-group-sm">
         <label class="sr-only col-form-label">Search</label>
-        <input type="text" class="form-control keyword-search" [(ngModel)]="search" (keyup)=onKeyUp()
+        <input type="text" class="form-control keyword-search" [(ngModel)]="search" 
             placeholder="Keyword Search.." id="{{listContent.componentId}}_keyword" />
     </div>
     <div class="card-block">
@@ -31,7 +31,7 @@
                 (click)="onSelect($event, listItem)"
                 attr.aria-selected={{listItem.selected}} attr.data-index={{i}}
                 id="{{listContent.componentId}}_list_item_{{i}}"
-                
+
                 *ngFor="let listItem of listContent.listItems |keywordsearch:'label':search;let i=index">
 
                 <i *ngIf="listItem.selected==true" class="fa fa-check" attr.aria-hidden="true"></i>

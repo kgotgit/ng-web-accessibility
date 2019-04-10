@@ -2,21 +2,20 @@
   <div class="row">
       <div class="col-xs-5 col-sm-5">
           <div class="left">
-              <app-filterlistbox [listContent]="leftContent" (onSelectedItem)="onSelectedItem($event)"
-              (onUnselectItem)="onUnSelect($event)"></app-filterlistbox>
+              <app-filterlistbox [listContent]="leftContent" 
+              ></app-filterlistbox>
           </div>
       </div>
       <div class="col-xs-2 col-sm-2">
           <div class="center">
-              <button type="button" class="btn btn-primary" (click)="toggleLeftToRight($event)">
+              <button type="button" class="btn btn-primary">
                   <i class="fa fa-arrow-right" aria-hidden="true"></i>
               </button>
           </div>
       </div>
       <div class="col-xs-5 col-sm-5">
           <div class="right">
-              <app-filterlistbox [listContent]="rightContent" (onSelectedItem)="onSelectedItem($event)" (onDeleteClicked)="onDeleteClicked($event)" [showDelete]="showDelete"
-              (onUnselectItem)="onUnSelect($event)"></app-filterlistbox>
+              <app-filterlistbox [listContent]="rightContent" ></app-filterlistbox>
           </div>
       </div>
   </div>
