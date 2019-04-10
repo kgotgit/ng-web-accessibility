@@ -86,5 +86,8 @@ export class TransferlistboxComponent implements OnInit {
           }
        });*/
      }
+     onUnSelect(){
+       
+     }
 
 }

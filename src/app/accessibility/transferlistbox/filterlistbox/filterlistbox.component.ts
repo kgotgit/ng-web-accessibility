@@ -34,6 +34,9 @@ export class FilterlistboxComponent implements OnInit {
   onKeydown($event){
       $event.preventDefault();
   }
+  onKeyUp($event){
+
+  }
 
 
     
