@@ -34,13 +34,10 @@ export class FilterlistboxComponent implements OnInit {
   onKeydown($event){
       $event.preventDefault();
   }
-  onKeyUp($event){
-
-  }
 
 
     
- /* onKeyUp($event){
+ onKeyUp($event){
      this.onKeyWordChange.emit(this.search);
  }
  onCheckboxChange(item,$event){
@@ -56,7 +53,7 @@ export class FilterlistboxComponent implements OnInit {
       
         this.onDeleteClicked.emit(this.listContent.componentId);
     }
- */
+ 
 
 
 
