@@ -1,4 +1,4 @@
-<div class="card twolistselection" id="{{listContent.componentId}}">
+<div class="card twolistselection" id="{{listContent.componentId}}" #filterlistTemplate>
     <div class="card-header">
         <div class="form-check">
             <label class="form-check-label">
@@ -26,13 +26,13 @@
             aria-multiselectable="true" role="listbox"
             [attr.aria-activedescendant]="activedescendentItem"
             (keydown)="onKeydown($event)">
-            <li class="list-item" 
+            <li #option class="list-item" 
                 role="option" 
                 (click)="onSelect($event, listItem)"
                 attr.aria-selected={{listItem.selected}} attr.data-index={{i}}
                 id="{{listContent.componentId}}_list_item_{{i}}"
 
-                *ngFor="let listItem of listContent.listItems |keywordsearch:'label':search;let i=index">
+                *ngFor="let listItem of listContent.listItems |keywordsearch:'label':search;let i=index" >
 
                 <i *ngIf="listItem.selected==true" class="fa fa-check" attr.aria-hidden="true"></i>
 

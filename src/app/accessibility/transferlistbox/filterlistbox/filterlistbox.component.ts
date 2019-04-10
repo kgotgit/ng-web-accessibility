@@ -1,12 +1,14 @@
-import { Component, OnInit, Input, EventEmitter,   Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter,   Output, ElementRef, ViewChild, ViewChildren, AfterViewInit, QueryList,Renderer2 } from '@angular/core';
+import { rendererTypeName } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-filterlistbox',
   templateUrl: './filterlistbox.component.html',
   styleUrls: ['./filterlistbox.component.scss']
 })
-export class FilterlistboxComponent implements OnInit {
-
+export class FilterlistboxComponent implements OnInit,AfterViewInit{
+ @ViewChildren("option") options:QueryList<ElementRef>;
  @Input() listContent:{label:string,componentId:string,listItems:{code:string;label:string;}[]};
  @Output() onKeyWordChange = new EventEmitter<Object>();
  @Output() onSelectedItem  =new EventEmitter<Object>();
@@ -17,11 +19,15 @@ export class FilterlistboxComponent implements OnInit {
  activedescendentItem:string;
  
   
- constructor() { }
+ constructor(private renderer:Renderer2) { }
 
   ngOnInit() {
   }
-
+  ngAfterViewInit(): void {
+        this.options.forEach((eleRef:ElementRef)=>{
+            console.log(eleRef);
+        });
+    }
   /**
    * Event to capture when an item is selected
    * @param $event 
@@ -30,6 +36,13 @@ export class FilterlistboxComponent implements OnInit {
   onSelect($event, item){
     item.selected=item.selected==true?false:true;
     this.activedescendentItem=$event.currentTarget.id;
+    this.options.forEach((eleRef:ElementRef)=>{
+        if(eleRef.nativeElement.id===this.activedescendentItem){
+            this.renderer.setAttribute(eleRef.nativeElement,'data-activedesendent','true');
+        }else{
+            this.renderer.setAttribute(eleRef.nativeElement,'data-activedesendent','false');
+        }
+    });
   }
   onKeydown($event){
       $event.preventDefault();
