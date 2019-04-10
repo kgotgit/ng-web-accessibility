@@ -19,12 +19,19 @@
     </div>
     <div class="card-block">
 
-        <ul class="list-group" id="{{listContent.componentId}}_ul" tabindex="0"
-            attr.aria-labelledby="{{listContent.componentId}}_listlabel" aria-multiselectable="true" role="listbox"
-            [attr.aria-activedescendant]="activedescendentItem">
-            <li class="list-item" role="option" (click)="onSelect($event, listItem)"
+        <ul class="list-group" 
+            id="{{listContent.componentId}}_ul" 
+            tabindex="0"
+            attr.aria-labelledby="{{listContent.componentId}}_listlabel" 
+            aria-multiselectable="true" role="listbox"
+            [attr.aria-activedescendant]="activedescendentItem"
+            (keydown)="onKeydown($event)">
+            <li class="list-item" 
+                role="option" 
+                (click)="onSelect($event, listItem)"
                 attr.aria-selected={{listItem.selected}} attr.data-index={{i}}
                 id="{{listContent.componentId}}_list_item_{{i}}"
+                
                 *ngFor="let listItem of listContent.listItems |keywordsearch:'label':search;let i=index">
 
                 <i *ngIf="listItem.selected==true" class="fa fa-check" attr.aria-hidden="true"></i>

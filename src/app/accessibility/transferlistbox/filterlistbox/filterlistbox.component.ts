@@ -31,6 +31,9 @@ export class FilterlistboxComponent implements OnInit {
     item.selected=item.selected==true?false:true;
     this.activedescendentItem=$event.currentTarget.id;
   }
+  onKeydown($event){
+      $event.preventDefault();
+  }
 
 
     
