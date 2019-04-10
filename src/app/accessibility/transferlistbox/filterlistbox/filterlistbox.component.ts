@@ -16,7 +16,7 @@ export class FilterlistboxComponent implements OnInit,AfterViewInit{
  @Input("showDelete") showDelete:boolean;
  @Output() onDeleteClicked=new EventEmitter<string>();
  search:string;
- activedescendentItem:string;
+ activedescendentItem:string=null;
  
   
  constructor(private renderer:Renderer2) { }
@@ -36,6 +36,13 @@ export class FilterlistboxComponent implements OnInit,AfterViewInit{
   onSelect($event, item){
     item.selected=item.selected==true?false:true;
     this.activedescendentItem=$event.currentTarget.id;
+    this.updateCurrentActiveDescendant();
+  }
+
+  /**
+   * This method is primarily used to update the current active descendant element so that 
+   */
+  updateCurrentActiveDescendant(){
     this.options.forEach((eleRef:ElementRef)=>{
         if(eleRef.nativeElement.id===this.activedescendentItem){
             this.renderer.setAttribute(eleRef.nativeElement,'data-activedesendent','true');
@@ -43,9 +50,24 @@ export class FilterlistboxComponent implements OnInit,AfterViewInit{
             this.renderer.setAttribute(eleRef.nativeElement,'data-activedesendent','false');
         }
     });
-  }
+  }  
   onKeydown($event){
       $event.preventDefault();
+      if($event.which===40){
+        if(this.activedescendentItem==null ){
+            this.options.forEach((eleRef:ElementRef)=>{
+                if(eleRef.nativeElement.id===this.activedescendentItem){
+                    let currentIndex=eleRef.nativeElement.getAttribute("data-index");
+                    let nextIndex=currentIndex<this.options.length-1?currentIndex+1:0;
+                    
+                    this.renderer.setAttribute(this.options[nextIndex],'data-activedesendent','true');
+                }else{
+                    this.renderer.setAttribute(eleRef.nativeElement,'data-activedesendent','false');
+                }
+            });
+        }  
+        console.log('down');
+      }
   }
 
 
