@@ -33,7 +33,7 @@ export class FilterlistboxComponent implements OnInit,AfterViewInit{
    * @param $event 
    * @param item 
    */
-  onSelect($event, item){
+onSelect($event, item){
     item.selected=item.selected==true?false:true;
     this.activedescendentItem=$event.currentTarget.id;
     this.updateCurrentActiveDescendant();
@@ -42,7 +42,7 @@ export class FilterlistboxComponent implements OnInit,AfterViewInit{
   /**
    * This method is primarily used to update the current active descendant element so that 
    */
-  updateCurrentActiveDescendant(){
+updateCurrentActiveDescendant(){
     this.options.forEach((eleRef:ElementRef)=>{
         if(eleRef.nativeElement.id===this.activedescendentItem){
             this.renderer.setAttribute(eleRef.nativeElement,'data-activedesendent','true');
@@ -50,29 +50,65 @@ export class FilterlistboxComponent implements OnInit,AfterViewInit{
             this.renderer.setAttribute(eleRef.nativeElement,'data-activedesendent','false');
         }
     });
-  }  
-  onKeydown($event){
-      $event.preventDefault();
-      if($event.which===40){
-        if(this.activedescendentItem==null ){
-            this.options.forEach((eleRef:ElementRef)=>{
-                if(eleRef.nativeElement.id===this.activedescendentItem){
-                    let currentIndex=eleRef.nativeElement.getAttribute("data-index");
-                    let nextIndex=currentIndex<this.options.length-1?currentIndex+1:0;
-                    
-                    this.renderer.setAttribute(this.options[nextIndex],'data-activedesendent','true');
-                }else{
-                    this.renderer.setAttribute(eleRef.nativeElement,'data-activedesendent','false');
-                }
-            });
-        }  
-        console.log('down');
-      }
   }
+/**
+ * 
+ * @param $event 
+ */    
+onKeydown($event) {
+        
+        if ($event.which === 40) {
+            $event.preventDefault();
+            if (typeof this.activedescendentItem != "undefined" && this.activedescendentItem) {
+                this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                    if (eleRef.nativeElement.id === this.activedescendentItem) {
+                        index = (index < optionsarray.length - 1) ? index : -1;
+                        this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
+                        this.renderer.setAttribute(optionsarray[index + 1].nativeElement, 'data-activedesendent', 'true')
+                        this.activedescendentItem = optionsarray[index + 1].nativeElement.id;
+                        optionsarray[index + 1].nativeElement.scrollIntoView();
+                        return true;
+                    }
+                });
+            } else {
+                this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                    if (index == 0) {
+                        this.renderer.setAttribute(optionsarray[index].nativeElement, 'data-activedesendent', 'true')
+                        this.activedescendentItem = optionsarray[index].nativeElement.id;
+                        optionsarray[index].nativeElement.scrollIntoView();
+                        return true;
+                    }
+                });
+            }
+        }else if($event.which==38){
+            $event.preventDefault();
+            if (typeof this.activedescendentItem != "undefined" && this.activedescendentItem) {
+                this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                    if (eleRef.nativeElement.id === this.activedescendentItem) {
+                        index = (index>0 && index <= optionsarray.length - 1) ? index : optionsarray.length;
+                        this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
+                        this.renderer.setAttribute(optionsarray[index - 1].nativeElement, 'data-activedesendent', 'true')
+                        this.activedescendentItem = optionsarray[index - 1].nativeElement.id;
+                        optionsarray[index - 1].nativeElement.scrollIntoView();
+                        return true;
+                    }
+                });
+            } else {
+                this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                        this.renderer.setAttribute(optionsarray[optionsarray.length-1].nativeElement, 'data-activedesendent', 'true')
+                        this.activedescendentItem = optionsarray[optionsarray.length-1].nativeElement.id;
+                        optionsarray[optionsarray.length-1].nativeElement.scrollIntoView();
+                        return true;
+                });
+            }
+        }
+    }
 
+}
+ 
 
     
- onKeyUp($event){
+ /* onKeyUp($event){
      this.onKeyWordChange.emit(this.search);
  }
  onCheckboxChange(item,$event){
@@ -87,9 +123,8 @@ export class FilterlistboxComponent implements OnInit,AfterViewInit{
     onDelete($event){
       
         this.onDeleteClicked.emit(this.listContent.componentId);
-    }
+    } */
  
 
 
 
-}
