@@ -9,6 +9,15 @@ import { rendererTypeName } from '@angular/compiler';
 })
 export class FilterlistboxComponent implements OnInit,AfterViewInit{
  @ViewChildren("option") options:QueryList<ElementRef>;
+ @Input("itemsMap") itemsMap:Map<string,any>;
+ @Input("label") label:string;
+ @Input("code") code:string;
+ @Input("componentId") cid:string;
+ @Input("listName") listName:string;
+
+ 
+
+
  @Input() listContent:{label:string,componentId:string,listItems:{code:string;label:string;selected:boolean;}[]};
  @Output() onKeyWordChange = new EventEmitter<Object>();
  @Output() onSelectedItem  =new EventEmitter<Object>();
