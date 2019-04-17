@@ -37,6 +37,12 @@ onSelect($event, item){
     item.selected=item.selected==true?false:true;
     this.activedescendentItem=$event.currentTarget.id;
     this.updateCurrentActiveDescendant();
+    if(item.selected){
+        this.onSelectedItem.emit({"componentId":this.listContent.componentId,"item": item});
+    }else{
+        this.onUnselectItem.emit({"componentId":this.listContent.componentId,"item": item});
+    }
+    
   }
 
   /**

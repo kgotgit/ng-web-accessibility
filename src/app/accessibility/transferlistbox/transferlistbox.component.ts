@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input,Output } from '@angular/core';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-transferlistbox',
@@ -6,6 +7,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transferlistbox.component.scss']
 })
 export class TransferlistboxComponent implements OnInit {
+
+  @Input("leftAreaList") leftAreaList:any[];
+  @Input("rightAreaList") rightAreaList:any[];
+  @Input("code") code:string;
+  @Input("label") label:string;
+  @Input("leftAreaLabel") leftAreaLabel:string;
+  @Input("rightAreaLabel") rightAreaLabel:string;
+  @Input("leftAreaId") leftAreaId:string;
+  @Input("rightAreaId") rightAreaId:string;
+
+  leftAreaMap:Map<string,any>;
+  rightAreaMap:Map<string,any>;
+  
+
+  constructor() { }
+ 
+   ngOnInit() {
+    this.generateLocalData();
+
+
+   }
+
+   generateLocalData(){
+     if(this.code==null){throw Error("code attribute is required")};
+     if(this.label==null){throw Error("label attribute is required")};
+     if(this.leftAreaList==null){throw Error("leftAreaList attribute is required")};
+     this.leftAreaMap=new Map<string,any>();
+     this.leftAreaList.forEach((item)=>{
+        this.leftAreaMap.set(item[this.code],item);
+     });
+   }
+
+
+
 
   showDelete:boolean=true;
   leftContent = {
@@ -39,15 +74,19 @@ export class TransferlistboxComponent implements OnInit {
          'listItems' : []
      };
      
-   constructor() { }
- 
-   ngOnInit() {
+   
+     
+   itemSelected(item:any){
+    if(typeof item!="undefined" && typeof item.componentId!="undefined"){
+      this.leftSelectedItems.push(item);
+         }
+   }
+   itemUnSelected(item:any){
+
    }
      
-     
-     
-     onSelectedItem(selectedItem:{"componentId":string,
-                                   "item":{"label":string,"code":string}}){
+   /* itemSelected(selectedItem:{"componentId":string,
+                                   "item":any}){
      
         if(selectedItem.componentId==this.leftContent.componentId){
             this.leftSelectedItems.push(selectedItem.item);
@@ -66,7 +105,7 @@ export class TransferlistboxComponent implements OnInit {
          console.log("selected Items"+JSON.stringify(this.rightSelectedItems));
      }
      
-     onUnselectItem(unSelected:{"componentId":string,
+     itemUnSelected(unSelected:{"componentId":string,
                                  "item":{"label":string,"code":string}}){
        if (unSelected.componentId==this.rightContent.componentId) {
            
@@ -85,9 +124,7 @@ export class TransferlistboxComponent implements OnInit {
             items.splice(items,index,1);
           }
        });*/
-     }
-     onUnSelect(){
-       
-     }
+     
+    
 
 }

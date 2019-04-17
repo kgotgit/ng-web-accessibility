@@ -2,7 +2,7 @@
   <div class="row">
       <div class="col-xs-5 col-sm-5">
           <div class="left">
-              <app-filterlistbox [listContent]="leftContent" 
+              <app-filterlistbox [listContent]="leftContent" (onSelectedItem)="itemSelected($event,item)" (onUnselectItem)="itemUnSelected($event,item)"
               ></app-filterlistbox>
           </div>
       </div>
@@ -15,7 +15,7 @@
       </div>
       <div class="col-xs-5 col-sm-5">
           <div class="right">
-              <app-filterlistbox [listContent]="rightContent" ></app-filterlistbox>
+              <app-filterlistbox [listContent]="rightContent" (onSelectedItem)="itemSelected($event,item)" (onUnselectItem)="itemUnSelected($event,item)" ></app-filterlistbox>
           </div>
       </div>
   </div>
