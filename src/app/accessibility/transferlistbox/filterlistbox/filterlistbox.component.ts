@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter,   Output, ElementRef, ViewChild, ViewChildren, AfterViewInit, QueryList,Renderer2 } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ElementRef, ViewChild, ViewChildren, AfterViewInit, QueryList,Renderer2 } from '@angular/core';
 import { rendererTypeName } from '@angular/compiler';
 
 
@@ -9,7 +9,7 @@ import { rendererTypeName } from '@angular/compiler';
 })
 export class FilterlistboxComponent implements OnInit,AfterViewInit{
  @ViewChildren("option") options:QueryList<ElementRef>;
- @Input() listContent:{label:string,componentId:string,listItems:{code:string;label:string;}[]};
+ @Input() listContent:{label:string,componentId:string,listItems:{code:string;label:string;selected:boolean;}[]};
  @Output() onKeyWordChange = new EventEmitter<Object>();
  @Output() onSelectedItem  =new EventEmitter<Object>();
  @Output() onUnselectItem =new EventEmitter<Object>(); 
@@ -52,59 +52,101 @@ updateCurrentActiveDescendant(){
     });
   }
 /**
- * 
+ * Enable keyboard accessibility via listening to key down event
  * @param $event 
  */    
-onKeydown($event) {
-        
-        if ($event.which === 40) {
-            $event.preventDefault();
-            if (typeof this.activedescendentItem != "undefined" && this.activedescendentItem) {
-                this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
-                    if (eleRef.nativeElement.id === this.activedescendentItem) {
-                        index = (index < optionsarray.length - 1) ? index : -1;
-                        this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
-                        this.renderer.setAttribute(optionsarray[index + 1].nativeElement, 'data-activedesendent', 'true')
-                        this.activedescendentItem = optionsarray[index + 1].nativeElement.id;
-                        optionsarray[index + 1].nativeElement.scrollIntoView();
-                        return true;
-                    }
-                });
-            } else {
-                this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
-                    if (index == 0) {
-                        this.renderer.setAttribute(optionsarray[index].nativeElement, 'data-activedesendent', 'true')
-                        this.activedescendentItem = optionsarray[index].nativeElement.id;
-                        optionsarray[index].nativeElement.scrollIntoView();
-                        return true;
-                    }
-                });
-            }
-        }else if($event.which==38){
-            $event.preventDefault();
-            if (typeof this.activedescendentItem != "undefined" && this.activedescendentItem) {
-                this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
-                    if (eleRef.nativeElement.id === this.activedescendentItem) {
-                        index = (index>0 && index <= optionsarray.length - 1) ? index : optionsarray.length;
-                        this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
-                        this.renderer.setAttribute(optionsarray[index - 1].nativeElement, 'data-activedesendent', 'true')
-                        this.activedescendentItem = optionsarray[index - 1].nativeElement.id;
-                        optionsarray[index - 1].nativeElement.scrollIntoView();
-                        return true;
-                    }
-                });
-            } else {
-                this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
-                        this.renderer.setAttribute(optionsarray[optionsarray.length-1].nativeElement, 'data-activedesendent', 'true')
-                        this.activedescendentItem = optionsarray[optionsarray.length-1].nativeElement.id;
-                        optionsarray[optionsarray.length-1].nativeElement.scrollIntoView();
-                        return true;
-                });
-            }
+onKeydown($event:any) {
+
+    switch($event.which){
+        case 40://Down Arrow
+        this.executeArrowDown($event);
+        break;
+
+        case 38:// Up Arrow
+        this.executeUpArrow($event);
+        break;
+
+        case 32:// Spacebar
+        this.selectOption($event);
+    }
+}
+    
+/**
+ * Function executes logic associated to keydown event
+ * @param $event 
+ */
+executeArrowDown($event:any){
+        $event.preventDefault();
+        if (typeof this.activedescendentItem != "undefined" && this.activedescendentItem) {
+            this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                if (eleRef.nativeElement.id === this.activedescendentItem) {
+                    index = (index < optionsarray.length - 1) ? index : -1;
+                    this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
+                    this.renderer.setAttribute(optionsarray[index + 1].nativeElement, 'data-activedesendent', 'true')
+                    this.activedescendentItem = optionsarray[index + 1].nativeElement.id;
+                    optionsarray[index + 1].nativeElement.scrollIntoView();
+                    return true;
+                }
+            });
+        } else {
+            this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                if (index == 0) {
+                    this.renderer.setAttribute(optionsarray[index].nativeElement, 'data-activedesendent', 'true')
+                    this.activedescendentItem = optionsarray[index].nativeElement.id;
+                    optionsarray[index].nativeElement.scrollIntoView();
+                    return true;
+                }
+            });
         }
     }
 
+/**
+ * execute
+ * @param $event 
+ */
+executeUpArrow($event:any){
+    $event.preventDefault();
+    if (typeof this.activedescendentItem != "undefined" && this.activedescendentItem) {
+        this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+            if (eleRef.nativeElement.id === this.activedescendentItem) {
+                index = (index>0 && index <= optionsarray.length - 1) ? index : optionsarray.length;
+                this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
+                this.renderer.setAttribute(optionsarray[index - 1].nativeElement, 'data-activedesendent', 'true')
+                this.activedescendentItem = optionsarray[index - 1].nativeElement.id;
+                optionsarray[index - 1].nativeElement.scrollIntoView();
+                return true;
+            }
+        });
+    } else {
+        this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                this.renderer.setAttribute(optionsarray[optionsarray.length-1].nativeElement, 'data-activedesendent', 'true')
+                this.activedescendentItem = optionsarray[optionsarray.length-1].nativeElement.id;
+                optionsarray[optionsarray.length-1].nativeElement.scrollIntoView();
+                return true;
+        });
+    }
 }
+/**
+ * 
+ * @param $event 
+ */
+selectOption($event: any) {
+    if (typeof this.activedescendentItem != "undefined" && this.activedescendentItem) {
+        this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+            if (eleRef.nativeElement.id === this.activedescendentItem) {
+                var isSelected=this.listContent.listItems[index].selected;
+                this.listContent.listItems[index].selected=(isSelected)?false:true;
+                return true;
+            }
+        });
+    }
+
+    
+  
+}
+
+}
+
  
 
     
