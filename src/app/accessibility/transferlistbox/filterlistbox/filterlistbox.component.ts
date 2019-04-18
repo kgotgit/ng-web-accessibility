@@ -9,13 +9,15 @@ import { rendererTypeName } from '@angular/compiler';
 })
 export class FilterlistboxComponent implements OnInit, AfterViewInit {
     @ViewChildren("option") options: QueryList<ElementRef>;
+    @ViewChild("inputRef") inputRef:ElementRef;
     @Input("itemsMap") itemsMap: Map<string, any>;
     @Input("label") label: string;
     @Input("code") code: string;
     @Input("componentId") cid: string;
     @Input("listName") listName: string;
     @Output() onKeyWordChange = new EventEmitter<Object>();
-    @Output() itemStateChanged = new EventEmitter<Object>();
+    @Input() itemStateChanged = new EventEmitter<Object>();
+    @Input() selectAllEvent=new EventEmitter<Object>();
     @Input("showDelete") showDelete: boolean;
     @Output() onDeleteClicked = new EventEmitter<string>();
     search: string;
@@ -25,10 +27,14 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
     constructor(private renderer: Renderer2) { }
 
     ngOnInit() {
-
+        this.itemStateChanged.subscribe((data)=>{
+            if(data.componentId==this.cid){
+                this.inputRef.nativeElement.checked=false;
+            }
+        })
     }
     ngAfterViewInit(): void {
-
+       
     }
     /**
      * Event to capture when an item is selected
@@ -145,9 +151,17 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
                 }
             });
         }
+    }
 
-
-
+    selectAll($event:any){
+        this.itemsMap.forEach((item:any,key:string)=>{
+            item.selected=true;
+        });
+    }
+    resetSelectAll(data:any){
+        if(data.componentId==this.cid){
+            this.inputRef.nativeElement.checked=false;
+        }
     }
 
 }

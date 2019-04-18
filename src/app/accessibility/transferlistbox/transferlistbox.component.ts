@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { stringify } from '@angular/compiler/src/util';
 
 @Component({
@@ -16,7 +16,7 @@ export class TransferlistboxComponent implements OnInit {
   @Input("rightAreaLabel") rightAreaLabel: string;
   @Input("leftAreaId") leftAreaId: string;
   @Input("rightAreaId") rightAreaId: string;
-
+  toggleButtonClicked = new EventEmitter<Object>();
   leftAreaMap: Map<string, any>;
   rightAreaMap: Map<string, any>=new Map<string,any>();
 
@@ -75,6 +75,7 @@ export class TransferlistboxComponent implements OnInit {
         this.leftAreaMap.delete(key);
       }
     });
+    this.toggleButtonClicked.emit({"componentId":this.leftAreaId});
 
   }
 
@@ -86,6 +87,7 @@ export class TransferlistboxComponent implements OnInit {
         this.rightAreaMap.delete(key);
       }
     });
+    this.toggleButtonClicked.emit({"componentId":this.rightAreaId});
   }
-
+  
 }

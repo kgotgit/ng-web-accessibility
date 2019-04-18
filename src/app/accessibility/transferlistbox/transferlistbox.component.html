@@ -3,7 +3,7 @@
     <div class="col-xs-5 col-sm-5">
       <div class="left">
         <app-filterlistbox [itemsMap]="leftAreaMap" [componentId]="leftAreaId" [listName]="leftAreaLabel"
-          (itemStateChanged)="itemSelectedOrUnSelected($event)">
+          (itemStateChanged)="itemSelectedOrUnSelected($event)" [itemStateChanged]="toggleButtonClicked">
         </app-filterlistbox>
       </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="col-xs-5 col-sm-5">
       <div class="right">
         <app-filterlistbox [itemsMap]="rightAreaMap" [componentId]="rightAreaId" [listName]="rightAreaLabel"
-          [itemsMap]="rightAreaMap" (itemStateChanged)="itemSelectedOrUnSelected($event)">
+          [itemsMap]="rightAreaMap" (itemStateChanged)="itemSelectedOrUnSelected($event)" [itemStateChanged]="toggleButtonClicked">
         </app-filterlistbox>
       </div>
     </div>

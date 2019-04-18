@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="form-check">
             <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" id="{{cid}}_checkAll">
+                <input type="checkbox" class="form-check-input" id="{{cid}}_checkAll" (change)="selectAll($event)" #inputRef>
                 {{listName}}
             </label>
 
