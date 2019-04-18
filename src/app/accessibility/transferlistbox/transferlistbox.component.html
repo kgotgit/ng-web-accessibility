@@ -1,22 +1,37 @@
 <div class="twolistselection">
   <div class="row">
-      <div class="col-xs-5 col-sm-5">
-          <div class="left">
-              <app-filterlistbox [listContent]="leftContent" (onSelectedItem)="itemSelected($event,item)" (onUnselectItem)="itemUnSelected($event,item)"
-              ></app-filterlistbox>
-          </div>
+    <div class="col-xs-5 col-sm-5">
+      <div class="left">
+        <app-filterlistbox [itemsMap]="leftAreaMap" [componentId]="leftAreaId" [listName]="leftAreaLabel"
+          (itemStateChanged)="itemSelectedOrUnSelected($event,item)">
+        </app-filterlistbox>
       </div>
-      <div class="col-xs-2 col-sm-2">
-          <div class="center">
-              <button type="button" class="btn btn-primary">
-                  <i class="fa fa-arrow-right" aria-hidden="true"></i>
-              </button>
+    </div>
+    <div class="col-xs-2 col-sm-2">
+      <div class="center">
+        <div class="row">
+          <div class="col-12">
+            <button type="button" class="btn btn-primary" aria-label="Left To Right" (click)="toggleLeftToRight()">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
           </div>
-      </div>
-      <div class="col-xs-5 col-sm-5">
-          <div class="right">
-              <app-filterlistbox [listContent]="rightContent" (onSelectedItem)="itemSelected($event,item)" (onUnselectItem)="itemUnSelected($event,item)" ></app-filterlistbox>
+        </div>
+        <br/>
+        <div class="row">
+          <div class="col-12">
+            <button type="button" class="btn btn-primary" aria-label="Right To Left"  (click)="toggleRightToLeft()">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </button>
           </div>
+        </div>
       </div>
+    </div>
+    <div class="col-xs-5 col-sm-5">
+      <div class="right">
+        <app-filterlistbox [itemsMap]="rightAreaMap" [componentId]="rightAreaId" [listName]="rightAreaLabel"
+          [itemsMap]="rightAreaMap" (itemStateChanged)="itemSelectedOrUnSelected($event,item)">
+        </app-filterlistbox>
+      </div>
+    </div>
   </div>
 </div>

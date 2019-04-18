@@ -1,9 +1,9 @@
-<div class="card twolistselection" id="{{listContent.componentId}}" #filterlistTemplate>
+<div class="card twolistselection" id="{{cid}}" #filterlistTemplate>
     <div class="card-header">
         <div class="form-check">
             <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" id="{{listContent.componentId}}_checkAll">
-                {{listContent.label}}
+                <input type="checkbox" class="form-check-input" id="{{cid}}_checkAll">
+                {{listName}}
             </label>
 
             <div *ngIf="showDelete" class="pull-right">
@@ -15,28 +15,26 @@
     <div class="form-group form-group-sm">
         <label class="sr-only col-form-label">Search</label>
         <input type="text" class="form-control keyword-search" [(ngModel)]="search" 
-            placeholder="Keyword Search.." id="{{listContent.componentId}}_keyword" />
+            placeholder="Keyword Search.." id="{{cid}}_keyword" />
     </div>
     <div class="card-block">
 
         <ul class="list-group" 
-            id="{{listContent.componentId}}_ul" 
+            id="{{cid}}_ul" 
             tabindex="0"
-            attr.aria-labelledby="{{listContent.componentId}}_listlabel" 
+            attr.aria-labelledby="{{cid}}_listlabel" 
             aria-multiselectable="true" role="listbox"
             [attr.aria-activedescendant]="activedescendentItem"
             (keydown)="onKeydown($event)">
             <li #option class="list-item" 
                 role="option" 
-                (click)="onSelect($event, listItem)"
-                attr.aria-selected={{listItem.selected}} attr.data-index={{i}}
-                id="{{listContent.componentId}}_list_item_{{i}}"
+                (click)="onSelect($event, item)"
+                attr.aria-selected={{item.value.selected}} attr.data-code={{item.key}}
+                id="{{cid}}_list_item_{{item.key}}"
+                *ngFor= "let item of itemsMap| keyvalue|keywordsearch:'label':search" >
+                <i *ngIf="item.value.selected==true" class="fa fa-check" attr.aria-hidden="true"></i>
 
-                *ngFor="let listItem of listContent.listItems |keywordsearch:'label':search;let i=index" >
-
-                <i *ngIf="listItem.selected==true" class="fa fa-check" attr.aria-hidden="true"></i>
-
-                {{listItem.label}}
+                {{item.value.label}}
 
             </li>
         </ul>
