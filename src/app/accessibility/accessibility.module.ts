@@ -6,6 +6,7 @@ import { FilterlistboxComponent } from './transferlistbox/filterlistbox/filterli
 import {KeywordsearchPipe} from "./transferlistbox/pipes/keywordsearch.pipe";
 import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { AlertsComponent } from './alerts/alerts.component';
 
 
 
@@ -17,7 +18,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     AngularFontAwesomeModule
 
   ],
-  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe],
-  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent]
+  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent],
+  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent]
 })
 export class AccessibilityModule { }

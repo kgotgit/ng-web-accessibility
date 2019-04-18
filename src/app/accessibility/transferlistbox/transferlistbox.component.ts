@@ -19,7 +19,18 @@ export class TransferlistboxComponent implements OnInit {
   toggleButtonClicked = new EventEmitter<Object>();
   leftAreaMap: Map<string, any>;
   rightAreaMap: Map<string, any>=new Map<string,any>();
-
+  
+  /**
+   *alerts component params 
+   */
+  isSrOnly:boolean=true;
+  message:string="";
+  ariaLive:string="polite";
+  alertsClass="default";
+  alertAriaLive:string="polite";
+/**
+   *end of alerts component params 
+   */
   showDelete: boolean = true;
   constructor() { }
 
@@ -68,26 +79,36 @@ export class TransferlistboxComponent implements OnInit {
 
 
   toggleLeftToRight(){
+    let counter=0;
     this.leftAreaMap.forEach((item:any,key:string)=>{
       if(item.selected==true){
         item.selected=false;
         this.rightAreaMap.set(key,item);
         this.leftAreaMap.delete(key);
+        ++counter;
       }
     });
+    this.updateMessage(this.leftAreaLabel, this.rightAreaLabel,counter);
     this.toggleButtonClicked.emit({"componentId":this.leftAreaId});
 
   }
 
   toggleRightToLeft(){
+    let counter=0;
     this.rightAreaMap.forEach((item:any,key:string)=>{
       if(item.selected==true){
         item.selected=false;
         this.leftAreaMap.set(key,item);
         this.rightAreaMap.delete(key);
+        ++counter;
       }
     });
+    this.updateMessage(this.rightAreaLabel, this.leftAreaLabel,counter);
     this.toggleButtonClicked.emit({"componentId":this.rightAreaId});
+  }
+
+  updateMessage(from:String,to:string,counter:number){
+    this.message=counter+" item(s) moved from "+from+ " to "+ to;
   }
   
 }
