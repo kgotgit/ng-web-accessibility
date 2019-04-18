@@ -1,3 +1,18 @@
-<p>
-  demo-alerts works!
-</p>
+<form class="form-inline">
+
+  <label class="sr-only" for="inlineFormInputName2">Message</label>
+  <input type="text" class="form-control col-8" id="inlineFormInputName2"
+    placeholder="Type your message here and click on update">
+    <div class="form-check mb-2 mr-sm-2">
+        <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+        <label class="form-check-label" for="inlineFormCheck">
+          Screen Reader Only
+        </label>
+      </div>
+    <button type="button" class="btn btn-primary">Update</button>
+  
+</form>
+
+<br />
+<app-alerts [srOnly]="isSrOnly" [alertMessage]="message" [alertAriaLive]="alertAriaLive" [alertClass]="alertsClass">
+</app-alerts>

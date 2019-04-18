@@ -12,4 +12,20 @@ export class DemoAlertsComponent implements OnInit {
   ngOnInit() {
   }
 
+
+   /**
+   *alerts component params 
+   */
+  isSrOnly:boolean=false;
+  message:string="";
+  ariaLive:string="polite";
+  alertsClass="primary";
+  alertAriaLive:string="polite";
+/**
+   *end of alerts component params 
+   */
+
+
+
+
 }
