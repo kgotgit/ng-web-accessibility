@@ -1,10 +1,11 @@
 <div class="card twolistselection" id="{{cid}}" #filterlistTemplate>
     <div class="card-header">
         <div class="form-check">
-            <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" id="{{cid}}_checkAll" (change)="selectAll($event)" #inputRef>
-                {{listName}}
+            <label class="form-check-label" id="{{cid}}_listlabel">
+                <input type="checkbox" class="form-check-input" attr.aria-describedby="{{cid}}_listhelp" id="{{cid}}_checkAll" (change)="selectAll($event)" #inputRef>
+               <strong> {{listName}}</strong>
             </label>
+            <small id="{{cid}}_listhelp" class="form-text text-muted sr-only">Checkbox to select all {{listName}} options</small>
 
             <div *ngIf="showDelete" class="pull-right">
                 <button class="btn btn-danger" type="button" (click)=onDelete($event)><i class="fa fa-trash"
@@ -13,7 +14,7 @@
         </div>
     </div>
     <div class="form-group form-group-sm">
-        <label class="sr-only col-form-label">Search</label>
+        <label class="sr-only col-form-label" for="{{cid}}_keyword">Search</label>
         <input type="text" class="form-control keyword-search" [(ngModel)]="search" 
             placeholder="Keyword Search.." id="{{cid}}_keyword" />
     </div>
