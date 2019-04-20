@@ -269,10 +269,14 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
      * @param $event 
      */
     selectAll($event:any){
-        this.itemsMap.forEach((item:any,key:string)=>{
-            item.selected=true;
-        });
-        this.inputRef.nativeElement.checked=true;
+        if($event.currentTarget.checked==true){
+            this.itemsMap.forEach((item:any,key:string)=>{
+                item.selected=true;
+            });
+        }else{
+            this.unselectAll($event);
+        }
+        
     }
     /**
      * 
