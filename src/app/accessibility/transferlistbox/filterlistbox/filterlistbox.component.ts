@@ -78,6 +78,12 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
 
             case 32:// Spacebar
                 this.selectOption($event);
+                break;
+            case 65:// A
+                this.selectAllOptionsOnKeyDown($event);
+                break;
+            default:
+            return
         }
     }
 
@@ -154,10 +160,29 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         }
     }
 
+    selectAllOptionsOnKeyDown($event: any){
+        $event.preventDefault();
+        if($event.ctrlKey===true){
+            if(this.inputRef.nativeElement.checked==false){
+                this.selectAll($event);
+            }else{
+                this.unselectAll($event);
+            }
+            
+        }
+    }
+
     selectAll($event:any){
         this.itemsMap.forEach((item:any,key:string)=>{
             item.selected=true;
         });
+        this.inputRef.nativeElement.checked=true;
+    }
+    unselectAll($event:any){
+        this.itemsMap.forEach((item:any,key:string)=>{
+            item.selected=false;
+        });
+        this.inputRef.nativeElement.checked=false;
     }
     resetSelectAll(data:any){
         if(data.componentId==this.cid){
