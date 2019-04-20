@@ -94,7 +94,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
     }
 
     /**
-     * 
+     * updates the current active descendent scrolls the option into view
      * @param eleRef 
      * @param index 
      * @param optionsarray 
@@ -106,7 +106,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         optionsarray[index].nativeElement.scrollIntoView();
     }
     /**
-     * 
+     * Triggered when HOME key is pressed. This sets the first option into focus
      * @param $event 
      */
     selectFirstOption($event){
@@ -129,7 +129,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
     }
 
     /**
-     * 
+     * Triggered when END key is pressed. This sets the first option into focus
      * @param $event 
      */
     selectLastOption($event){
@@ -159,7 +159,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
     }
 
     /**
-     * Function executes logic associated to keydown event
+     * Function executes logic associated to keydown for ARROW Down. This will set the next option into focus
      * @param $event 
      */
     executeArrowDown($event: any) {
@@ -194,7 +194,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
     }
 
     /**
-     * execute
+     * Function executes logic associated to keydown for ARROW UP. This will set the previous option into focus
      * @param $event 
      */
     executeUpArrow($event: any) {
@@ -226,7 +226,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         }
     }
     /**
-     * 
+     * Function executes logic associated to keydown of Spacebar. This will select the current active-descendent i.e., focused option
      * @param $event 
      */
     selectOption($event: any) {
@@ -240,7 +240,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         }
     }
     /**
-     * 
+     * Utility fuction which will update the state of the option's model i.e.,selected/unselected
      * @param eleRef 
      */
     updateSelectedOption(eleRef:ElementRef){
@@ -250,7 +250,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         this.itemsMap.set(code, item);
     }
     /**
-     * 
+     * Triggers for CTRL+A which will either select all/unselect all based on current state
      * @param $event 
      */
     selectAllOptionsOnKeyDown($event: any){
@@ -267,28 +267,22 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         }
     }
     /**
-     * 
+     * Triggered when select all checkbox state is changed
      * @param $event 
      */
     selectOrUnselectAll($event:any){
         this.iterateAndSetSelectedStatus($event.currentTarget.checked);
     }
- 
+    /**
+     * Common utility function which sets the model object value to desired state i.e., selected=true or false
+     * @param selected 
+     */
     iterateAndSetSelectedStatus(selected:boolean){
         this.itemsMap.forEach((item:any,key:string)=>{
             item.selected=selected;
         });
     }
-    /**
-     * 
-     * @param data 
-     */
-    resetSelectAll(data:any){
-        if(data.componentId==this.cid){
-            this.inputRef.nativeElement.checked=false;
-           
-        }
-    }
+   
 
 }
 
