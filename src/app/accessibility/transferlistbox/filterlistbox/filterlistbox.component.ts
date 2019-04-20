@@ -30,6 +30,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         this.itemStateChanged.subscribe((data)=>{
             if(data.componentId==this.cid){
                 this.inputRef.nativeElement.checked=false;
+                this.activedescendentItem=null;
             }
         })
     }
@@ -161,6 +162,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
     resetSelectAll(data:any){
         if(data.componentId==this.cid){
             this.inputRef.nativeElement.checked=false;
+           
         }
     }
 
