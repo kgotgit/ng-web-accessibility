@@ -2,7 +2,7 @@
     <div class="card-header">
         <div class="form-check">
             <label class="form-check-label" id="{{cid}}_listlabel">
-                <input type="checkbox" class="form-check-input" attr.aria-describedby="{{cid}}_listhelp" id="{{cid}}_checkAll" (change)="selectAll($event)" #inputRef>
+                <input type="checkbox" class="form-check-input" attr.aria-describedby="{{cid}}_listhelp" id="{{cid}}_checkAll" (change)="selectOrUnselectAll($event)" #inputRef>
                <strong> {{listName}}</strong>
             </label>
             <small id="{{cid}}_listhelp" class="form-text text-muted sr-only">Checkbox to select all {{listName}} options</small>

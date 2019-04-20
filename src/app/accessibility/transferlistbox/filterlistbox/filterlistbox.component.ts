@@ -257,9 +257,11 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         $event.preventDefault();
         if($event.ctrlKey===true){
             if(this.inputRef.nativeElement.checked==false){
-                this.selectAll($event);
+               this.iterateAndSetSelectedStatus(true);
+               this.inputRef.nativeElement.checked=true;
             }else{
-                this.unselectAll($event);
+                this.iterateAndSetSelectedStatus(false);
+                this.inputRef.nativeElement.checked=false;
             }
             
         }
@@ -268,25 +270,14 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
      * 
      * @param $event 
      */
-    selectAll($event:any){
-        if($event.currentTarget.checked==true){
-            this.itemsMap.forEach((item:any,key:string)=>{
-                item.selected=true;
-            });
-        }else{
-            this.unselectAll($event);
-        }
-        
+    selectOrUnselectAll($event:any){
+        this.iterateAndSetSelectedStatus($event.currentTarget.checked);
     }
-    /**
-     * 
-     * @param $event 
-     */
-    unselectAll($event:any){
+ 
+    iterateAndSetSelectedStatus(selected:boolean){
         this.itemsMap.forEach((item:any,key:string)=>{
-            item.selected=false;
+            item.selected=selected;
         });
-        this.inputRef.nativeElement.checked=false;
     }
     /**
      * 
