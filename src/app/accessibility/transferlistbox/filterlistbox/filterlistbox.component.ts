@@ -82,9 +82,80 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
             case 65:// A
                 this.selectAllOptionsOnKeyDown($event);
                 break;
+            case 36: // HOME
+                this.selectFirstOption($event);
+                break;
+            case 35: // END
+            this.selectLastOption($event);
+            break;  
             default:
             return
         }
+    }
+
+    /**
+     * 
+     * @param eleRef 
+     * @param index 
+     * @param optionsarray 
+     */
+    setActiveAndScrollIntoView(eleRef:ElementRef,index:number,optionsarray:ElementRef[]){
+        this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
+        this.renderer.setAttribute(optionsarray[index].nativeElement, 'data-activedesendent', 'true')
+        this.activedescendentItem = optionsarray[index].nativeElement.id;
+        optionsarray[index].nativeElement.scrollIntoView();
+    }
+    /**
+     * 
+     * @param $event 
+     */
+    selectFirstOption($event){
+        $event.preventDefault();
+        if (typeof this.activedescendentItem != "undefined" && this.activedescendentItem) {
+            this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                if (eleRef.nativeElement.id === this.activedescendentItem) {
+                    this.setActiveAndScrollIntoView(eleRef,0,optionsarray);
+                    return true;
+                }
+            });
+        }else{
+            this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                if(index==0){
+                    this.setActiveAndScrollIntoView(eleRef,0,optionsarray);
+                    return true;
+                }
+            });
+        }
+    }
+
+    /**
+     * 
+     * @param $event 
+     */
+    selectLastOption($event){
+        $event.preventDefault();
+        if (typeof this.activedescendentItem != "undefined" && this.activedescendentItem) {
+            this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                if (eleRef.nativeElement.id === this.activedescendentItem) {
+                    this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
+                    this.renderer.setAttribute(optionsarray[optionsarray.length-1].nativeElement, 'data-activedesendent', 'true')
+                    this.activedescendentItem = optionsarray[optionsarray.length-1].nativeElement.id;
+                    optionsarray[optionsarray.length-1].nativeElement.scrollIntoView();
+                    return true;
+                }
+            });
+        }else{
+            
+            this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+                if(index==0){
+                    this.renderer.setAttribute(optionsarray[optionsarray.length-1].nativeElement, 'data-activedesendent', 'true')
+                    this.activedescendentItem = optionsarray[optionsarray.length-1].nativeElement.id;
+                    optionsarray[optionsarray.length-1].nativeElement.scrollIntoView();
+                    return true;
+                }
+            });
+        }
+
     }
 
     /**
@@ -101,6 +172,9 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
                     this.renderer.setAttribute(optionsarray[index + 1].nativeElement, 'data-activedesendent', 'true')
                     this.activedescendentItem = optionsarray[index + 1].nativeElement.id;
                     optionsarray[index + 1].nativeElement.scrollIntoView();
+                    if($event.shiftKey){
+                        this.updateSelectedOption(optionsarray[index + 1]);
+                    }
                     return true;
                 }
             });
@@ -110,6 +184,9 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
                     this.renderer.setAttribute(optionsarray[index].nativeElement, 'data-activedesendent', 'true')
                     this.activedescendentItem = optionsarray[index].nativeElement.id;
                     optionsarray[index].nativeElement.scrollIntoView();
+                    if($event.shiftKey){
+                        this.updateSelectedOption(optionsarray[index]);
+                    }
                     return true;
                 }
             });
@@ -130,6 +207,9 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
                     this.renderer.setAttribute(optionsarray[index - 1].nativeElement, 'data-activedesendent', 'true')
                     this.activedescendentItem = optionsarray[index - 1].nativeElement.id;
                     optionsarray[index - 1].nativeElement.scrollIntoView();
+                    if($event.shiftKey){
+                        this.updateSelectedOption(optionsarray[index - 1]);
+                    }
                     return true;
                 }
             });
@@ -138,6 +218,9 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
                 this.renderer.setAttribute(optionsarray[optionsarray.length - 1].nativeElement, 'data-activedesendent', 'true')
                 this.activedescendentItem = optionsarray[optionsarray.length - 1].nativeElement.id;
                 optionsarray[optionsarray.length - 1].nativeElement.scrollIntoView();
+                if($event.shiftKey){
+                    this.updateSelectedOption(optionsarray[optionsarray.length - 1]);
+                }
                 return true;
             });
         }
@@ -150,16 +233,26 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         if (typeof this.activedescendentItem != "undefined" && this.activedescendentItem) {
             this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
                 if (eleRef.nativeElement.id === this.activedescendentItem) {
-                    let code = eleRef.nativeElement.getAttribute("data-code");
-                    let item = this.itemsMap.get(code);
-                    item.selected = (item.selected) ? false : true;
-                    this.itemsMap.set(code, item);
+                   this.updateSelectedOption(eleRef);
                     return true;
                 }
             });
         }
     }
-
+    /**
+     * 
+     * @param eleRef 
+     */
+    updateSelectedOption(eleRef:ElementRef){
+        let code = eleRef.nativeElement.getAttribute("data-code");
+        let item = this.itemsMap.get(code);
+        item.selected = (item.selected) ? false : true;
+        this.itemsMap.set(code, item);
+    }
+    /**
+     * 
+     * @param $event 
+     */
     selectAllOptionsOnKeyDown($event: any){
         $event.preventDefault();
         if($event.ctrlKey===true){
@@ -171,19 +264,30 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
             
         }
     }
-
+    /**
+     * 
+     * @param $event 
+     */
     selectAll($event:any){
         this.itemsMap.forEach((item:any,key:string)=>{
             item.selected=true;
         });
         this.inputRef.nativeElement.checked=true;
     }
+    /**
+     * 
+     * @param $event 
+     */
     unselectAll($event:any){
         this.itemsMap.forEach((item:any,key:string)=>{
             item.selected=false;
         });
         this.inputRef.nativeElement.checked=false;
     }
+    /**
+     * 
+     * @param data 
+     */
     resetSelectAll(data:any){
         if(data.componentId==this.cid){
             this.inputRef.nativeElement.checked=false;
