@@ -1,7 +1,7 @@
 <div class="card twolistselection" id="{{cid}}" #filterlistTemplate>
     <div class="card-header">
         <div class="form-check">
-            <label class="form-check-label" id="{{cid}}_listlabel">
+            <label class="form-check-label" id="{{cid}}_listlabel" for="{{cid}}_checkAll">
                 <input type="checkbox" class="form-check-input" attr.aria-describedby="{{cid}}_listhelp" id="{{cid}}_checkAll" (change)="selectOrUnselectAll($event)" #inputRef>
                <strong> {{listName}}</strong>
             </label>
