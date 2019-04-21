@@ -44,7 +44,7 @@ export class TransferlistboxComponent implements OnInit {
   }
 
   /**
-   * 
+   * Creates a map based on the array information passed. addes additional properties required down the line
    */
   generateLocalData() {
     if (this.code == null) { throw Error("code attribute is required") };
@@ -57,7 +57,7 @@ export class TransferlistboxComponent implements OnInit {
     });
   }
   /**
-   * 
+   * Sets the items into map 
    * @param wrapperItem 
    */
   itemSelectedOrUnSelected(wrapperItem: any) {
@@ -77,7 +77,9 @@ export class TransferlistboxComponent implements OnInit {
     }
   }
 
-
+  /**
+   * Toggles items from left to right
+   */
   toggleLeftToRight(){
     let counter=0;
     this.leftAreaMap.forEach((item:any,key:string)=>{
@@ -92,7 +94,9 @@ export class TransferlistboxComponent implements OnInit {
     this.toggleButtonClicked.emit({"componentId":this.leftAreaId});
 
   }
-
+/**
+   * Toggles items from Right to Left
+   */
   toggleRightToLeft(){
     let counter=0;
     this.rightAreaMap.forEach((item:any,key:string)=>{
