@@ -1,3 +1,27 @@
-.text-center2{
-    text-align: center
+#content{
+    width: calc(100% - 250px);
+    max-height: calc( 100vh);
+   overflow:hidden;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
+#main-content{
+    margin-top:7vh;
+    padding:6px 12px;
+    max-height: calc( 100vh - 6vh);
+    overflow-y: auto;
+    overflow-x:hidden;
+    transition: all 0.3s;
+   
+    top: 0;
+    right: 0;
+}
+
+@media (max-width:576px) {
+    #content{
+        width:100%;
+    }
+    
+ }
