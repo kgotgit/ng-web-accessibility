@@ -103,7 +103,8 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
         this.renderer.setAttribute(optionsarray[index].nativeElement, 'data-activedesendent', 'true')
         this.activedescendentItem = optionsarray[index].nativeElement.id;
-        optionsarray[index].nativeElement.scrollIntoView();
+       // optionsarray[index].nativeElement.scrollIntoView();
+        this.scrollIntoViewSmoothly(optionsarray[index]);
     }
     /**
      * Triggered when HOME key is pressed. This sets the first option into focus
@@ -128,6 +129,10 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
         }
     }
 
+    scrollIntoViewSmoothly(eleRef:ElementRef){
+        eleRef.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    }
+
     /**
      * Triggered when END key is pressed. This sets the first option into focus
      * @param $event 
@@ -140,7 +145,8 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
                     this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
                     this.renderer.setAttribute(optionsarray[optionsarray.length-1].nativeElement, 'data-activedesendent', 'true')
                     this.activedescendentItem = optionsarray[optionsarray.length-1].nativeElement.id;
-                    optionsarray[optionsarray.length-1].nativeElement.scrollIntoView();
+                   // optionsarray[optionsarray.length-1].nativeElement.scrollIntoView();
+                    this.scrollIntoViewSmoothly(optionsarray[optionsarray.length-1]);
                     return true;
                 }
             });
@@ -150,7 +156,8 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
                 if(index==0){
                     this.renderer.setAttribute(optionsarray[optionsarray.length-1].nativeElement, 'data-activedesendent', 'true')
                     this.activedescendentItem = optionsarray[optionsarray.length-1].nativeElement.id;
-                    optionsarray[optionsarray.length-1].nativeElement.scrollIntoView();
+                    //optionsarray[optionsarray.length-1].nativeElement.scrollIntoView();
+                    this.scrollIntoViewSmoothly(optionsarray[optionsarray.length-1]);
                     return true;
                 }
             });
@@ -171,7 +178,8 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
                     this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
                     this.renderer.setAttribute(optionsarray[index + 1].nativeElement, 'data-activedesendent', 'true')
                     this.activedescendentItem = optionsarray[index + 1].nativeElement.id;
-                    optionsarray[index + 1].nativeElement.scrollIntoView();
+                   // optionsarray[index + 1].nativeElement.scrollIntoView();
+                    this.scrollIntoViewSmoothly(optionsarray[index + 1]);
                     if($event.shiftKey){
                         this.updateSelectedOption(optionsarray[index + 1]);
                     }
@@ -183,7 +191,8 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
                 if (index == 0) {
                     this.renderer.setAttribute(optionsarray[index].nativeElement, 'data-activedesendent', 'true')
                     this.activedescendentItem = optionsarray[index].nativeElement.id;
-                    optionsarray[index].nativeElement.scrollIntoView();
+                    //optionsarray[index].nativeElement.scrollIntoView();
+                    this.scrollIntoViewSmoothly(optionsarray[index]);
                     if($event.shiftKey){
                         this.updateSelectedOption(optionsarray[index]);
                     }
@@ -206,7 +215,7 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
                     this.renderer.setAttribute(eleRef.nativeElement, 'data-activedesendent', 'false');
                     this.renderer.setAttribute(optionsarray[index - 1].nativeElement, 'data-activedesendent', 'true')
                     this.activedescendentItem = optionsarray[index - 1].nativeElement.id;
-                    optionsarray[index - 1].nativeElement.scrollIntoView();
+                    this.scrollIntoViewSmoothly(optionsarray[index - 1]);
                     if($event.shiftKey){
                         this.updateSelectedOption(optionsarray[index - 1]);
                     }
@@ -217,7 +226,8 @@ export class FilterlistboxComponent implements OnInit, AfterViewInit {
             this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
                 this.renderer.setAttribute(optionsarray[optionsarray.length - 1].nativeElement, 'data-activedesendent', 'true')
                 this.activedescendentItem = optionsarray[optionsarray.length - 1].nativeElement.id;
-                optionsarray[optionsarray.length - 1].nativeElement.scrollIntoView();
+                /* optionsarray[optionsarray.length - 1].nativeElement.scrollIntoView(); */
+                this.scrollIntoViewSmoothly(optionsarray[optionsarray.length - 1]);
                 if($event.shiftKey){
                     this.updateSelectedOption(optionsarray[optionsarray.length - 1]);
                 }

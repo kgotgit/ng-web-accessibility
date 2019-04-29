@@ -6,12 +6,12 @@ background-color:$lib-theme-color;
 height:calc( 100vh - 8vh);
 position: absolute;
 z-index:1020;
-top:8vh;
 left:0%;
 width:200px;
 transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
 transform-origin: bottom left;
 overflow:auto;
+margin-top:53px;
   ul{
         padding:0px;
     li{
@@ -40,8 +40,8 @@ overflow:auto;
 @media (max-width:576px) {
     aside{
        left:-200px;
-       top:20vh;
-       height:calc( 100vh - 20vh);
+      /*  top:20vh;
+       height:calc( 100vh - 20vh); */
        display: none;
     }
     

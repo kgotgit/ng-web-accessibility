@@ -1,10 +1,13 @@
 @import "../../../variables.scss";
 
 header{
-    position:fixed;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
     background-color:$lib-theme-color;
-    width:100%;
-    margin:0px;
+   
+   
     z-index:1000;
     ul{
         list-style-type: none;
