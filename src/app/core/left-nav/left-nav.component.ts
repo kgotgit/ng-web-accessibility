@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavModel } from 'src/app/model/nav.model';
+import { CommonService } from '../services/common.service';
+import { Subscription} from 'rxjs';
 
 
 
@@ -11,13 +13,20 @@ import { NavModel } from 'src/app/model/nav.model';
 export class LeftNavComponent implements OnInit {
 
   navs:NavModel[];
-
-  constructor() { }
-
+  commonServiceSubscribe:Subscription;
+  showSideNav:boolean=true;
+  constructor(private commonService:CommonService) { }
+  
   ngOnInit() {
     this.buildNavModels();
+    this.SubscribesToEvents();
   }
-  showSideNav:boolean=true;
+  SubscribesToEvents() {
+    this.commonServiceSubscribe=this.commonService.isToggleLeftNav().subscribe((showSideNav:boolean)=>{
+      this.showSideNav=showSideNav;
+    });
+  }
+ 
 
   buildNavModels(){
   this.navs=new Array();

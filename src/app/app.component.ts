@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CommonService } from './core/services/common.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-web-accessibility';
-
+  commonServiceSubscribe:Subscription
+  constructor(private commonService:CommonService){
+    this.SubscribesToEvents();
+  }
+  isFullView=false;
   options=[
     {"code":"1","label":"Yellow"},
     {"code":"2","label":"Blue"},
@@ -17,4 +23,11 @@ export class AppComponent {
     {"code":"6","label":"Purple"},
     {"code":"7","label":"Pink"},
   ]
+
+
+  SubscribesToEvents() {
+    this.commonServiceSubscribe=this.commonService.isToggleLeftNav().subscribe((showSideNav:boolean)=>{
+      this.isFullView=!showSideNav;
+    });
+  }
 }

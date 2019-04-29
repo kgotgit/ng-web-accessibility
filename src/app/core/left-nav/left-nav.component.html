@@ -1,4 +1,4 @@
-<aside *ngIf="showSideNav">
+<aside [ngClass]="{'inactive': showSideNav===false}">
     
     <ul class="left-nav-list">
       <li *ngFor="let nav of navs">

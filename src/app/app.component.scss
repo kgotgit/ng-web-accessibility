@@ -1,13 +1,17 @@
 #router-content{
-    padding:6px 12px;
+    padding:12px 24px;
     height: calc( 100vh - 3vh);
     overflow-y: auto;
     overflow-x:hidden;
     transition: all 0.3s;
     width:calc(100% - 200px);
     margin-left:200px;
-    
+    box-shadow: 4px;
     padding-top:100px;
+   &.full-view{
+    width:100%;
+    margin-left:0px;
+   }
    }
 
    @media (max-width:576px) {

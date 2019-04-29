@@ -3,7 +3,7 @@
   <div id="content">
     <app-left-nav></app-left-nav>
 
-    <main id="router-content">
+    <main id="router-content" [ngClass]="{'full-view': isFullView==true}">
     <router-outlet></router-outlet>
     </main>
   </div>

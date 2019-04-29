@@ -3,7 +3,7 @@
 
 aside{
 background-color:$lib-theme-color;
-height:calc( 100vh - 8vh);
+height:calc( 100vh - 53px);
 position: absolute;
 z-index:1020;
 left:0%;
@@ -36,13 +36,15 @@ margin-top:53px;
       
     }
   }
+  &.inactive{
+    display:none;
+  }
 }
 @media (max-width:576px) {
     aside{
-       left:-200px;
-      /*  top:20vh;
-       height:calc( 100vh - 20vh); */
        display: none;
+       transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+       transform-origin: bottom left;
     }
     
  } 
