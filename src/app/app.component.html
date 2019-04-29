@@ -1,27 +1,10 @@
-<!-- <div class="container-fluid">
-  <div class="row">
-    <div class="col-12">
-      <app-header></app-header>
-    </div>
-  </div>
-  <div class="row flex-xl-nowrap">
-    <div class="col-12 col-md-3 col-xl-2 bd-sidebar">
-      <app-left-nav></app-left-nav>
-    </div>
-    <div class="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div> -->
-
-<div >
+<div>
+ <app-header></app-header>
+  <div id="content">
     <app-left-nav></app-left-nav>
-    <div id="content">
-      <app-header></app-header>
 
-      <div id="main-content">
-      <router-outlet></router-outlet>
-    </div> 
-    </div>
-
+    <main id="router-content">
+    <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>

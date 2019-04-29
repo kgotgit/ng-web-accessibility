@@ -1,23 +1,46 @@
-header{
-    background: #7386D5;
-    min-height:6vh;
-    position:fixed;
-    width: calc(100% - 250px);
-    margin-bottom:30px;
-    z-index:999;
+@import "../../../variables.scss";
 
+header{
+    position:fixed;
+    background-color:$lib-theme-color;
+    width:100%;
+    margin:0px;
+    z-index:1000;
     ul{
-        list-style-type:none;
-        float:right;
-        li{
-            padding:6px 12px;
-        }
+        list-style-type: none;
+        padding:3px 6px;
+        margin:0px;
+         li{
+             padding:3px 6px;
+             display: inline-block;
+             a{
+                 color:$white;
+                 &.logo{
+                     font-weight:bold;
+                     font-size:$logo-font-size;
+                 }
+                 &:hover{
+                     text-decoration: none;
+                     cursor: pointer;
+                 }
+             }
+         }
     }
 }
 
 @media (max-width:576px) {
-    #content{
-        width:100%;
+    header{
+        ul{
+            li{
+                a{
+                    color:$white;
+                    &.logo{
+                        font-size:$logo-font-size-sm;
+                    }
+                } 
+            }
+        }
+
     }
     
- }
+ } 

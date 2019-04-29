@@ -1,5 +1,17 @@
 .center {
-    position: relative;
+    position: absolute;
     top: 50%;
     left: 30%;
+}
+
+@media (max-width:576px){
+
+
+    .center{
+        position: relative;;
+        top: 8%;
+        left: 0%;
+        text-align: center;
+        height:20vh;
+    }
 }

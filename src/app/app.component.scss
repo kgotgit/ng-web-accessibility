@@ -1,27 +1,20 @@
-#content{
-    width: calc(100% - 250px);
-    max-height: calc( 100vh);
-   overflow:hidden;
-    transition: all 0.3s;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-#main-content{
-    margin-top:7vh;
+#router-content{
     padding:6px 12px;
-    max-height: calc( 100vh - 6vh);
+    max-height: calc( 100vh - 3vh);
     overflow-y: auto;
     overflow-x:hidden;
     transition: all 0.3s;
-   
-    top: 0;
-    right: 0;
-}
+    width:calc(100% - 200px);
+    margin-left:200px;
+    
+    padding-top:100px;
+   }
 
-@media (max-width:576px) {
-    #content{
+   @media (max-width:576px) {
+    #router-content{
         width:100%;
+        margin-left:0px;
+
     }
     
- }
+ } 

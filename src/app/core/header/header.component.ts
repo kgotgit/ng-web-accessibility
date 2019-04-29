@@ -12,4 +12,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  toggleSideNav($event:any){
+     console.log($event);
+  }
 }
