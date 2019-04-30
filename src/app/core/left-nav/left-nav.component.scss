@@ -42,9 +42,15 @@ margin-top:53px;
 }
 @media (max-width:576px) {
     aside{
-       display: none;
-       transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
-       transform-origin: bottom left;
+        margin-left:-200px;
+       &.active{
+        display: block;
+        margin-left:0px;
+        
+       }
+       &.inactive{
+        display: none;
+       }
     }
     
  } 
