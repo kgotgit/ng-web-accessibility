@@ -11,7 +11,7 @@ import { DemoAlertsComponent } from '../demo/demo-alerts/demo-alerts.component';
 import { DemoListgroupComponent } from '../demo/demo-listgroup/demo-listgroup.component';
 
 const routes: Routes = [
-  { path: '', component: DemoTransferlistComponent },
+  { path: '', redirectTo:"transferlist", pathMatch: 'full'},
   { path: 'combobox', component: DemoComboboxComponent },
   { path: 'transferlist', component: DemoTransferlistComponent },
   { path: 'modalwindow', component: DemoModalwindowComponent},
