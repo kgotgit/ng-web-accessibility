@@ -11,6 +11,7 @@ export class DemoAlertsComponent implements OnInit {
   @ViewChild('alerts', {read: ViewContainerRef}) 
   alertsViewContainerRef:ViewContainerRef;
   typedMessage:string;
+  
 
    /**
    *alerts component params 
@@ -18,7 +19,7 @@ export class DemoAlertsComponent implements OnInit {
   isSrOnly:boolean=false;
   message:string="";
   ariaLive:string="polite";
-  alertsClass="primary";
+  alertsClass:string="primary";
   alertAriaLive:string="polite";
 /**
    *end of alerts component params 
@@ -32,9 +33,10 @@ export class DemoAlertsComponent implements OnInit {
   addAlerts(){
     let dynaComp=this.dynaLoadService.createDynaComponentInstance(AlertsComponent);
     if(dynaComp!=null){
+      
       (<AlertsComponent>dynaComp.instance).srOnly=false;
-      (<AlertsComponent>dynaComp.instance).alertClass="primary";
-      (<AlertsComponent>dynaComp.instance).message=this.message;
+      (<AlertsComponent>dynaComp.instance).alertClass=this.alertsClass;
+      (<AlertsComponent>dynaComp.instance).message=this.message!=null && this.message.trim().length>0?this.message:"No Message Entered";
       (<AlertsComponent>dynaComp.instance).alertAriaLive="polite";
       this.dynaLoadService.insertDynaComponent(dynaComp);
     }
