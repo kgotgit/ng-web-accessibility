@@ -14,11 +14,13 @@ import { FormsModule } from '@angular/forms';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LeftNavComponent,
+    
     
   ],
   imports: [

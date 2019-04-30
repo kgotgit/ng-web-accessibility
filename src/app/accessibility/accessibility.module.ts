@@ -19,6 +19,7 @@ import { AlertsComponent } from './alerts/alerts.component';
 
   ],
   declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent],
-  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent]
+  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent],
+  entryComponents: [AlertsComponent]
 })
 export class AccessibilityModule { }

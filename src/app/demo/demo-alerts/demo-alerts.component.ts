@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild,ViewContainerRef } from '@angular/core';
+import { DynaLoaderService } from '../../core/services/dyna-loader.service';
+import { AlertsComponent } from '../../accessibility/alerts/alerts.component';
 
 @Component({
   selector: 'app-demo-alerts',
@@ -6,12 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./demo-alerts.component.scss']
 })
 export class DemoAlertsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  @ViewChild('alerts', {read: ViewContainerRef}) 
+  alertsViewContainerRef:ViewContainerRef;
+  typedMessage:string;
 
    /**
    *alerts component params 
@@ -24,8 +23,21 @@ export class DemoAlertsComponent implements OnInit {
 /**
    *end of alerts component params 
    */
+  constructor(private dynaLoadService:DynaLoaderService) { }
 
+  ngOnInit() {
+    this.dynaLoadService.setRootViewContainerRef(this.alertsViewContainerRef);
+  }
 
-
+  addAlerts(){
+    let dynaComp=this.dynaLoadService.createDynaComponentInstance(AlertsComponent);
+    if(dynaComp!=null){
+      (<AlertsComponent>dynaComp.instance).srOnly=false;
+      (<AlertsComponent>dynaComp.instance).alertClass="primary";
+      (<AlertsComponent>dynaComp.instance).message=this.message;
+      (<AlertsComponent>dynaComp.instance).alertAriaLive="polite";
+      this.dynaLoadService.insertDynaComponent(dynaComp);
+    }
+  }
 
 }

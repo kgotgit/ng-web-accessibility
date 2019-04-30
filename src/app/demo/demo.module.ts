@@ -9,12 +9,22 @@ import { DemoTablesComponent } from './demo-tables/demo-tables.component';
 import { DemoProgressbarsComponent } from './demo-progressbars/demo-progressbars.component';
 import { DemoAlertsComponent } from './demo-alerts/demo-alerts.component';
 import { DemoListgroupComponent } from './demo-listgroup/demo-listgroup.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     AccessibilityModule,
+    FormsModule
   ],
-  declarations: [DemoComboboxComponent, DemoTransferlistComponent, DemoModalwindowComponent, DemoTabsComponent, DemoTablesComponent, DemoProgressbarsComponent, DemoAlertsComponent, DemoListgroupComponent]
+  declarations: [DemoComboboxComponent, 
+                DemoTransferlistComponent,
+                DemoModalwindowComponent, 
+                DemoTabsComponent, 
+                DemoTablesComponent, 
+                DemoProgressbarsComponent, 
+                DemoAlertsComponent, 
+                DemoListgroupComponent],
+  entryComponents: [DemoAlertsComponent]
 })
 export class DemoModule { }
