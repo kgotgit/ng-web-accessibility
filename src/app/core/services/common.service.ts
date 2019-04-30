@@ -12,9 +12,8 @@ export class CommonService {
 
 
   showSideNav:boolean=true;
-  toggleLeftNav($event:any){
-    this.showSideNav=!this.showSideNav;
-    this.toggleHeaderSubject.next(this.showSideNav);
+  toggleLeftNav(showSideBar:boolean){
+    this.toggleHeaderSubject.next(showSideBar);
   }
 
   isToggleLeftNav(): Observable<boolean> {

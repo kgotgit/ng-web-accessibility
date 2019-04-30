@@ -1,7 +1,7 @@
 <header>
 <ul class="header-list pull-left">
     <li >
-        <button type="button" aria-label="Toggle left Navigation" class="btn btn-default" (click)="toggleSideNav($event)">
+        <button type="button" aria-label="Toggle left Navigation" class="btn btn-default" (click)="toggleSideNav($event)" aria-controls="side-bar" [attr.aria-expanded]="leftSideNavBarExpanded">
           <i aria-hidden="true" class="fa fa-bars"></i>
         </button>
     </li> 

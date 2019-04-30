@@ -10,7 +10,7 @@ import { CommonService } from '../services/common.service';
 })
 export class HeaderComponent implements OnInit,OnDestroy  {
 
-
+  leftSideNavBarExpanded=false;
   
   constructor(private commonService:CommonService) { }
 
@@ -19,7 +19,8 @@ export class HeaderComponent implements OnInit,OnDestroy  {
   }
 
   toggleSideNav($event:any){
-    this.commonService.toggleLeftNav($event);
+    this.leftSideNavBarExpanded=!this.leftSideNavBarExpanded;
+    this.commonService.toggleLeftNav(this.leftSideNavBarExpanded);
   }
 
 

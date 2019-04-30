@@ -1,23 +1,10 @@
-<aside [ngClass]="{'inactive': showSideNav===false,'active': showSideNav==true}">
-    
-    <ul class="left-nav-list">
-      <li *ngFor="let nav of navs">
-        <a routerLink="{{nav.path}}"
-            routerLinkActive="active-link"
-            title="Accessibility Details for {{nav.title}}">
-            {{nav.title}}
-          </a>
+<aside [ngClass]="{'inactive': showSideNav===false,'active': showSideNav==true}" id="side-bar">
 
-      </li>
-      <!--   <li ><a routerLink="/combobox" routerLinkActive="active-link" title="Accessibility Details for Combobox">Combobox</a></li>
-        <li > <a routerLink="/transferlist"  routerLinkActive="active-link" title="Accessibility details of Transfer List box">Transfer List Box</a></li>
-        <li > <a routerLink="/alerts" routerLinkActive="active-link">Alerts</a></li>
-        <li > <a routerLink="/listgroup" routerLinkActive="active-link">List Group</a></li>
-        <li > <a routerLink="/modalwindow" routerLinkActive="active-link">Modal Window</a></li>
-        <li > <a routerLink="/tabs" routerLinkActive="active-link">Tabs</a></li>
-        <li > <a routerLink="/tables" routerLinkActive="active-link">Tables</a></li>
-        <li > <a routerLink="/progressbars" routerLinkActive="active-link">Progressbar</a></li>
-       -->  
-        
-      </ul>
+  <ul class="left-nav-list">
+    <li *ngFor="let nav of navs">
+      <a routerLink="{{nav.path}}" routerLinkActive="active-link" title="Accessibility Details for {{nav.title}}">
+        {{nav.title}}
+      </a>
+    </li>
+  </ul>
 </aside>

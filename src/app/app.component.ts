@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private commonService:CommonService){
     this.SubscribesToEvents();
   }
-  isFullView=false;
+  isFullView=true;
   options=[
     {"code":"1","label":"Yellow"},
     {"code":"2","label":"Blue"},
