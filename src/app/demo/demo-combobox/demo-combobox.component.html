@@ -1,12 +1,47 @@
-<div class="card">
-  <div class="card-header"><strong>Combobox:</strong> Autocomplete with manual selection</div>
-  <div class="card-body">
-    <div class="form-group">
-      <label for="colors col-6" id="colors_lbl">Colors:</label>
-      <div class="col-6">
-        <app-combobox id="colors" arialabel="Colors" arialabelledby="colors_lbl" [options]="options" code="code"
-          label="label"></app-combobox>
+<section>
+  <div class="card">
+    <div class="card-header"><strong>Combobox:</strong> Autocomplete with manual selection</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="colors col-6" id="colors_lbl">Colors:</label>
+        <div class="col-6">
+          <app-combobox id="colors" arialabel="Colors" arialabelledby="colors_lbl" [options]="options" code="code"
+            label="label"></app-combobox>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<section>
+  <br />
+  <h3 class="wells">Keyboard Navigation</h3>
+
+  <table class="table table-stripped table-bordered">
+    <tbody>
+      <tr>
+        <td><span class="keycap">↑</span> &nbsp;<span class="keycap">Up Arrow</span></td>
+        <td>Move focus to next option </td>
+      </tr>
+      <tr>
+        <td><span class="keycap">↓</span>&nbsp; <span class="keycap">Down Arrow</span></td>
+        <td>Move focus to previous option</td>
+      </tr>
+      <tr>
+        <td><span class="keycap">TAB</span></td>
+        <td>Navigate next element element</td>
+      </tr>
+      <tr>
+        <td><span class="keycap">SHIFT + TAB</span></td>
+        <td>Navigate next previous element</td>
+      </tr>
+      <tr>
+        <td><span class="keycap">Enter</span></td>
+        <td>Select current focused option</td>
+      </tr>
+      <tr>
+    </tbody>
+  </table>
+
+
+</section>
