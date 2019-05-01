@@ -3,7 +3,7 @@
 
   <label for="inlineFormInputName2">Message</label>
   <input type="text" class="form-control col-8" id="inlineFormInputName2"
-    placeholder="Type your message here and click on update" [(ngModel)]="message" name="typeMessage" />
+    placeholder="Type your message here and click on Add Alert" [(ngModel)]="message" name="typeMessage" />
     
     <label for="messageType">Message Type</label>
     <select id="messagetType" col-8 class="form-control"  [(ngModel)]="alertsClass" name="messageType">
@@ -24,7 +24,7 @@
       </select>
 
     <div class="form-check mb-2 mr-sm-2">
-        <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+        <input class="form-check-input" type="checkbox" id="inlineFormCheck" [(ngModel)]="isSrOnly" name="srOnlyCheckbox">
         <label class="form-check-label" for="inlineFormCheck">
           Screen Reader Only
         </label>

@@ -27,19 +27,27 @@ export class DemoAlertsComponent implements OnInit {
   constructor(private dynaLoadService:DynaLoaderService) { }
 
   ngOnInit() {
-    this.dynaLoadService.setRootViewContainerRef(this.alertsViewContainerRef);
+    this.dynaLoadService.seteleViewContainerRef(this.alertsViewContainerRef);
   }
 
   addAlerts(){
     let dynaComp=this.dynaLoadService.createDynaComponentInstance(AlertsComponent);
     if(dynaComp!=null){
       
-      (<AlertsComponent>dynaComp.instance).srOnly=false;
+      (<AlertsComponent>dynaComp.instance).srOnly=this.isSrOnly;
       (<AlertsComponent>dynaComp.instance).alertClass=this.alertsClass;
       (<AlertsComponent>dynaComp.instance).message=this.message!=null && this.message.trim().length>0?this.message:"No Message Entered";
       (<AlertsComponent>dynaComp.instance).alertAriaLive="polite";
       this.dynaLoadService.insertDynaComponent(dynaComp);
     }
+  }
+  clearForm(){
+    this.alertsClass="primary";
+    this.message="";
+    this.alertAriaLive="polite";
+    this.isSrOnly=false;
+    this.dynaLoadService.clearComponents();
+
   }
 
 }

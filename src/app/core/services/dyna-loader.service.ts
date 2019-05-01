@@ -6,29 +6,33 @@ import { AlertsComponent } from '../../accessibility/alerts/alerts.component';
 })
 export class DynaLoaderService {
   factoryResolver:ComponentFactoryResolver;
-  rootViewContainer:ViewContainerRef;
+  eleViewContainer:ViewContainerRef;
 
   constructor(@Inject(ComponentFactoryResolver) factoryResolver) {
     this.factoryResolver = factoryResolver
   }
-  setRootViewContainerRef(viewContainerRef:ViewContainerRef) {
-    this.rootViewContainer = viewContainerRef
+  seteleViewContainerRef(viewContainerRef:ViewContainerRef) {
+    this.eleViewContainer = viewContainerRef
   }
 
   createDynaComponentInstance(dynaComp:any){
     const factory = this.factoryResolver.resolveComponentFactory(dynaComp)
-    let component = factory.create(this.rootViewContainer.parentInjector);
+    let component = factory.create(this.eleViewContainer.parentInjector);
     return component;
   }
 
   insertDynaComponent(dynaComp:any){
-    this.rootViewContainer.insert(dynaComp.hostView);
+    this.eleViewContainer.insert(dynaComp.hostView);
   }
   addDynamicComponent(dynaComp:any) {
     const factory = this.factoryResolver
                         .resolveComponentFactory(dynaComp)
     const component = factory
-      .create(this.rootViewContainer.parentInjector)
-    this.rootViewContainer.insert(component.hostView)
+      .create(this.eleViewContainer.parentInjector)
+    this.eleViewContainer.insert(component.hostView)
+  }
+
+  clearComponents(){
+    this.eleViewContainer.clear();
   }
 }
