@@ -22,15 +22,19 @@ export class DemoProgressbarsComponent implements OnInit {
 
   startProgress(){
 
-    this.timeoutId=setInterval(()=>{this.updateProgress()},2000);
+    this.timeoutId=setInterval(()=>{this.updateProgress()},500);
   }
 
   updateProgress(){
-    this.stepIncrement+=25;
+    this.stepIncrement+=5;
     this.ariaValueNow=this.stepIncrement+"";
     this.inLineStyle=this.ariaValueNow;
     if(this.stepIncrement>=Number(this.ariaValueMax)){
       clearInterval(this.timeoutId);
     }
+  }
+
+  stopProgress(){
+    clearInterval(this.timeoutId);
   }
 }
