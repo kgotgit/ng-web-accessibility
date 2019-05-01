@@ -11,6 +11,7 @@ export class DemoAlertsComponent implements OnInit {
   @ViewChild('alerts', {read: ViewContainerRef}) 
   alertsViewContainerRef:ViewContainerRef;
   typedMessage:string;
+  counter:number=0;
   
 
    /**
@@ -39,6 +40,7 @@ export class DemoAlertsComponent implements OnInit {
       (<AlertsComponent>dynaComp.instance).message=this.message!=null && this.message.trim().length>0?this.message:"No Message Entered";
       (<AlertsComponent>dynaComp.instance).alertAriaLive="polite";
       this.dynaLoadService.insertDynaComponent(dynaComp);
+      this.counter+=1;
     }
   }
   clearForm(){
@@ -46,6 +48,7 @@ export class DemoAlertsComponent implements OnInit {
     this.message="";
     this.alertAriaLive="polite";
     this.isSrOnly=false;
+    this.counter=0;
     this.dynaLoadService.clearComponents();
 
   }
