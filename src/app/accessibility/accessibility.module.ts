@@ -7,6 +7,7 @@ import {KeywordsearchPipe} from "./transferlistbox/pipes/keywordsearch.pipe";
 import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AlertsComponent } from './alerts/alerts.component';
+import { ProgressbarComponent } from './progressbar/progressbar.component';
 
 
 
@@ -18,8 +19,8 @@ import { AlertsComponent } from './alerts/alerts.component';
     AngularFontAwesomeModule
 
   ],
-  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent],
-  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent],
+  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent, ProgressbarComponent],
+  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent,ProgressbarComponent],
   entryComponents: [AlertsComponent]
 })
 export class AccessibilityModule { }
