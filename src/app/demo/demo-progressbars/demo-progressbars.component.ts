@@ -37,4 +37,13 @@ export class DemoProgressbarsComponent implements OnInit {
   stopProgress(){
     clearInterval(this.timeoutId);
   }
+
+  clear(){
+    this.ariaValueNow="0";
+    this.ariaValueMin="0";
+    this.ariaValueMax="100";
+    this.progressStyle="progress-bar-striped progress-bar-animated"
+    this.inLineStyle="0";
+
+  }
 }
