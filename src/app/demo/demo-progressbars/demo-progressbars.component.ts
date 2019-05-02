@@ -44,6 +44,7 @@ export class DemoProgressbarsComponent implements OnInit {
     this.ariaValueMax="100";
     this.progressStyle="progress-bar-striped progress-bar-animated"
     this.inLineStyle="0";
+    this.stepIncrement=0;
 
   }
 }

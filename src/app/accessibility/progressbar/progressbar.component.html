@@ -8,5 +8,9 @@
     [style.width.%]="ariaValueNow" 
     [attr.aria-valuenow]="ariaValueNow" 
     [attr.aria-valuemin]="ariaValueMin" 
-    [attr.aria-valuemax]="ariaValueMax"></div>
+    [attr.aria-valuemax]="ariaValueMax"
+    >
+    <span [ngClass]="{'zeroWidth': ariaValueNow==0}">{{ariaValueNow}} %</span>
+  </div>
+  
   </div>
