@@ -2,7 +2,6 @@
   <div class="col-sm-12 col-lg-6">
     <section>
       <h4 id="transferlist-demo-title">Transfer List Box</h4>
-      <br />
       <app-transferlistbox [code]="code" [label]="label" [leftAreaList]="leftAreaItems" [rightAreaList]="rightAreaItems"
         [leftAreaLabel]="leftAreaLabel" [rightAreaLabel]="rightAreaLabel" [leftAreaId]="leftAreaId"
         [rightAreaId]="rightAreaId"></app-transferlistbox>
@@ -11,10 +10,15 @@
   </div>
   <div class="col-sm-12 col-lg-6">
     <section>
-      <br />
-      <h3 class="wells">Keyboard Navigation</h3>
+      <h4 class="wells">Keyboard Navigation</h4>
 
       <table class="table table-stripped table-bordered">
+        <thead>
+          <tr>
+            <td>Key</td>
+            <td>Description</td>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td><span class="keycap">↑</span> &nbsp;<span class="keycap">Up Arrow</span></td>

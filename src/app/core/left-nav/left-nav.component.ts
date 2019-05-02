@@ -14,7 +14,7 @@ export class LeftNavComponent implements OnInit {
 
   navs:NavModel[];
   commonServiceSubscribe:Subscription;
-  showSideNav:boolean=false;
+  showSideNav:boolean=true;
   constructor(private commonService:CommonService) { }
   
   ngOnInit() {

@@ -48,7 +48,6 @@ export class DemoAlertsComponent implements OnInit {
     this.message="";
     this.alertAriaLive="polite";
     this.isSrOnly=false;
-    this.counter=0;
     this.dynaLoadService.clearComponents();
 
   }
