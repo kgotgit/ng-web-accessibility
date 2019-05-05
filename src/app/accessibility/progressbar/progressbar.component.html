@@ -3,14 +3,14 @@
 <div class="progress">
 
   
-    <div class="progress-bar {{progressStyle}}" 
+    <div class="progress-bar {{model.progressBarClass}}" 
     role="progressbar" 
-    [style.width.%]="ariaValueNow" 
-    [attr.aria-valuenow]="ariaValueNow" 
-    [attr.aria-valuemin]="ariaValueMin" 
-    [attr.aria-valuemax]="ariaValueMax"
+    [style.width.%]="model.currentValue" 
+    [attr.aria-valuenow]="model.currentValue" 
+    [attr.aria-valuemin]="model.minValue" 
+    [attr.aria-valuemax]="model.maxValue"
     >
-    <span [ngClass]="{'zeroWidth': ariaValueNow=='0'}">{{ariaValueNow}} %</span>
+    <span [ngClass]="{'zeroWidth': model.currentValue==0}">{{model.currentValue}} %</span>
   </div>
   
   </div>
