@@ -43,20 +43,26 @@
           <div class="col-sm-12 col-lg-6">
               <section>
             <app-progressbar [progressBarModel]="progressBarWithText"
-              [progressBarEventEmitter]="exeTwoStartProgressClicked">
+              [progressBarEventEmitter]="exeTwoStartProgressClicked"
+              (fromProgressBarEmitter)="eventFromExeTwoProgressBar($event)">
             </app-progressbar>
             <br />
-            <button type="button" class="btn btn-primary" (click)="emitProgressBarEvent('start')">Start</button>
+            <button type="button" class="btn btn-primary" (click)="emitProgressBarEvent('start','2')">Start</button>
             &nbsp;
-            <button type="button" class="btn btn-danger" (click)="emitProgressBarEvent('stop')">Stop</button>
+            <button type="button" class="btn btn-danger" (click)="emitProgressBarEvent('stop','2')">Stop</button>
             &nbsp;
-            <button type="button" class="btn btn-success" (click)="emitProgressBarEvent('clear')">Clear</button>
+            <button type="button" class="btn btn-success" (click)="emitProgressBarEvent('clear','2')">Clear</button>
           </section>
           </div>
           <div class="col-12 col-lg-6">
-            <section>
-  
-            </section>
+              <section>
+                  <small>Event logs:</small>
+                  <ul>
+                    <li *ngFor="let item of exeTwologs">
+                      {{item}}
+                    </li>
+                  </ul>
+                </section>
           </div>
         </div>
       </div>

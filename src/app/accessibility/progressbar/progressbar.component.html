@@ -1,16 +1,13 @@
-
-
 <div class="progress">
-
-  
     <div class="progress-bar {{model.progressBarClass}}" 
-    role="progressbar" 
-    [style.width.%]="model.currentValue" 
-    [attr.aria-valuenow]="model.currentValue" 
-    [attr.aria-valuemin]="model.minValue" 
-    [attr.aria-valuemax]="model.maxValue"
-    >
-    <span [ngClass]="{'zeroWidth': model.currentValue==0}">{{model.currentValue}} %</span>
-  </div>
-  
-  </div>
+          role="progressbar" 
+          [style.width.%]="model.currentValue" 
+          [attr.aria-valuenow]="model.currentValue" 
+          [attr.aria-valuemin]="model.minValue" 
+          [attr.aria-valuemax]="model.maxValue">
+            <span [ngClass]="{'zeroWidth': model.currentValue==0}">{{model.currentValue}} %</span>
+     </div>
+</div>
+<div *ngIf="model.showText" class="progresbar-helper-text">
+    <span aria-live="polite">{{model.currentText}}</span>
+</div>

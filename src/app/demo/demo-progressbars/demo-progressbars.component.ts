@@ -40,7 +40,7 @@ export class DemoProgressbarsComponent implements OnInit,OnDestroy {
 
   initiateProgressBarModels(){
     this.defaultProgressBar=new ProgressbarModel();
-    this.progressBarWithText=new ProgressbarModel(0,0,100,true,this.getSampleTextMap(),10,3,"progress-bar-striped progress-bar-animated",'simpleWithText')
+    this.progressBarWithText=new ProgressbarModel(0,"",0,100,true,this.getSampleTextMap(),10,3,"progress-bar-striped progress-bar-animated",'simpleWithText')
   }
   
   
@@ -58,13 +58,19 @@ export class DemoProgressbarsComponent implements OnInit,OnDestroy {
   eventFromExeOneProgressBar(data:string){
     this.exeOnelogs.push(data);
   }
+  
+  eventFromExeTwoProgressBar(data:string){
+    this.exeTwologs.push(data);
+  }
+
+  
   emitProgressBarEvent(operation:string,example:string){
     switch(example){
       case "1":
       this.exeOneStartProgressClicked.emit(operation);
       break;
       case "2":
-      this.exeTwoEventFromProgressBar.emit(operation);
+      this.exeTwoStartProgressClicked.emit(operation);
       break;
     }
     
