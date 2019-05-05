@@ -4,7 +4,8 @@
           [style.width.%]="model.currentValue" 
           [attr.aria-valuenow]="model.currentValue" 
           [attr.aria-valuemin]="model.minValue" 
-          [attr.aria-valuemax]="model.maxValue">
+          [attr.aria-valuemax]="model.maxValue"
+          [attr.aria-valuetext]="model.currentText">
             <span [ngClass]="{'zeroWidth': model.currentValue==0}">{{model.currentValue}} %</span>
      </div>
 </div>

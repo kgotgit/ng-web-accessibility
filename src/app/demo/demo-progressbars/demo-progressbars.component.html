@@ -1,7 +1,7 @@
 <div class="container">
-  <div class="card">
+  <div class="card" role="region" aria-label="Progress Bar Example 1">
     <div class="card-header">
-      <h5 class="card-title">Example #1: Simple Progress Bar</h5>
+      <h5 class="card-title" id="exampleOne">Example #1: Simple Progress Bar</h5>
     </div>
     <div class="card-body">
       <div class="row">
@@ -12,11 +12,11 @@
             (fromProgressBarEmitter)="eventFromExeOneProgressBar($event)">
           </app-progressbar>
           <br />
-          <button type="button" class="btn btn-primary" (click)="emitProgressBarEvent('start','1')">Start</button>
+          <button type="button" class="btn btn-primary" (click)="emitProgressBarEvent('start','1')" aria-describedby="exampleOne">Start</button>
           &nbsp;
-          <button type="button" class="btn btn-danger" (click)="emitProgressBarEvent('stop','1')">Stop</button>
+          <button type="button" class="btn btn-danger" (click)="emitProgressBarEvent('stop','1')" aria-describedby="exampleOne">Stop</button>
           &nbsp;
-          <button type="button" class="btn btn-success" (click)="emitProgressBarEvent('clear','1')">Clear</button>
+          <button type="button" class="btn btn-success" (click)="emitProgressBarEvent('clear','1')" aria-describedby="exampleOne">Clear</button>
         </section>
         </div>
         <div class="col-12 col-lg-6">
@@ -34,9 +34,9 @@
   </div>
 
 
-  <div class="card">
+  <div class="card"  role="region" aria-label="Progress Bar Example 2">
       <div class="card-header">
-          <h5 class="card-title">Example #2: Progress Bar With Helper Text</h5>
+          <h5 class="card-title" id="exampleTwo">Example #2: Progress Bar With Helper Text</h5>
       </div>
       <div class="card-body">
         <div class="row">
@@ -47,11 +47,11 @@
               (fromProgressBarEmitter)="eventFromExeTwoProgressBar($event)">
             </app-progressbar>
             <br />
-            <button type="button" class="btn btn-primary" (click)="emitProgressBarEvent('start','2')">Start</button>
+            <button type="button" class="btn btn-primary" (click)="emitProgressBarEvent('start','2')" aria-describedby="exampleTwo">Start</button>
             &nbsp;
-            <button type="button" class="btn btn-danger" (click)="emitProgressBarEvent('stop','2')">Stop</button>
+            <button type="button" class="btn btn-danger" (click)="emitProgressBarEvent('stop','2')" aria-describedby="exampleTwo">Stop</button>
             &nbsp;
-            <button type="button" class="btn btn-success" (click)="emitProgressBarEvent('clear','2')">Clear</button>
+            <button type="button" class="btn btn-success" (click)="emitProgressBarEvent('clear','2')" aria-describedby="exampleTwo">Clear</button>
           </section>
           </div>
           <div class="col-12 col-lg-6">
