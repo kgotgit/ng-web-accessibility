@@ -10,7 +10,7 @@ import { CommonService } from '../services/common.service';
 })
 export class HeaderComponent implements OnInit,OnDestroy  {
 
-  leftSideNavBarExpanded=false;
+  leftSideNavBarExpanded=true;
   
   constructor(private commonService:CommonService) { }
 
