@@ -9,6 +9,7 @@ import { DemoTablesComponent } from '../demo/demo-tables/demo-tables.component';
 import { DemoProgressbarsComponent } from '../demo/demo-progressbars/demo-progressbars.component';
 import { DemoAlertsComponent } from '../demo/demo-alerts/demo-alerts.component';
 import { DemoListgroupComponent } from '../demo/demo-listgroup/demo-listgroup.component';
+import { DemoTreeviewComponent } from '../demo/demo-treeview/demo-treeview.component';
 
 const routes: Routes = [
   { path: '', redirectTo:"transferlist", pathMatch: 'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
   { path: 'tables', component: DemoTablesComponent},
   { path: 'progressbars', component: DemoProgressbarsComponent},
   { path: 'alerts', component: DemoAlertsComponent},
-  { path: 'listgroup', component: DemoListgroupComponent}
+  { path: 'listgroup', component: DemoListgroupComponent},
+  { path: 'treeview', component: DemoTreeviewComponent}
 ];
 @NgModule({
   imports: [

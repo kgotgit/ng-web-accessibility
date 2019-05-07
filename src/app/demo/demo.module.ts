@@ -10,6 +10,7 @@ import { DemoProgressbarsComponent } from './demo-progressbars/demo-progressbars
 import { DemoAlertsComponent } from './demo-alerts/demo-alerts.component';
 import { DemoListgroupComponent } from './demo-listgroup/demo-listgroup.component';
 import { FormsModule } from '@angular/forms';
+import { DemoTreeviewComponent } from './demo-treeview/demo-treeview.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { FormsModule } from '@angular/forms';
                 DemoTablesComponent, 
                 DemoProgressbarsComponent, 
                 DemoAlertsComponent, 
-                DemoListgroupComponent],
+                DemoListgroupComponent, DemoTreeviewComponent],
   entryComponents: [DemoAlertsComponent]
 })
 export class DemoModule { }

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AlertsComponent } from './alerts/alerts.component';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
+import { TreeviewComponent } from './treeview/treeview.component';
 
 
 
@@ -19,8 +20,8 @@ import { ProgressbarComponent } from './progressbar/progressbar.component';
     AngularFontAwesomeModule
 
   ],
-  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent, ProgressbarComponent],
-  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent,ProgressbarComponent],
+  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent, ProgressbarComponent, TreeviewComponent],
+  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent,ProgressbarComponent,TreeviewComponent],
   entryComponents: [AlertsComponent]
 })
 export class AccessibilityModule { }
