@@ -69,12 +69,12 @@ export class DemoTreeviewComponent implements OnInit {
 
     
     this.treeData=[
-      new FileFolders("Pictures","PRJ",pictures),
-      new FileFolders("Videos","PRJ",videos),
-      new FileFolders("Documents","PRJ",documents),
-      new FileFolders("Music","PRJ",music),
-      new FileFolders("Recent Places","PRJ",recentFolders),
-      new FileFolders("Downloads","PRJ",downloads),
+      new FileFolders("Pictures","PCTRS",pictures),
+      new FileFolders("Videos","VDS",videos),
+      new FileFolders("Documents","DCMNTS",documents),
+      new FileFolders("Music","MUSC",music),
+      new FileFolders("Recent RCNT","PRJ",recentFolders),
+      new FileFolders("Downloads","DWNLDS",downloads),
     ]
       this.demoData=new TreeModel("code","name","children",this.treeData,null, true, "Accessibility for Tree View");
 
