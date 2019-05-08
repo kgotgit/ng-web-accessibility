@@ -4,7 +4,10 @@ export class TreeModel {
         public lid:string="label",
         public cnid:string="children",
         public items:any[]=null,
-        public className:any=null
+        public className:any=null,
+        public showTitle:boolean=true,
+        public treeTitle:string="",
+        public treeNodeId:string="",
      ){
      }
 }

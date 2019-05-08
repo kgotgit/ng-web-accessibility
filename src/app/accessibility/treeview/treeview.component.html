@@ -1,3 +1,16 @@
-<p>
-  treeview works!
-</p>
+<div class="tree-view">
+  <h3 *ngIf="model.showTitle==true" id="tree_view_{{model.treeNodeId}}">{{model.treeTitle}}</h3>
+  <ul role="tree" attr.aria-labelledby="tree_view_{{model.treeNodeId}}">
+    <li *ngFor="let item of model.items" role="treeitem" aria-expanded="false">
+    <span>{{item[model.lid]}}</span> 
+      <ul role="group">
+        <li role="treeitem" aria-expanded="false" *ngFor="let subItem of item[model.cnid]">
+            <span>{{subItem[model.lid]}}</span> 
+          
+        </li>
+      </ul>
+    </li>
+
+
+  </ul>
+</div>

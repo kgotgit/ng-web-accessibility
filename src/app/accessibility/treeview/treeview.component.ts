@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { TreeModel } from 'src/app/model/tree.model';
 
 @Component({
   selector: 'app-treeview',
@@ -11,5 +12,7 @@ export class TreeviewComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  @Input("treeModel") model:TreeModel;
 
 }
