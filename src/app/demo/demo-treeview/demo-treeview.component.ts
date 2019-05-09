@@ -76,7 +76,7 @@ export class DemoTreeviewComponent implements OnInit {
       new FileFolders("Recent RCNT","PRJ",recentFolders),
       new FileFolders("Downloads","DWNLDS",downloads),
     ]
-      this.demoData=new TreeModel("code","name","children",this.treeData,null, true, "Accessibility for Tree View");
+      this.demoData=new TreeModel("code","name","children",this.treeData,null, true, "Accessibility for Tree View","folderStructure");
 
   }
 

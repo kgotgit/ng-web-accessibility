@@ -1,19 +1,12 @@
 <div class="tree-view">
   <h3 *ngIf="model.showTitle==true" id="tree_view_{{model.treeNodeId}}">{{model.treeTitle}}</h3>
-  <ul role="tree" attr.aria-labelledby="tree_view_{{model.treeNodeId}}">
-
-   
-      <li *ngFor="let item of model.items" role="treeitem" aria-expanded="false" tabindex="-1">
-          <span class="tree-item-label">{{item[model.lid]}}</span>  
-            <ng-template #treeView let-list>  
-              <ul role="group" *ngIf="list!=null">
-                    <li *ngFor="let subitem of list" role="treeitem" tabindex="-1">
-                        <span class="tree-item-label">{{subitem[model.lid]}}</span> 
-                    <ng-container *ngTemplateOutlet="treeView; context:{ $implicit: subitem.children }"></ng-container>
-                  </li>
-                </ul>
-          </ng-template>
-          <ng-container *ngTemplateOutlet="treeView; context:{ $implicit: item.children }"></ng-container>
-      </li>
+  <ng-template #treeViewList let-list let-role='role' let-label='label'>
+  <ul [attr.role]="role" [attr.aria-label]="label"  >
+    <li *ngFor="let item of list" role="treeitem" tabindex="-1" #options>
+        <span class="tree-item-label">{{item[model.lid]}}</span> 
+        <ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: item.children,role:'group' }"></ng-container>
+    </li>
   </ul>
+</ng-template>
+<ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: model.items,role:'tree',label:model.treeTitle }"></ng-container>
 </div>
