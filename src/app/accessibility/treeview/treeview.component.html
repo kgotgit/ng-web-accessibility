@@ -6,7 +6,7 @@
       <li *ngFor="let item of model.items" role="treeitem" aria-expanded="false" tabindex="-1">
           <span class="tree-item-label">{{item[model.lid]}}</span>  
             <ng-template #treeView let-list>  
-              <ul role="group" >
+              <ul role="group" *ngIf="list!=null">
                     <li *ngFor="let subitem of list" role="treeitem" tabindex="-1">
                         <span class="tree-item-label">{{subitem[model.lid]}}</span> 
                     <ng-container *ngTemplateOutlet="treeView; context:{ $implicit: subitem.children }"></ng-container>
