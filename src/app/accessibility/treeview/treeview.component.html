@@ -1,12 +1,14 @@
 <div class="tree-view">
   <h3 *ngIf="model.showTitle==true" id="tree_view_{{model.treeNodeId}}">{{model.treeTitle}}</h3>
   <ng-template #treeViewList let-list let-role='role' let-label='label'>
-  <ul [attr.role]="role" [attr.aria-label]="label"  >
-    <li *ngFor="let item of list" role="treeitem" tabindex="-1" #options>
-        <span class="tree-item-label">{{item[model.lid]}}</span> 
-        <ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: item.children,role:'group' }"></ng-container>
-    </li>
-  </ul>
-</ng-template>
-<ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: model.items,role:'tree',label:model.treeTitle }"></ng-container>
+    <ul [attr.role]="role" [attr.aria-label]="label">
+      <li *ngFor="let item of list" role="treeitem" tabindex="-1" #options>
+        <span class="tree-item-label">{{item[model.lid]}}</span>
+        <ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: item.children,role:'group' }">
+        </ng-container>
+      </li>
+    </ul>
+  </ng-template>
+  <ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: model.items,role:'tree',label:model.treeTitle }">
+  </ng-container>
 </div>
