@@ -1,0 +1,16 @@
+ul{
+ list-style-type: none;
+  li{
+      border-left:1px dotted #000;
+      padding-left:0.5rem;
+
+      &[role="treeitem"][aria-expanded="false"] >ul{
+        display:none;
+      }
+      &[role="treeitem"][aria-expanded="true"] >ul{
+        display:block;
+      }
+  }
+  
+  
+}

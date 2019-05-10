@@ -19,7 +19,10 @@ export class TreeviewComponent implements OnInit,AfterViewInit {
     console.log(this.options);
   }
 
-
+  setTabIndexOnLoad(role:string,i:number){
+    console.log(role+i);
+    return (role=='tree' && i==0)?"0":"-1";
+  }
   
 
 }
