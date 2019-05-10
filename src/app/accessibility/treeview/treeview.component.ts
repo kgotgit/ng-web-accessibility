@@ -20,8 +20,11 @@ export class TreeviewComponent implements OnInit,AfterViewInit {
   }
 
   setTabIndexOnLoad(role:string,i:number){
-    console.log(role+i);
     return (role=='tree' && i==0)?"0":"-1";
+  }
+
+  toggleSelection($event:any,item:any){
+    console.log(item);
   }
   
 
