@@ -11,6 +11,12 @@ ul{
       &[role="treeitem"][aria-expanded="true"] >ul{
         display:block;
       }
+      &[role="treeitem"][aria-expanded="true"]{
+       >span{
+        /*  background-color:#007bff;
+         color:#fff; */
+       }
+      }
       span{
         &.tree-item-label{
           padding:6px 12px;
@@ -27,7 +33,7 @@ ul{
         font-weight:bold;
         text-decoration: underline;
         cursor: pointer;
-        font-size:1.3em;
+        
        }
       }
   }

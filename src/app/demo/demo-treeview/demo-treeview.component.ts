@@ -19,6 +19,7 @@ export class DemoTreeviewComponent implements OnInit {
 
   private demoData:TreeModel;
   private treeData:FileFolders[];
+  
   constructor() { }
 
   ngOnInit() {
@@ -39,12 +40,12 @@ export class DemoTreeviewComponent implements OnInit {
     pictures.push(p2);
 
     let videos:Array<FileFolders>= new Array<FileFolders>();
-    let v1:FileFolders=new FileFolders("Family","VAC",[new FileFolders("family_111.jpg","family_111",null),
+    let v1:FileFolders=new FileFolders("Family","FMLY",[new FileFolders("family_111.jpg","family_111",null),
                                                          new FileFolders("family_212.jpg","family_212",null),
                                                          new FileFolders("family_313.jpg","family_313",null)]);
-    let v2:FileFolders=new FileFolders("Jhon Doe","VAC",[new FileFolders("Jhon_111.jpg","Jhon_111",null),
+    let v2:FileFolders=new FileFolders("Jhon Doe","JhonDoe",[new FileFolders("Jhon_111.jpg","Jhon_111",null),
                                                         new FileFolders("jhon_313.jpg","jhon_313",null)]);
-    let v3:FileFolders=new FileFolders("Jane Doe","VAC",[new FileFolders("Jane_111.jpg","Jane_111",null),
+    let v3:FileFolders=new FileFolders("Jane Doe","JaneDoe",[new FileFolders("Jane_111.jpg","Jane_111",null),
     new FileFolders("Jane_212.jpg","Jane_212",null),
     new FileFolders("Jane_312.jpg","Jane_312",null),
     new FileFolders("Jane_412.jpg","Jane_412",null),

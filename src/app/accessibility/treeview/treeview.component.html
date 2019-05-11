@@ -5,8 +5,8 @@
 </div>
 <ng-template #treeViewList let-list let-role='role'  let-treeid="treeid">
   <ul [attr.role]="role" id="treeView_{{treeid}}" [attr.aria-labelledby]="this['tree_view_'+treeid]">
-    <li *ngFor="let item of list;let i=index" [attr.data-code]="item[model.cid]"role="treeitem" [tabindex]="setTabIndexOnLoad(role,i)" #options aria-expanded="false" (click)="toggleSelection($event,item)">
-        <i aria-hidden="true" class="fa fa-plus-square"></i><span class="tree-item-label">{{item[model.lid]}}</span>
+    <li *ngFor="let item of list;let i=index" [attr.data-code]="item[model.cid]"role="treeitem" [tabindex]="setTabIndexOnLoad(role,i)" #options aria-expanded="false" >
+        <i aria-hidden="true" class="fa fa-plus-square"></i><span class="tree-item-label" (click)="toggleSelection($event,item)">{{item[model.lid]}}</span>
       <ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: item.children,role:'group' }">
       </ng-container>
     </li>
