@@ -3,5 +3,48 @@
     <app-treeview [treeModel]="demoData"></app-treeview>
   </div>
   <div class="col-12 col-sm-8">
+
+      <section>
+          <h4 class="wells">Role and ARIA Attributes</h4>
+    
+          <table class="table table-stripped table-bordered">
+            <thead>
+              <tr>
+                <td>Role</td>
+                <td>ARIA</td>
+                <td>Description</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>role="tree"</td>
+                <td></td>
+                <td>Applied at the root element</td>
+              </tr>
+              <tr>
+                  <td>role="treeitem"</td>
+                  <td></td>
+                  <td>Applied to each list item</td>
+                </tr>
+                <tr>
+                    <td>role="group"</td>
+                    <td></td>
+                    <td>Applied to the UL tag of the child nodes</td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <td>aria-expanded</td>
+                      <td>Holds true/false and is set whenever child nodes are expanded/collapsed</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>aria-labelledby</td>
+                        <td>To give a name for the tree</td>
+                      </tr>
+            </tbody>
+          </table>
+    
+    
+        </section>
   </div>
 </div>
