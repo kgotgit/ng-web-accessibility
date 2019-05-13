@@ -17,8 +17,8 @@ class FileFolders{
 })
 export class DemoTreeviewComponent implements OnInit {
 
-  private demoData:TreeModel;
-  private treeData:FileFolders[];
+  demoData:TreeModel;
+  treeData:FileFolders[];
   
   constructor() { }
 
