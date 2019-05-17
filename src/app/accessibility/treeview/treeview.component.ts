@@ -10,6 +10,7 @@ import { Options } from 'selenium-webdriver/ie';
 })
 export class TreeviewComponent implements OnInit,AfterViewInit {
   @ViewChildren("options") options: QueryList<ElementRef>;
+  @ViewChildren("ultags") ulTags:QueryList<ElementRef>;
   @Input("treeModel") model:TreeModel;
 
   constructor(private renderer: Renderer2) { }
@@ -20,6 +21,7 @@ export class TreeviewComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit(): void {
     console.log(this.options);
+    console.log(this.ulTags);
   }
 
   setTabIndexOnLoad(role:string,i:number){
@@ -33,7 +35,6 @@ export class TreeviewComponent implements OnInit,AfterViewInit {
       if(code==item[this.model.cid]){
         let isExpanded=eleRef.nativeElement.getAttribute("aria-expanded");
         this.renderer.setAttribute(eleRef.nativeElement, "aria-expanded",(isExpanded=="true")?"false":"true");
-        console.log(code);
         return true;
       }
   });
@@ -59,6 +60,90 @@ export class TreeviewComponent implements OnInit,AfterViewInit {
     return null;
 
   }
+
+  executeKeydown($event){
+    let keyCode=$event.which;
+
+    switch(keyCode){
+      case 40://Down Arrow
+                this.executeArrowDown($event);
+                break;
+
+            case 38:// Up Arrow
+                this.executeUpArrow($event);
+                break;
+            case 37:// RightArrow
+                this.executeLeftArrow($event);
+                break;
+
+            case 39:// RightArrow
+                this.executeRightArrow($event);
+                break;
+            case 32:// Spacebar
+                this.selectOption($event);
+                break;
+
+
+
+
+    }
+    
+  }
+
+  toggleExpand(eleRef: ElementRef,state:string){
+    let isExpanded=eleRef.nativeElement.getAttribute("aria-expanded");
+    this.renderer.setAttribute(eleRef.nativeElement, "aria-expanded",state);
+  }
+
+  setElementAttribute(eleRef: ElementRef,attribute:string,value:string){
+    this.renderer.setAttribute(eleRef.nativeElement, attribute,value);
+  }
+  executeRightArrow($event){
+    let nodeId=$event.currentTarget.id;
+    this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+      if(nodeId==eleRef.nativeElement.id){
+        this.toggleExpand(eleRef,"true");
+        return true;
+      }
+  });
+}
+
+executeLeftArrow($event){
+  let nodeId=$event.currentTarget.id;
+  this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+    if(nodeId==eleRef.nativeElement.id){
+      this.toggleExpand(eleRef,"false");
+      return true;
+    }
+});
+}
+
+  executeArrowDown($event){
+    let nodeId=$event.currentTarget.id;
+
+    this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+      if(nodeId==eleRef.nativeElement.id){
+        this.setElementAttribute(eleRef,"tabindex","-1");
+        this.setElementAttribute(optionsarray[index+1],"tabindex","0");
+        return true;
+      }
+  });
+
+  }
+
+  executeUpArrow($event){
+
+  }
+
+  selectOption($event){
+
+  }
+
+  getTreeItemId(item:any,treeId:string){
+    return "treeView_"+treeId+"_"+item[this.model.cid];
+  }
+
+  
   
 
 }
