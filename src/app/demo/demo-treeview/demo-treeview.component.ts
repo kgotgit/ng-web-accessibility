@@ -33,7 +33,7 @@ export class DemoTreeviewComponent implements OnInit {
     let p1:FileFolders=new FileFolders("Vacation","VAC",[new FileFolders("IMG_111.jpg","IMG_111",null),
                                                          new FileFolders("IMG_212.jpg","IMG_212",null),
                                                          new FileFolders("IMG_313.jpg","IMG_313",null)]);
-    let p2:FileFolders=new FileFolders("Graduation","VAC",[new FileFolders("grad_111.jpg","grad_111",null),
+    let p2:FileFolders=new FileFolders("Graduation","GRAD",[new FileFolders("grad_111.jpg","grad_111",null),
     new FileFolders("grad_212.jpg","grad_212",null),
     new FileFolders("grad_313.jpg","grad_313",null)]);
     pictures.push(p1);

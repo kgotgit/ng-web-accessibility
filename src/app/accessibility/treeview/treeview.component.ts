@@ -39,6 +39,26 @@ export class TreeviewComponent implements OnInit,AfterViewInit {
   });
   
   }
+
+  getExpandCollapseClass(item:any){
+
+    if(item!=null && item.children!=null && item.children.length>0){
+      return "fa fa-plus-square";
+    }
+    return "fa fa-square-o";
+  }
+
+  isChildrenExists(items:any[]){
+    return (items!=null && items.length>0)?true:false;
+  }
+
+  collapsedState(item:any){
+    if(item!=null && item.children!=null && item.children.length>0){
+      return "false"
+    }
+    return null;
+
+  }
   
 
 }
