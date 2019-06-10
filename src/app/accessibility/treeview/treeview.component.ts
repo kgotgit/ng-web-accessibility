@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChildren, QueryList, ElementRef, AfterVie
 import { TreeModel } from 'src/app/model/tree.model';
 import { AlertsComponent } from '../alerts/alerts.component';
 import { Options } from 'selenium-webdriver/ie';
+import { LiEleComponent } from '../common/li-ele/li-ele.component';
 
 @Component({
   selector: 'app-treeview',
@@ -9,9 +10,11 @@ import { Options } from 'selenium-webdriver/ie';
   styleUrls: ['./treeview.component.scss']
 })
 export class TreeviewComponent implements OnInit,AfterViewInit {
-  @ViewChildren("options") options: QueryList<ElementRef>;
+  @ViewChildren("options") options: QueryList<LiEleComponent>;
   @ViewChildren("ultags") ulTags:QueryList<ElementRef>;
   @Input("treeModel") model:TreeModel;
+
+  TREEVIEW_SUFFIX:string="_treeView";
 
   constructor(private renderer: Renderer2) { }
 
@@ -102,6 +105,7 @@ export class TreeviewComponent implements OnInit,AfterViewInit {
     let nodeId=$event.currentTarget.id;
     this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
       if(nodeId==eleRef.nativeElement.id){
+      
         this.toggleExpand(eleRef,"true");
         return true;
       }
@@ -120,11 +124,20 @@ executeLeftArrow($event){
 
   executeArrowDown($event){
     let nodeId=$event.currentTarget.id;
-
+    console.log($event);      
     this.options.some((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
       if(nodeId==eleRef.nativeElement.id){
+        console.log(eleRef);
+        console.log(eleRef.nativeElement.children);
+       // check if child items exists and is expanded
+       // if expaneded get the first li item and set the focus
+       let isExpanded=eleRef.nativeElement.getAttribute("aria-expanded");
+       if(isExpanded==true){
+
+       }
         this.setElementAttribute(eleRef,"tabindex","-1");
         this.setElementAttribute(optionsarray[index+1],"tabindex","0");
+       
         return true;
       }
   });
@@ -140,7 +153,12 @@ executeLeftArrow($event){
   }
 
   getTreeItemId(item:any,treeId:string){
-    return "treeView_"+treeId+"_"+item[this.model.cid];
+    return item[this.model.cid]+"_"+treeId+this.TREEVIEW_SUFFIX;
+  }
+
+
+  filterElementRef(nodeId:string){
+
   }
 
   

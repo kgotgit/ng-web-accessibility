@@ -9,6 +9,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { AlertsComponent } from './alerts/alerts.component';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
 import { TreeviewComponent } from './treeview/treeview.component';
+import { LiEleComponent } from './common/li-ele/li-ele.component';
 
 
 
@@ -20,7 +21,7 @@ import { TreeviewComponent } from './treeview/treeview.component';
     AngularFontAwesomeModule
 
   ],
-  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent, ProgressbarComponent, TreeviewComponent],
+  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent, ProgressbarComponent, TreeviewComponent, LiEleComponent],
   exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent,ProgressbarComponent,TreeviewComponent],
   entryComponents: [AlertsComponent]
 })

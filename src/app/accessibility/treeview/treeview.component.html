@@ -4,8 +4,8 @@
   </ng-container>
 </div>
 <ng-template #treeViewList let-list let-role='role'  let-treeid="treeid" let-parentid="parentid">
-  <ul [attr.role]="role" id="treeView_ul_{{treeid}}_{{parentid}}" [attr.aria-labelledby]="this['tree_view_'+treeid]" *ngIf="isChildrenExists(list)" #ultags>
-    <li *ngFor="let item of list;let i=index"
+  <ul [attr.role]="role" id="{{treeid}}_{{parentid}}{{TREEVIEW_SUFFIX}}_ul" [attr.aria-labelledby]="this['tree_view_'+treeid]" *ngIf="isChildrenExists(list)" #ultags>
+   <!--  <li *ngFor="let item of list;let i=index"
           [id]="getTreeItemId(item,treeid)"
          [attr.data-code]="item[model.cid]"
          role="treeitem" 
@@ -14,9 +14,20 @@
          #options [attr.aria-expanded]="collapsedState(item)" >
         <i aria-hidden="true" [ngClass]="getExpandCollapseClass(item)">
         </i>
-        <span class="tree-item-label" (click)="toggleSelection($event,item)">{{item[model.lid]}}</span>
-      <ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: item.children,role:'group',treeid:model.treeNodeId,parentid:item.code  }">
-      </ng-container>
-    </li>
+        <span class="tree-item-label" (click)="toggleSelection($event,item)">{{item[model.lid]}}</span> -->
+        <app-li-ele  *ngFor="let item of list;let i=index"
+        [id]="getTreeItemId(item,treeid)"
+        [modelObj]="model"
+        [itemObj]="item"
+        [ariaExpanded]="collapsedState(item)"
+        [iconClass]="getExpandCollapseClass(item)"
+        [attr.data-code]="item[model.cid]"
+        #options
+        >
+        <ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: item.children,role:'group',treeid:model.treeNodeId,parentid:item.code  }">
+        </ng-container>
+      </app-li-ele>
+     
+   
   </ul>
 </ng-template>
