@@ -141,17 +141,18 @@ executeLeftArrow($event){
        // check if child items exists and is expanded
        // if expaneded get the first li item and set the focus
        let isExpanded=eleRef.nativeElement.getAttribute("aria-expanded");
-       if(isExpanded==true){
+       if(isExpanded=="true"){
         let nearestUL=eleRef.nativeElement.querySelector("ul");
         let liTagId=nearestUL.querySelector("li")[0].id;
         if(this.eleMap.get(liTagId)){
           let nextElementRef=this.eleMap.get(liTagId);
-          n
+          this.setElementAttribute(eleRef,"tabindex","-1");
+          this.setElementAttribute(nextElementRef,"tabindex","0");
         }
-       }
+       }else{
         this.setElementAttribute(eleRef,"tabindex","-1");
         this.setElementAttribute(optionsarray[index+1],"tabindex","0");
-       
+      }
         return true;
       }
   });
