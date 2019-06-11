@@ -10,7 +10,7 @@ import { LiEleComponent } from '../common/li-ele/li-ele.component';
   styleUrls: ['./treeview.component.scss']
 })
 export class TreeviewComponent implements OnInit,AfterViewInit {
-  @ViewChildren("options") options: QueryList<LiEleComponent>;
+  @ViewChildren("options") options: QueryList<ElementRef>;
   @ViewChildren("ultags") ulTags:QueryList<ElementRef>;
   @Input("treeModel") model:TreeModel;
 

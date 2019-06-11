@@ -4,7 +4,7 @@
   [id]="id"
   [attr.data-code]="dataCode"
   [attr.role]="role"
-  (keydown)="executeKeyDown($event)"
+  (keydown)="executeKeyDown($event,itemObj)"
   [attr.aria-expanded]="ariaExpanded"
 >
   <i aria-hidden="true" [ngClass]="iconClass"></i>

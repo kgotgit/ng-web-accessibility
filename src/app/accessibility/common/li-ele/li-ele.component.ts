@@ -22,15 +22,16 @@ export class LiEleComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 
-  executeKeyDown($event:any){
-    console.log($event);
+  executeKeyDown($event:any,itemObj:any){
+    this.onclick.emit({"event":$event, item:itemObj});
   }
 
-  toggleSelection($event:any){
-    console.log($event);
+  toggleSelection($event:any,itemObj:any){
+   this.onclick.emit({"event":$event, item:itemObj});
   }
 
   getIconClass(){

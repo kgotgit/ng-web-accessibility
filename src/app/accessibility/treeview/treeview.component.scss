@@ -3,7 +3,8 @@ ul{
   li{
       padding: 6px 12px;
       cursor: pointer;
-      padding-left:0.5rem;
+     
+      border-left: 1px dotted #000;
 
       &[role="treeitem"][aria-expanded="false"] >ul{
         display:none;
@@ -11,20 +12,15 @@ ul{
       &[role="treeitem"][aria-expanded="true"] >ul{
         display:block;
       }
-      &[role="treeitem"][aria-expanded="true"]{
-       >span{
-        /*  background-color:#007bff;
-         color:#fff; */
-       }
-      }
+     
       span{
-        &.li-item-label{
+        &.tree-item-label{
           padding:6px 12px;
-          border-left:1px dotted #ddd;
+         
         }
       }
       i{
-        margin-right:-0.5em;
+         margin-left:-1.15rem;
       }
       &:focus{
        outline:none; 
