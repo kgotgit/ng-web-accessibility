@@ -1,13 +1,14 @@
 <div class="tree-view">
   <h3 *ngIf="model.showTitle==true" id="tree_view_{{model.treeNodeId}}">{{model.treeTitle}}</h3>
-  <ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: model.items,role:'tree',treeid:model.treeNodeId,parentid:'root' }">
+  <ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: model.items,role:'tree',treeid:model.treeNodeId,parentid:'root',lid:'0' }">
   </ng-container>
 </div>
-<ng-template #treeViewList let-list let-role='role'  let-treeid="treeid" let-parentid="parentid">
+<ng-template #treeViewList let-list let-role='role'  let-treeid="treeid" let-parentid="parentid" let-lid="lid">
   <ul [attr.role]="role" id="treeView_ul_{{treeid}}_{{parentid}}" [attr.aria-labelledby]="this['tree_view_'+treeid]" *ngIf="isChildrenExists(list)" #ultags>
     <li *ngFor="let item of list;let i=index"
           [id]="getTreeItemId(item,treeid)"
          [attr.data-code]="item[model.cid]"
+         [attr.data-haschildren]="hasChildren(item)"
          role="treeitem" 
          (keydown)="executeKeydown($event)"
          [tabindex]="setTabIndexOnLoad(role,i)"  

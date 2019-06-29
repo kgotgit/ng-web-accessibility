@@ -32,6 +32,11 @@ ul{
         
        }
       }
+      &[tabindex="0"]{
+        >span{
+          border:1px solid black;
+        }
+      }
   }
   
   
