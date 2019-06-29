@@ -1,5 +1,6 @@
-import { Injectable, ComponentFactoryResolver, Inject, ViewContainerRef } from '@angular/core';
+import { Injectable, ComponentFactoryResolver, Inject } from '@angular/core';
 import { AlertsComponent } from '../../accessibility/alerts/alerts.component';
+import { ViewContainerRef } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'

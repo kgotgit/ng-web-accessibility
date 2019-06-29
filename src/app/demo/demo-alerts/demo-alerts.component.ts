@@ -8,8 +8,7 @@ import { AlertsComponent } from '../../accessibility/alerts/alerts.component';
   styleUrls: ['./demo-alerts.component.scss']
 })
 export class DemoAlertsComponent implements OnInit {
-  @ViewChild('alerts', {read: ViewContainerRef}) 
-  alertsViewContainerRef:ViewContainerRef;
+  @ViewChild('alerts', {read: ViewContainerRef,static:false})  alertsViewContainerRef:ViewContainerRef;
   typedMessage:string;
   counter:number=0;
   

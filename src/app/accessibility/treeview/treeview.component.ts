@@ -3,7 +3,7 @@ import { TreeModel } from 'src/app/model/tree.model';
 import { AlertsComponent } from '../alerts/alerts.component';
 import { Options } from 'selenium-webdriver/ie';
 import { LiEleComponent } from '../common/li-ele/li-ele.component';
-import { stringify } from '@angular/core/src/render3/util';
+
 
 @Component({
   selector: 'app-treeview',

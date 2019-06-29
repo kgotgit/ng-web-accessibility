@@ -32,7 +32,7 @@ export class LeftNavComponent implements OnInit {
   this.navs=new Array();
   this.navs.push(new NavModel("/combobox","Combobox"));
   this.navs.push(new NavModel("/transferlist","Transfer List"));
-  this.navs.push(new NavModel("/alerts","Alerts"));
+ // this.navs.push(new NavModel("/alerts","Alerts"));
   this.navs.push(new NavModel("/progressbars","Progress Bar"));
   this.navs.push(new NavModel("/treeview","Tree View"));
   this.navs.push(new NavModel("/listgroup","List Group"));
