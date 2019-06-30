@@ -58,8 +58,8 @@ export class DemoTreeviewComponent implements OnInit {
     let d1:FileFolders=new FileFolders("Resumes","resumes",[new FileFolders("draft1.docx","draft1",null),
                                                          new FileFolders("draft2.docx","draft2",null),
                                                          new FileFolders("finalDraft.docx","finalDraft",null)]);
-    let d2:FileFolders=new FileFolders("Office Stuff","officeStuff",[new FileFolders("Jhon_111.jpg","Jhon_111",null),
-                                                        new FileFolders("jhon_313.jpg","jhon_313",null)]);
+    let d2:FileFolders=new FileFolders("Office Stuff","officeStuff",[new FileFolders("office_111.jpg","office_111",null),
+                                                        new FileFolders("office_313.jpg","office_313",null)]);
     documents.push(d1);
     documents.push(d2);
 

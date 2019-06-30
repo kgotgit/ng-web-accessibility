@@ -18,9 +18,11 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
   eleMap: Map<string, ElementRef>;
   TREEVIEW_SUFFIX: string = "_treeView";
   ARIA_EXPANDED: string = "aria-expanded";
-  DATA_HASCHILDREN = "data-haschildren";
+  DATA_CHILDCOUNT = "data-childcount";
   DATA_LID: string = "data-lid";
   DATA_CODE: string = "data-code";
+  DATA_ISFIRST:string="data-first";
+  DATA_ISLAST:string="data-last";
   TAB_INDEX:string="tabindex";
 
   constructor(private renderer: Renderer2) { }
@@ -115,17 +117,18 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
   //Determines if tree is expaneded or not.
   isExpanded(eleRef: ElementRef) {
     let isExpanded = eleRef.nativeElement.getAttribute(this.ARIA_EXPANDED);
-    let hasChildren = eleRef.nativeElement.getAttribute(this.DATA_HASCHILDREN);
-    if (isExpanded == "true" && hasChildren == "1") {
+    let childCount = eleRef.nativeElement.getAttribute(this.DATA_CHILDCOUNT);
+    if (isExpanded == "true" && !isNaN(childCount) && parseInt(childCount)>0) {
       return true;
     }
     return false;
   }
 
   //determines if the current node has children or not
-  hasChildren(item: any) {
-    if (item != null && item[this.model.cid] != null) {
-      return "1";
+  getChildCount(item: any) {
+    if (item != null && item[this.model.cnid] != null) {
+      let items=item[this.model.cnid];
+      return (Array.isArray(items)?items.length:0)
     }
     return "0";
   }
@@ -138,8 +141,8 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
     $event.preventDefault();
     let lid = $event.currentTarget.getAttribute(this.DATA_LID);
     let eleRef: ElementRef = this.eleMap.get($event.currentTarget.id);
-    let hasChildren = eleRef.nativeElement.getAttribute(this.DATA_HASCHILDREN);
-    if(hasChildren=="1"){
+    let childCount = eleRef.nativeElement.getAttribute(this.DATA_CHILDCOUNT);
+    if(!isNaN(childCount) && parseInt(childCount)>0){
       let isExpanded = eleRef.nativeElement.getAttribute(this.ARIA_EXPANDED);
       if(isExpanded=="false")
       this.setElementAttribute(eleRef, this.ARIA_EXPANDED, "true");
@@ -161,26 +164,8 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
     $event.preventDefault();
     let lid = $event.currentTarget.getAttribute(this.DATA_LID);
     let eleRef: ElementRef = this.eleMap.get($event.currentTarget.id);
-    if (this.isExpanded(eleRef)) {
-      let li = eleRef.nativeElement.querySelector('li');
-      console.log(li);
-      let nextEleRef: ElementRef = this.eleMap.get(li.id);
-      this.setElementAttribute(eleRef,this.TAB_INDEX,"-1");
-      this.setElementAttribute(nextEleRef,this.TAB_INDEX,"0");
-      this.setToFocus(nextEleRef);
-    } else {
-      let nextLid = parseInt(lid) + 1;
-      console.log(nextLid);
-      if (nextLid <= this.options.length - 1) {
-        let nextEleRef: ElementRef = this.eleList[nextLid];
-        this.setElementAttribute(eleRef,this.TAB_INDEX,"-1");
-        this.setElementAttribute(nextEleRef,this.TAB_INDEX,"0");
-        this.setToFocus(nextEleRef);
-      }else{
+    this.recursiveDownNavigation(eleRef,0);
 
-      }
-
-    }
 
   }
 
@@ -226,6 +211,66 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
     eleRef.nativeElement.focus();
   }
 
+  recursiveDownNavigation(eleRef:ElementRef,loopCounter:number){
+
+    let lid = eleRef.nativeElement.getAttribute(this.DATA_LID);
+    let isFirst= eleRef.nativeElement.getAttribute(this.DATA_ISFIRST);
+    let isLast=eleRef.nativeElement.getAttribute(this.DATA_ISLAST);
+
+    //when current item is not first or last item in the child list
+    if(isLast=="0"){
+      //check if children are expanded
+      if(this.isExpanded(eleRef) && loopCounter<1){
+        let li = eleRef.nativeElement.querySelector('li');
+        console.log(li);
+        if(li!=null){
+            let nextEleRef: ElementRef = this.eleMap.get(li.id);
+            this.setElementAttribute(eleRef,this.TAB_INDEX,"-1");
+            this.setElementAttribute(nextEleRef,this.TAB_INDEX,"0");
+            this.setToFocus(nextEleRef);
+      }
+    }else{
+      let nextLid=parseInt(lid)+1;
+      if(nextLid<=this.options.length){
+        let nextEleRef: ElementRef = this.eleList[nextLid];
+        this.setElementAttribute(eleRef,this.TAB_INDEX,"-1");
+        this.setElementAttribute(nextEleRef,this.TAB_INDEX,"0");
+        this.setToFocus(nextEleRef);
+      }
+    }}else if(isLast=="1"){
+      if(this.isExpanded(eleRef) && loopCounter<1){
+        let li = eleRef.nativeElement.querySelector('li');
+        console.log(li);
+        if(li!=null){
+            let nextEleRef: ElementRef = this.eleMap.get(li.id);
+            this.setElementAttribute(eleRef,this.TAB_INDEX,"-1");
+            this.setElementAttribute(nextEleRef,this.TAB_INDEX,"0");
+            this.setToFocus(nextEleRef);
+      }
+
+      }else{
+
+      let parent=eleRef.nativeElement.parentElement;
+      let role=parent.getAttribute("role");
+      if(role=="group"){
+        let superParent=parent.parentElement;
+        let role=superParent.getAttribute("role");
+        if(role=="treeitem"){
+          let subeleRef:ElementRef=this.eleMap.get(superParent.id);
+          this.setElementAttribute(eleRef,this.TAB_INDEX,"-1");
+          this.recursiveDownNavigation(subeleRef,loopCounter+1);
+        }
+        
+      }
+    }
+      
+    }
+
+
+
+
+  
+  }
 
 
 
