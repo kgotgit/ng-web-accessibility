@@ -138,6 +138,14 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
     $event.preventDefault();
     let lid = $event.currentTarget.getAttribute(this.DATA_LID);
     let eleRef: ElementRef = this.eleMap.get($event.currentTarget.id);
+    let hasChildren = eleRef.nativeElement.getAttribute(this.DATA_HASCHILDREN);
+    if(hasChildren=="1"){
+      let isExpanded = eleRef.nativeElement.getAttribute(this.ARIA_EXPANDED);
+      if(isExpanded=="false")
+      this.setElementAttribute(eleRef, this.ARIA_EXPANDED, "true");
+       
+    }
+   
   }
 
   executeLeftArrow($event) {
@@ -145,6 +153,7 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
     $event.preventDefault();
     let lid = $event.currentTarget.getAttribute(this.DATA_LID);
     let eleRef: ElementRef = this.eleMap.get($event.currentTarget.id);
+
   }
 
   executeArrowDown($event) {
@@ -154,18 +163,21 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
     let eleRef: ElementRef = this.eleMap.get($event.currentTarget.id);
     if (this.isExpanded(eleRef)) {
       let li = eleRef.nativeElement.querySelector('li');
+      console.log(li);
       let nextEleRef: ElementRef = this.eleMap.get(li.id);
       this.setElementAttribute(eleRef,this.TAB_INDEX,"-1");
       this.setElementAttribute(nextEleRef,this.TAB_INDEX,"0");
-    
-
+      this.setToFocus(nextEleRef);
     } else {
       let nextLid = parseInt(lid) + 1;
+      console.log(nextLid);
       if (nextLid <= this.options.length - 1) {
         let nextEleRef: ElementRef = this.eleList[nextLid];
         this.setElementAttribute(eleRef,this.TAB_INDEX,"-1");
         this.setElementAttribute(nextEleRef,this.TAB_INDEX,"0");
-      
+        this.setToFocus(nextEleRef);
+      }else{
+
       }
 
     }
@@ -208,6 +220,10 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
 
   filterElementRef(nodeId: string) {
 
+  }
+
+  setToFocus(eleRef:ElementRef){
+    eleRef.nativeElement.focus();
   }
 
 
