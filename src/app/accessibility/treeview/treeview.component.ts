@@ -207,7 +207,17 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
           let subeleRef: ElementRef = this.eleMap.get(superParent.id);
           this.setElementAttribute(eleRef, this.TAB_INDEX, "-1");
           this.setElementAttribute(subeleRef, this.TAB_INDEX, "0");
-          this.setToFocus(subeleRef);
+              this.setToFocus(subeleRef);
+           /*  if(this.isExpanded(subeleRef)){
+              let ul=subeleRef.nativeElement.querySelector('ul');
+              console.log(ul);
+
+            }else{
+              this.setElementAttribute(subeleRef, this.TAB_INDEX, "0");
+              this.setToFocus(subeleRef);
+            } */
+
+          
        /*    this.recursiveDownNavigation(subeleRef, loopCounter + 1); */
         }
 
