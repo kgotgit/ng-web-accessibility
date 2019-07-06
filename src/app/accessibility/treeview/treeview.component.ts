@@ -190,14 +190,28 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
     let isLast = eleRef.nativeElement.getAttribute(this.DATA_ISLAST);
 
     if(isFirst=="0"){
+      console.log("inside isfFirst===0")
         let prevLid=parseInt(lid)-1;
       if(prevLid>-1){
         let preVEleRef:ElementRef=this.eleList[prevLid];
         this.setElementAttribute(eleRef, this.TAB_INDEX, "-1");
         this.setElementAttribute(preVEleRef, this.TAB_INDEX, "0");
         this.setToFocus(preVEleRef);
+        console.log("seting prevEleRef");
+        if(this.isExpanded(preVEleRef)){
+          let ul=preVEleRef.nativeElement.querySelector('ul');
+          console.log(preVEleRef.nativeElement.children);
+          //console.log(ul);
+
+
+        }else{
+          this.setElementAttribute(preVEleRef, this.TAB_INDEX, "0");
+          this.setToFocus(preVEleRef);
+        }
+
       }
     }else if(isFirst=="1"){
+      console.log("isFirst==1");
       let parent=eleRef.nativeElement.parentElement;
       let role = parent.getAttribute("role");
       if (role == "group") {
@@ -208,14 +222,14 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
           this.setElementAttribute(eleRef, this.TAB_INDEX, "-1");
           this.setElementAttribute(subeleRef, this.TAB_INDEX, "0");
               this.setToFocus(subeleRef);
-           /*  if(this.isExpanded(subeleRef)){
+            if(this.isExpanded(subeleRef)){
               let ul=subeleRef.nativeElement.querySelector('ul');
               console.log(ul);
 
             }else{
               this.setElementAttribute(subeleRef, this.TAB_INDEX, "0");
               this.setToFocus(subeleRef);
-            } */
+            }
 
           
        /*    this.recursiveDownNavigation(subeleRef, loopCounter + 1); */
