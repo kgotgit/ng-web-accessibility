@@ -189,25 +189,55 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
     let isFirst = eleRef.nativeElement.getAttribute(this.DATA_ISFIRST);
     let isLast = eleRef.nativeElement.getAttribute(this.DATA_ISLAST);
 
-    if(isFirst=="0"){
+    if(isFirst=="0" && loopCounter>0){
+      if(this.isExpanded(eleRef)){
+        let ul=eleRef.nativeElement.querySelector('ul');
+        let lastChild=ul.lastChild;
+        let childEleRef=this.eleMap.get(lastChild.id);
+        if(this.isExpanded(childEleRef)){
+          this.recursiveUpNavigation(childEleRef,loopCounter+1);
+        }else{
+          this.setElementAttribute(childEleRef, this.TAB_INDEX, "-1");
+          this.setElementAttribute(childEleRef, this.TAB_INDEX, "0");
+          this.setToFocus(childEleRef);
+        }
+        
+        //console.log(ul);
+
+
+      }else{
+        this.setElementAttribute(eleRef, this.TAB_INDEX, "0");
+        this.setToFocus(eleRef);
+      } 
+    }
+    if(isFirst=="0" && loopCounter==0){
       console.log("inside isfFirst===0")
         let prevLid=parseInt(lid)-1;
       if(prevLid>-1){
         let preVEleRef:ElementRef=this.eleList[prevLid];
+        //this.recursiveUpNavigation(preVEleRef,loopCounter+1);
         this.setElementAttribute(eleRef, this.TAB_INDEX, "-1");
-        this.setElementAttribute(preVEleRef, this.TAB_INDEX, "0");
-        this.setToFocus(preVEleRef);
-        console.log("seting prevEleRef");
+       /*  this.setElementAttribute(preVEleRef, this.TAB_INDEX, "0");
+        this.setToFocus(preVEleRef); */
         if(this.isExpanded(preVEleRef)){
           let ul=preVEleRef.nativeElement.querySelector('ul');
-          console.log(preVEleRef.nativeElement.children);
+          let lastChild=ul.lastChild;
+          let childEleRef=this.eleMap.get(lastChild.id);
+          if(this.isExpanded(childEleRef)){
+            this.recursiveUpNavigation(childEleRef,loopCounter+1);
+          }else{
+            this.setElementAttribute(eleRef, this.TAB_INDEX, "-1");
+            this.setElementAttribute(childEleRef, this.TAB_INDEX, "0");
+            this.setToFocus(childEleRef);
+          }
+          
           //console.log(ul);
 
 
         }else{
           this.setElementAttribute(preVEleRef, this.TAB_INDEX, "0");
           this.setToFocus(preVEleRef);
-        }
+        } 
 
       }
     }else if(isFirst=="1"){

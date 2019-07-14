@@ -17,8 +17,12 @@ export class LiEleComponent implements OnInit {
   @Input("ariaExpanded") ariaExpanded:string;
   @Input("iconClass") iconClass:string;
   @Output("onkeydown") onkeydown = new EventEmitter<any>();
-  @Output("onclick") onclick = new EventEmitter<any>();
+  @Output("onLiClicked") onclick = new EventEmitter<Object>();
   
+  @Input("dataChildCount") dataChildCount:string;
+  @Input("dataIndex") dataIndex:string;
+  @Input("dataFirst") dataFirst:string;
+  @Input("dataLast") dataLast:string;
   constructor() { }
 
   ngOnInit() {

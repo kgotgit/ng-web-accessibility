@@ -10,6 +10,7 @@ import { AlertsComponent } from './alerts/alerts.component';
 import { ProgressbarComponent } from './progressbar/progressbar.component';
 import { TreeviewComponent } from './treeview/treeview.component';
 import { LiEleComponent } from './common/li-ele/li-ele.component';
+import { TreeComponent } from './tree/tree.component';
 
 
 
@@ -21,8 +22,8 @@ import { LiEleComponent } from './common/li-ele/li-ele.component';
     AngularFontAwesomeModule
 
   ],
-  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent, ProgressbarComponent, TreeviewComponent, LiEleComponent],
-  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent,ProgressbarComponent,TreeviewComponent],
+  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent, ProgressbarComponent, TreeviewComponent, LiEleComponent, TreeComponent],
+  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent,ProgressbarComponent,TreeviewComponent,TreeComponent],
   entryComponents: [AlertsComponent]
 })
 export class AccessibilityModule { }
