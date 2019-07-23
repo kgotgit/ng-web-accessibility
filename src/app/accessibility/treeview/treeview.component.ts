@@ -24,7 +24,7 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
   DATA_ISFIRST: string = "data-first";
   DATA_ISLAST: string = "data-last";
   TAB_INDEX: string = "tabindex";
-  currentActiveDescdentElement:string;
+  currentActiveDescdentElement: string;
 
   constructor(private renderer: Renderer2) { }
 
@@ -35,6 +35,12 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.createInitMap();
     this.eleList = this.options.toArray();
+    this.setInitialActiveDescendent();
+  }
+  setInitialActiveDescendent() {
+    if (this.eleList != null && Array.isArray(this.eleList)) {
+      this.currentActiveDescdentElement = this.eleList[0].nativeElement.id;
+    }
   }
 
   createInitMap() {
@@ -56,10 +62,14 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
       if (code == item[this.model.cid]) {
         let isExpanded = eleRef.nativeElement.getAttribute(this.ARIA_EXPANDED);
         this.setElementAttribute(eleRef, this.ARIA_EXPANDED, (isExpanded == "true") ? "false" : "true");
-        let caliEleRef=this.eleMap.get(this.currentActiveDescdentElement);
-        this.setElementAttribute(caliEleRef, this.TAB_INDEX, "-1");
-        this.setElementAttribute(eleRef, this.TAB_INDEX, "0");
-        this.currentActiveDescdentElement=eleRef.nativeElement.id;
+        if (this.currentActiveDescdentElement != null) {
+          let caliEleRef = this.eleMap.get(this.currentActiveDescdentElement);
+          if (caliEleRef != null) {
+            this.setElementAttribute(caliEleRef, this.TAB_INDEX, "-1");
+            this.setElementAttribute(eleRef, this.TAB_INDEX, "0");
+            this.currentActiveDescdentElement = eleRef.nativeElement.id;
+          }
+        }
         return true;
       }
     });
@@ -212,7 +222,7 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
       }
     }
     if (isFirst == "0" && loopCounter == 0) {
-      
+
       let prevLid = parseInt(lid) - 1;
       if (prevLid > -1) {
         let preVEleRef: ElementRef = this.eleList[prevLid];
@@ -235,7 +245,7 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
 
       }
     } else if (isFirst == "1") {
-     
+
       let parent = eleRef.nativeElement.parentElement;
       let role = parent.getAttribute("role");
       if (role == "group") {
@@ -265,8 +275,12 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
     return item[this.model.cid] + "_" + treeId + this.TREEVIEW_SUFFIX;
   }
   setToFocus(eleRef: ElementRef) {
-    this.currentActiveDescdentElement=eleRef.nativeElement.id;
+    this.currentActiveDescdentElement = eleRef.nativeElement.id;
     eleRef.nativeElement.focus();
+    this.scrollIntoViewSmoothly(eleRef);
+  }
+  scrollIntoViewSmoothly(eleRef: ElementRef) {
+    eleRef.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
   }
 
   recursiveDownNavigation(eleRef: ElementRef, loopCounter: number) {
@@ -280,7 +294,7 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
       //check if children are expanded
       if (this.isExpanded(eleRef) && loopCounter < 1) {
         let li = eleRef.nativeElement.querySelector('li');
-      
+
         if (li != null) {
           let nextEleRef: ElementRef = this.eleMap.get(li.id);
           this.setElementAttribute(eleRef, this.TAB_INDEX, "-1");
@@ -299,7 +313,7 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
     } else if (isLast == "1") {
       if (this.isExpanded(eleRef) && loopCounter < 1) {
         let li = eleRef.nativeElement.querySelector('li');
-     
+
         if (li != null) {
           let nextEleRef: ElementRef = this.eleMap.get(li.id);
           this.setElementAttribute(eleRef, this.TAB_INDEX, "-1");
