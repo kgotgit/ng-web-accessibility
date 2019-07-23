@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, ViewChildren, QueryList, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
 import { TreeModel } from 'src/app/model/tree.model';
-import { AlertsComponent } from '../alerts/alerts.component';
-import { Options } from 'selenium-webdriver/ie';
-import { LiEleComponent } from '../common/li-ele/li-ele.component';
+
 
 
 @Component({
