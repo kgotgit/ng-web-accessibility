@@ -1,11 +1,10 @@
 <div class="row">
-  <div class="col-12 col-xl-4">
-    <div class="tree-view">
-    <app-treeview [treeModel]="demoData" ></app-treeview>
-    </div>
+  <div class="xs-12">
+    <app-treeview [treeModel]="demoData"></app-treeview>
   </div>
-  <div class="col-12 col-xl-8">
-
+</div>
+<div class="row">
+  <div class="col-6">
     <section>
       <h4 class="wells">Role, Property, State and Tabindex Attributes</h4>
 
@@ -55,7 +54,8 @@
             <td></td>
             <td>
               <ul>
-                <li>Ensures the <strong>treeitem</strong> element is focusable but is not part of tab sequence. At any point of time only one <strong>treeitem</strong> element is included as part of tabsequence</li>
+                <li>Ensures the <strong>treeitem</strong> element is focusable but is not part of tab sequence. At any
+                  point of time only one <strong>treeitem</strong> element is included as part of tabsequence</li>
               </ul>
             </td>
           </tr>
@@ -66,9 +66,13 @@
             <td>
               <ul>
                 <li>Includes the <strong>treeitem</strong> element in the tab sequence</li>
-                <li>Only one <strong>treeitem</strong> in the <strong>tree</strong> has <strong>tabindex="0"</strong></li>
-                <li>By default during the page load, the first <strong>treeitem</strong> of <strong>tree</strong> element is included in the tab sequence</li>
-                <li>When the user navigates through the <strong>treeitem</strong> elements, the element in focus will be included as part of tab sequence by setting <strong>tabindex="0"</strong> and other <strong>treeitem</strong> elements are set with <strong>tabindex="-1"</strong></li>
+                <li>Only one <strong>treeitem</strong> in the <strong>tree</strong> has <strong>tabindex="0"</strong>
+                </li>
+                <li>By default during the page load, the first <strong>treeitem</strong> of <strong>tree</strong>
+                  element is included in the tab sequence</li>
+                <li>When the user navigates through the <strong>treeitem</strong> elements, the element in focus will be
+                  included as part of tab sequence by setting <strong>tabindex="0"</strong> and other
+                  <strong>treeitem</strong> elements are set with <strong>tabindex="-1"</strong></li>
               </ul>
             </td>
           </tr>
@@ -78,8 +82,10 @@
             <td></td>
             <td>
               <ul>
-                <li>Applied to <strong>treeitem</strong> elements that are parent nodes i.e., they contain a <strong>ul</strong> with the <strong>group</strong> role</li>
-                <li>Indicates that the parent node is closed i.e., the child elements i.e., descendant elements are not visible which is syncrhonized with CSS attribute selector</li>
+                <li>Applied to <strong>treeitem</strong> elements that are parent nodes i.e., they contain a
+                  <strong>ul</strong> with the <strong>group</strong> role</li>
+                <li>Indicates that the parent node is closed i.e., the child elements i.e., descendant elements are not
+                  visible which is syncrhonized with CSS attribute selector</li>
               </ul>
             </td>
           </tr>
@@ -89,8 +95,10 @@
             <td></td>
             <td>
               <ul>
-                <li>Applied to <strong>treeitem</strong> elements that are parent nodes i.e., they contain a <strong>ul</strong> with the <strong>group</strong> role</li>
-                <li>Indicates that the parent node is open i.e., the child elements(i.e., descendant elements) are visible which is syncrhonized with CSS attribute selector</li>
+                <li>Applied to <strong>treeitem</strong> elements that are parent nodes i.e., they contain a
+                  <strong>ul</strong> with the <strong>group</strong> role</li>
+                <li>Indicates that the parent node is open i.e., the child elements(i.e., descendant elements) are
+                  visible which is syncrhonized with CSS attribute selector</li>
               </ul>
             </td>
           </tr>
@@ -100,11 +108,89 @@
             <td><strong>ul</strong></td>
             <td>
               <ul>
-                <li>Identifies the <strong>ul</strong> element as the container of <strong>treeitem</strong> elements that form a branch of the tree</li>
-                <li>Browsers use the group to compute <strong>aria-level</strong>, <strong>aria-setsize</strong> and <strong>aria-posinet</strong> values for the nodes contained in the branch</li>
+                <li>Identifies the <strong>ul</strong> element as the container of <strong>treeitem</strong> elements
+                  that form a branch of the tree</li>
+                <li>Browsers use the group to compute <strong>aria-level</strong>, <strong>aria-setsize</strong> and
+                  <strong>aria-posinet</strong> values for the nodes contained in the branch</li>
               </ul>
             </td>
           </tr>
+        </tbody>
+      </table>
+
+
+    </section>
+  </div>
+  <div class="col-6">
+    <section>
+      <h4 class="wells">Keyboard Navigation</h4>
+
+      <table class="table table-stripped table-bordered">
+        <thead>
+          <tr>
+            <td>Key</td>
+            <td>Description</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="keycap">Space bar</span> OR <span class="keycap">Enter</span></td>
+            <td>Perform default action (i.e., triggers onclick event). Based on the current state of the
+              <strong>treeitem</strong> the node is either opened or closed</td>
+          </tr>
+          <tr>
+            <td><span class="keycap">↑</span> &nbsp;<span class="keycap">Up Arrow</span></td>
+            <td>Move focus to next option </td>
+          </tr>
+          <tr>
+            <td><span class="keycap">↓</span>&nbsp; <span class="keycap">Down Arrow</span></td>
+            <td>Move focus to previous option</td>
+          </tr>
+          <tr>
+            <td><span class="keycap">TAB</span></td>
+            <td>Navigate next active element</td>
+          </tr>
+          <tr>
+            <td><span class="keycap">SHIFT + TAB</span></td>
+            <td>Navigate next previous element</td>
+          </tr>
+
+          <tr>
+            <td><span class="keycap">HOME</span></td>
+            <td>Moves the focus to the first option</td>
+          </tr>
+          <tr>
+            <td><span class="keycap">END</span></td>
+            <td>Moves the focus to the last option</td>
+          </tr>
+          <tr>
+            <td><span class="keycap">Right Arrow</span></td>
+            <td>
+              <ul>
+                <li>When focus is on the closed node, opens the nodes;focus does not shift from the current node</li>
+                <li>When focus is on a open node, moves focus to the first child node</li>
+                <li>When focus is on an end node, does nothing</li>
+
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="keycap">Left Arrrow</span></td>
+            <td>
+              <ul>
+                <li>When focus is on an open node, closes the node.</li>
+                <li>When focus is on a child node that is also either an end node or a closed node, moves focus to its
+                  parent node.</li>
+                <li>When focus is on a root node that is also either an end node or a closed node, does nothing</li>
+
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><span class="keycap">HOME</span></td>
+            <td>Moves focus to first node without opening or closing a node.</td>
+          </tr>
+
         </tbody>
       </table>
 
