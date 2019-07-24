@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChildren, QueryList, ElementRef, AfterViewInit, Renderer2 } from '@angular/core';
 import { TreeModel } from 'src/app/model/tree.model';
+import { stringify } from '@angular/compiler/src/util';
 
 
 
@@ -10,11 +11,13 @@ import { TreeModel } from 'src/app/model/tree.model';
 })
 export class TreeviewComponent implements OnInit, AfterViewInit {
   @ViewChildren("options") options: QueryList<ElementRef>;
-  @ViewChildren("ultags") ulTags: QueryList<ElementRef>;
+  @ViewChildren("icons") iconsTags: QueryList<ElementRef>;
   @Input("treeModel") model: TreeModel;
   eleList: ElementRef[];
   eleMap: Map<string, ElementRef>;
+  iconsMap:Map<string,ElementRef>;
   TREEVIEW_SUFFIX: string = "_treeView";
+  ICON_SUFFIX:string="_icon";
   ARIA_EXPANDED: string = "aria-expanded";
   DATA_CHILDCOUNT = "data-childcount";
   DATA_LID: string = "data-lid";
@@ -47,6 +50,11 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
       this.renderer.setAttribute(eleRef.nativeElement, "data-lid", String(index));
       this.eleMap.set(eleRef.nativeElement.id, eleRef);
     });
+
+    this.iconsMap=new Map<string,ElementRef>();
+    this.iconsTags.forEach((eleRef: ElementRef, index: number, optionsarray: ElementRef[]) => {
+      this.iconsMap.set(eleRef.nativeElement.id, eleRef);
+    });
   }
 
   setTabIndexOnLoad(role: string, i: number) {
@@ -75,11 +83,10 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
   }
 
   getExpandCollapseClass(item: any) {
-
     if (item != null && item.children != null && item.children.length > 0) {
-      return "fa fa-plus-square";
+      return "fa "+this.model.iconExpand;
     }
-    return "fa fa-square-o";
+    return "fa "+this.model.iconNeutral; 
   }
 
   isChildrenExists(items: any[]) {
@@ -88,8 +95,10 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
 
   collapsedState(item: any) {
     if (item != null && item.children != null && item.children.length > 0) {
+      item.ariaExpanded="false";
       return "false"
     }
+    item.ariaExpanded=null;
     return null;
 
   }
@@ -148,6 +157,15 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
 
   setElementAttribute(eleRef: ElementRef, attribute: string, value: string) {
     this.renderer.setAttribute(eleRef.nativeElement, attribute, value);
+    let icon=eleRef.nativeElement.querySelector('i');
+    let iconEleRef=this.iconsMap.get(icon.id);
+    if(value=="true"){
+      this.renderer.removeClass(iconEleRef.nativeElement,this.model.iconExpand);
+      this.renderer.addClass(iconEleRef.nativeElement,this.model.iconCollapse);
+    }else if(value=="false"){
+      this.renderer.removeClass(iconEleRef.nativeElement,this.model.iconCollapse);
+      this.renderer.addClass(iconEleRef.nativeElement,this.model.iconExpand);
+    }
   }
   executeRightArrow($event) {
     $event.stopImmediatePropagation();
@@ -271,6 +289,10 @@ export class TreeviewComponent implements OnInit, AfterViewInit {
 
   getTreeItemId(item: any, treeId: string) {
     return item[this.model.cid] + "_" + treeId + this.TREEVIEW_SUFFIX;
+  }
+  getIconId(item:any,treeId:string){
+    let itemId=this.getTreeItemId(item,treeId);
+    return itemId+"_"+this.ICON_SUFFIX;
   }
   setToFocus(eleRef: ElementRef) {
     this.currentActiveDescdentElement = eleRef.nativeElement.id;

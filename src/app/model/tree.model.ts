@@ -8,6 +8,9 @@ export class TreeModel {
         public showTitle:boolean=true,
         public treeTitle:string="",
         public treeNodeId:string="",
+        public iconExpand:string="fa-plus-square",
+        public iconCollapse:string="fa-minus-square",
+        public iconNeutral:string="fa-square-o",
      ){
      }
 }

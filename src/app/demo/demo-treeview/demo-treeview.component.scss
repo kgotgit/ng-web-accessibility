@@ -2,3 +2,12 @@
     height:50vh;
     overflow:auto;
 }
+
+.card{
+    .card-body{
+        box-shadow: 2px 2px 2px 2px #ddd;
+        margin-bottom:5px;
+        max-height:50vh;
+        overflow:auto;
+    }
+}

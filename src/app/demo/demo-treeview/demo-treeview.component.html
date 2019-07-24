@@ -1,14 +1,26 @@
 <div class="row">
-  <div class="xs-12">
-    <app-treeview [treeModel]="demoData"></app-treeview>
+  <div class="col-12 col-md-6">
+      <div class="card">
+          <div class="card-body">
+              <app-treeview [treeModel]="demoData"></app-treeview>
+          </div>
+        </div>
+    
   </div>
+  <div class="col-12 col-md-6">
+      <div class="card">
+          <div class="card-body">
+              <app-treeview [treeModel]="demoData2"></app-treeview>
+          </div>
+        </div>
+    </div>
 </div>
 <div class="row">
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <section>
       <h4 class="wells">Role, Property, State and Tabindex Attributes</h4>
 
-      <table class="table table-stripped table-bordered ">
+      <table class="table table-stripped table-bordered table-responsive">
         <thead>
           <tr>
             <td>Role</td>
@@ -121,11 +133,11 @@
 
     </section>
   </div>
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <section>
       <h4 class="wells">Keyboard Navigation</h4>
 
-      <table class="table table-stripped table-bordered">
+      <table class="table table-stripped table-bordered table-responsive">
         <thead>
           <tr>
             <td>Key</td>
@@ -168,7 +180,7 @@
             <td>
               <ul>
                 <li>When focus is on the closed node, opens the nodes;focus does not shift from the current node</li>
-                <li>When focus is on a open node, moves focus to the first child node</li>
+                <!-- <li>When focus is on a open node, moves focus to the first child node</li> -->
                 <li>When focus is on an end node, does nothing</li>
 
               </ul>
@@ -179,8 +191,8 @@
             <td>
               <ul>
                 <li>When focus is on an open node, closes the node.</li>
-                <li>When focus is on a child node that is also either an end node or a closed node, moves focus to its
-                  parent node.</li>
+               <!--  <li>When focus is on a child node that is also either an end node or a closed node, moves focus to its
+                  parent node.</li> -->
                 <li>When focus is on a root node that is also either an end node or a closed node, does nothing</li>
 
               </ul>

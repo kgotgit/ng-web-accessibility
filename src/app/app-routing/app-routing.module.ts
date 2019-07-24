@@ -12,7 +12,7 @@ import { DemoListgroupComponent } from '../demo/demo-listgroup/demo-listgroup.co
 import { DemoTreeviewComponent } from '../demo/demo-treeview/demo-treeview.component';
 
 const routes: Routes = [
-  { path: '', redirectTo:"transferlist", pathMatch: 'full'},
+  { path: '', redirectTo:"treeview", pathMatch: 'full'},
   { path: 'combobox', component: DemoComboboxComponent },
   { path: 'transferlist', component: DemoTransferlistComponent },
   { path: 'modalwindow', component: DemoModalwindowComponent},

@@ -18,13 +18,14 @@ class FileFolders{
 export class DemoTreeviewComponent implements OnInit {
 
   demoData:TreeModel;
+  demoData2:TreeModel;
   treeData:FileFolders[];
   
   constructor() { }
 
   ngOnInit() {
     this.prepareData();
-    console.log(this.treeData);
+    
   }
 
   prepareData(){
@@ -77,7 +78,28 @@ export class DemoTreeviewComponent implements OnInit {
       new FileFolders("Recent","RCNT",recentFolders),
       new FileFolders("Downloads","DWNLDS",downloads),
     ]
-      this.demoData=new TreeModel("code","name","children",this.treeData,null, true, "Tree View","folderStructure");
+      this.demoData=new TreeModel("code",
+                                  "name",
+                                  "children",
+                                  this.treeData,
+                                  null, 
+                                  true, 
+                                  "Example 2: Tree View",
+                                  "demoData_folderStructure",
+                                  "fa-plus-square",
+                                  "fa-minus-square",
+                                  "fa-square-o");
+      this.demoData2=new TreeModel("code",
+                                  "name",
+                                  "children",
+                                  this.treeData,
+                                  null, 
+                                  true, 
+                                  "Example 2: Tree View",
+                                  "demoData2_FolderStructure",
+                                  "fa-chevron-right",
+                                  "fa-chevron-down",
+                                  "fa-square-o");             
 
   }
 

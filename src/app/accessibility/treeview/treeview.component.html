@@ -16,7 +16,7 @@
          (keydown)="executeKeydown($event)"
          [tabindex]="setTabIndexOnLoad(role,i)"  
          #options [attr.aria-expanded]="collapsedState(item)" >
-        <i aria-hidden="true" [ngClass]="getExpandCollapseClass(item)">
+        <i aria-hidden="true" [ngClass]="getExpandCollapseClass(item)" [id]="getIconId(item,treeid)" #icons>
         </i>
         <span class="tree-item-label" (click)="toggleSelection($event,item)">{{item[model.lid]}}</span>
       <ng-container *ngTemplateOutlet="treeViewList; context:{ $implicit: item.children,role:'group',treeid:model.treeNodeId,parentid:item.code  }">
