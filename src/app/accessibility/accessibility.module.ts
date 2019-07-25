@@ -22,8 +22,8 @@ import { TreeComponent } from './tree/tree.component';
     AngularFontAwesomeModule
 
   ],
-  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent, ProgressbarComponent, TreeviewComponent, LiEleComponent, TreeComponent],
-  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent,ProgressbarComponent,TreeviewComponent,TreeComponent],
+  declarations: [ComboboxComponent, TransferlistboxComponent, FilterlistboxComponent, KeywordsearchPipe, AlertsComponent, ProgressbarComponent, LiEleComponent, TreeComponent],
+  exports:[ComboboxComponent,TransferlistboxComponent,FilterlistboxComponent,AlertsComponent,ProgressbarComponent,TreeComponent],
   entryComponents: [AlertsComponent]
 })
 export class AccessibilityModule { }

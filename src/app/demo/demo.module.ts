@@ -11,11 +11,13 @@ import { DemoAlertsComponent } from './demo-alerts/demo-alerts.component';
 import { DemoListgroupComponent } from './demo-listgroup/demo-listgroup.component';
 import { FormsModule } from '@angular/forms';
 import { DemoTreeviewComponent } from './demo-treeview/demo-treeview.component';
+import { TreeviewModule } from '../accessibility/treeview/treeview.module';
 
 @NgModule({
   imports: [
     CommonModule,
     AccessibilityModule,
+    TreeviewModule,
     FormsModule
   ],
   declarations: [DemoComboboxComponent, 

@@ -9,6 +9,7 @@ import { DemoModule } from './demo/demo.module';
 import { HeaderComponent } from './core/header/header.component';
 import { LeftNavComponent } from './core/left-nav/left-nav.component';
 import { FormsModule } from '@angular/forms';
+import { TreeviewModule } from './accessibility/treeview/treeview.module';
 
 
 
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     AccessibilityModule,
     AppRoutingModule,
-    DemoModule
+    DemoModule,
+    TreeviewModule
    
   ],
   providers: [],
