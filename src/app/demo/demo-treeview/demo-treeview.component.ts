@@ -84,7 +84,7 @@ export class DemoTreeviewComponent implements OnInit {
                                   this.treeData,
                                   null, 
                                   true, 
-                                  "Example 2: Tree View",
+                                  "Example 1: Tree View",
                                   "demoData_folderStructure",
                                   "fa-plus-square",
                                   "fa-minus-square",
