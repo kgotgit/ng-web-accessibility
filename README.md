@@ -8,11 +8,8 @@ This is still work in progress and enhancements and additional features are adde
 
 ## Angular Web Components:
 
-1) Auto Complete -Manual Selection Combobox
-[Medium Post:  https://medium.com/@kgotgit/web-accessibility-my-share-of-experiences-part-1-44176b03f632]
-[Medium Post: https://medium.com/@kgotgit/web-accessibility-autocomplete-combobox-with-manual-selection-angular-component-part-2-2f7bc1388b59]
-2) Transfer Listbox: Ability to move items from one list box to another
-[Medium Post:  https://medium.com/@kgotgit/accessible-angular-web-component-to-toggle-options-between-two-listbox-s-550c158d1074]
+1) [Auto Complete -Manual Selection Combobox](https://medium.com/@kgotgit/web-accessibility-autocomplete-combobox-with-manual-selection-angular-component-part-2-2f7bc1388b59)
+2) [Transfer Listbox: Ability to move items from one list box to another](https://medium.com/@kgotgit/accessible-angular-web-component-to-toggle-options-between-two-listbox-s-550c158d1074)
 3) Alert Messages
 4) Progress Bar
 5) [Tree View](https://medium.com/@kgotgit/web-accessibility-angular-hierarchical-tree-view-component-with-keyboard-navigation-c0c8e592e542)
