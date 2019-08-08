@@ -1,6 +1,6 @@
 # ng-accessibility
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.13.
+[Angular CLI](https://github.com/angular/angular-cli) version 8.0.2.
 
 The purpose of this project is to build reusable Angular Web Components which includes accessibility related details such as roles, ARIA attributes along with Keyboard Navigation which are in accordance with WCAG guidlines.
 
