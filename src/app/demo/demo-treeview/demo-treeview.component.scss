@@ -9,5 +9,10 @@
         margin-bottom:5px;
         max-height:50vh;
         overflow:auto;
+        a{
+            position: absolute;
+            top:0%;
+            right:0%;
+        }
     }
 }
