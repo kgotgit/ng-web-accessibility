@@ -1,4 +1,0 @@
-#To understand accessibility related requirements
-https://www.w3.org/TR/2017/WD-wai-aria-practices-1.1-20170628/examples/listbox/listbox.html
-#To Understand Angular DOM manipulation
-https://blog.angularindepth.com/exploring-angular-dom-abstractions-80b3ebcfc02
